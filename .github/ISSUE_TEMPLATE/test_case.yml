@@ -28,7 +28,7 @@ body:
     attributes:
       label: Issue description
       description: Please provide additional, thorough details about the issue.
-      Issues with poor descriptions or lacking information are less likely to be reviewed or resolved.
+        Issues with poor descriptions or lacking information are less likely to be reviewed or resolved.
     validations:
       required: true
   - type: textarea
