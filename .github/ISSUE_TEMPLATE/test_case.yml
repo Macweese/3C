@@ -1,0 +1,40 @@
+name: Test case
+description: Open an issue regarding test cases for a challenge
+body:
+  - type: markdown
+    attributes:
+      value: >
+        ## 3C test case report  
+
+        Before proceeding to submit an issue regarding tests, please verify the error is
+        a true positive, replicable and not a duplicate of an already exist issue in the [#issue
+        tracker](https://github.com/Macweese/3C/issues). If your issue
+        is found to already exist, please provide any information to the relevant issue
+        through a comment or a reaction.  
+        
+        If you want to contribute with additional test cases, please open a pull request instead.
+  - type: dropdown
+    id: dropdown-1
+    attributes:
+      label: Issue
+      options:
+        - Wrong expected answer
+        - Performance
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: textarea-2
+    attributes:
+      label: Issue description
+      description: Please provide additional, thorough details about the issue.
+      Issues with poor descriptions or lacking information are less likely to be reviewed or resolved.
+    validations:
+      required: true
+  - type: textarea
+    id: textarea-3
+    attributes:
+      label: Screenshots or recordings
+      description: Add any screenshots or recordings related to the issue.
+    validations:
+      required: false
