@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccc"
+version = "0.1.0"
+description = "3C CLI: generate problem READMEs (LeetCode, etc.)"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Macweese" }]
+license = { text = "AGPL-3.0-or-later" }
+dependencies = [
+    "requests>=2.31.0",
+    "jinja2>=3.1.3",
+    "beautifulsoup4>=4.12.3",
+    "rich>=13.7.1",
+]
+
+[project.scripts]
+# The shell command is "3c"
+3c = "ccc.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "cli" }
+
+[tool.setuptools.packages.find]
+where = ["cli"]
+include = ["ccc*"]
+
+[tool.setuptools.package-data]
+ccc = ["templates/*.j2"]
