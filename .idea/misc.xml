@@ -14,7 +14,7 @@
   <component name="PDMPlugin">
     <option name="skipTestSources" value="false" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="openjdk-25" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-25" project-jdk-type="JavaSDK" />
   <component name="PythonCompatibilityInspectionAdvertiser">
     <option name="version" value="3" />
   </component>
