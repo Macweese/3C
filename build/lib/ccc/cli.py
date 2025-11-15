@@ -30,7 +30,7 @@ def main() -> int:
 	common.add_argument("--force-color", action="store_true", help="Force colored output even if terminal detection fails (or set FORCE_COLOR=1).")
 	common.add_argument("--color-diag", action="store_true", help="Print color diagnostics at start (provider-specific).")
 
-	parser = argparse.ArgumentParser(prog="3c", description="3C CLI — Competitive Coding Challenge CLI")
+	parser = argparse.ArgumentParser(prog="3c", description="3C — Competitive Coding Challenge CLI")
 	subparsers = parser.add_subparsers(dest="cmd", required=True, metavar="{lc}")
 
 	# Register providers
