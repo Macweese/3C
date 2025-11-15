@@ -34,7 +34,10 @@
 # 3C CLI
 
 The 3C CLI produces consistent, formatted README.md files for coding challenge problems.
-Currently supported source: LeetCode (`lc`). The output structure is designed to scale to multiple sources without collisions.
+Currently supported sources:  
+- LeetCode (`lc`)
+
+The output structure is designed to scale to multiple sources without collisions.
 
 - Global command: `3c`
 - Subcommands: `lc` (LeetCode)
