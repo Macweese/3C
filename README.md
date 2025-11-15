@@ -21,8 +21,8 @@ The challenges are structured by their rating or difficulty:
 - **Numerical:**  
    &emsp;Difficulty score e.g. _0_-_5000_, _0.0_-_10.0_, or another scaling (where higher is more difficult)
 - **Solve quotient:**  
-  &emsp;Total number of _attempted solutions_ divided by _accepted solutions_ for the challenge:  
-  &emsp; $ \frac{\text{attempts}}{\text{accepted solutions}} $
+  &emsp;Total number of _attempted solutions_ divided by _accepted solutions_ for the challenge: 
+  &emsp; $$\frac{\text{attempts}}{\text{accepted solutions}}$$
 
 Every challenge is accompanied by a problem statement, constraints, tags, source to where problem was originally
 discovered or presented, optionally examples to illustrate the problem and expected solution behavior, and tests to
@@ -42,7 +42,7 @@ golfing challenges or similar in nature.
 ## Forking
 
 If you are interested in trying to solve these challenges yourself, you can fork
-the [`@3C/template-branch`](https://www.github.com/macweese/3c/tree/template)
+the [`@3C/template`](https://www.github.com/macweese/3c/tree/template) branch
 
 For challenges not present in this repository,
 e.g. recently added to LeetCode, use the generator CLI to automatically create a `README.md` for the challenge.
