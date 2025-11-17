@@ -47,8 +47,8 @@ TODO.md
 venv
 .venv
 .idea
-build
-out
-target
-leetcode
-src/main/java/challenge/unofficial
+build/**
+out/**
+target/**
+./leetcode/**
+./src/main/java/challenge/unofficial/**
