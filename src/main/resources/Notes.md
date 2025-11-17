@@ -101,6 +101,17 @@ static List<Integer> getPrimeList(int min, int max)
 }
 ```
 
+#### Sum of range
+The sum of integers (inclusive) &emsp; $ \lbrack a ... b\rbrack  $ &emsp; as &emsp; $ \sum_{n=a}^{b}n $  
+
+$$$ f\left(a,b\right)=\frac{\left(\max\left(a,b\right)-\min\left(a,b\right)+1\right)\left(a+b\right)}{2} $$$
+```java
+public long sumRange(long a, long b)
+{
+	return (Math.max(a, b) - Math.min(a, b) + 1) * (a + b) / 2;
+}
+```
+
 #### Fibonacci numbers
 Finding the $ n^{th} $ number in sequence (Binet's formula)
 

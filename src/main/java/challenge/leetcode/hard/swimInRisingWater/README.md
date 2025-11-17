@@ -1,0 +1,160 @@
+[comment]: # ( ----- THIS FILE IS AUTO-GENERATED ----- )
+
+# 778. Swim in Rising Water
+
+<h3 style="color:#FF4800;">Hard</h3>
+
+[LeetCode 778](https://leetcode.com/problems/swim-in-rising-water/)
+
+## Description
+
+<p>You are given an <code>n x n</code> integer matrix <code>grid</code> where each value <code>grid[i][j]</code> represents the elevation at that point <code>(i, j)</code>.</p><p>It starts raining, and water gradually rises over time. At time <code>t</code>, the water level is <code>t</code>, meaning <strong>any</strong> cell with elevation less than equal to <code>t</code> is submerged or reachable.</p><p>You can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most <code>t</code>. You can swim infinite distances in zero time. Of course, you must stay within the boundaries of the grid during your swim.</p><p>Return <em>the minimum time until you can reach the bottom right square </em><code>(n - 1, n - 1)</code><em> if you start at the top left square </em><code>(0, 0)</code>.</p>
+
+#### Example 1
+<div style="margin-left: 40px">
+
+<img alt="" src="https://assets.leetcode.com/uploads/2021/06/29/swim1-grid.jpg" style="width: 164px; height: 165px;"/>
+
+<b>Input:</b>
+<pre style="margin-left: 40px">
+grid = [[0,2],[1,3]]
+</pre>
+
+<b>Output:</b>
+<pre style="margin-left: 40px">
+3
+Explanation:
+At time 0, you are in grid location (0, 0).
+You cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.
+You cannot reach point (1, 1) until time 3.
+When the depth of water is 3, we can swim anywhere inside the grid.
+</pre>
+
+<b>Explanation:</b>
+<pre style="margin-left: 40px">
+</pre>
+
+</div>
+
+<br>
+
+#### Example 2
+<div style="margin-left: 40px">
+
+<img alt="" src="https://assets.leetcode.com/uploads/2021/06/29/swim2-grid-1.jpg" style="width: 404px; height: 405px;"/>
+
+<b>Input:</b>
+<pre style="margin-left: 40px">
+grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]
+</pre>
+
+<b>Output:</b>
+<pre style="margin-left: 40px">
+16
+</pre>
+
+<b>Explanation:</b>
+<pre style="margin-left: 40px">
+The final route is shown.
+We need to wait until time 16 so that (0, 0) and (4, 4) are connected.
+</pre>
+
+</div>
+
+<br>
+
+### Constraints:
+
+<ul>
+<li><code>n == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= n &lt;= 50</code></li>
+<li><code>0 &lt;= grid[i][j] &lt; n<sup>2</sup></code></li>
+<li>Each value <code>grid[i][j]</code> is <strong>unique</strong>.</li>
+</ul>
+
+<br>
+
+## Solution
+
+### Intuition
+
+<!-- Optional: add your own thoughts after reading the description -->
+
+### Approach
+
+<!-- Optional: sketch your plan -->
+
+### Complexity analysis
+
+#### Time Complexity
+
+<!-- e.g., O(n log n) -->
+
+#### Space Complexity
+
+<!-- e.g., O(n) -->
+
+---
+
+### Code
+
+```
+// AC here
+```
+
+---
+
+<br>
+
+#### Tags
+
+`array`
+`binary search`
+`depth-first search`
+`breadth-first search`
+`union find`
+`heap (priority queue)`
+`matrix`
+
+
+---
+
+<details>
+  <summary>Hint 1</summary>
+  Use either Dijkstra&#39;s, or binary search for the best time T for which you can reach the end if you only step on squares at most T.
+</details>
+
+
+<br>
+
+---
+
+#### Similar
+
+**LeetCode** (website)
+
+* [1631 Path With Minimum Effort](https://leetcode.com/problems/path-with-minimum-effort/)
+
+
+**Local** (repository)
+
+* <!-- Fill in local links if you have corresponding solutions -->
+
+---
+
+**POTD** `2025-10-06, Mon 06 October 2025`
+
+[comment]: # (comments...)
+
+<br>
+
+**Notes**
+
+<!-- Your notes -->
+
+[comment]: # (notes...)
+
+
+
+[comment]: # ( ----- THIS FILE IS AUTO-GENERATED ----- )
