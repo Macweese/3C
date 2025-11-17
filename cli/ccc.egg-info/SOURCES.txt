@@ -1,3 +1,4 @@
+LICENSE
 README.md
 pyproject.toml
 cli/ccc/__init__.py
@@ -16,11 +17,3 @@ cli/ccc/templates/leetcode_readme.md.j2
 cli/ccc/templates/v1_leetcode_readme.md.j2
 cli/ccc/templates/v2_leetcode_readme.md.j2
 cli/ccc/templates/v3_leetcode_readme.md.j2
-cli/ccc/ver/__init__.py
-cli/ccc/ver/v1_leetcode_readme_gen.py
-cli/ccc/ver/v2_leetcode_readme_gen.py
-cli/ccc/ver/v3_leetcode_readme_gen.py
-cli/ccc/ver/v4_leetcode_readme_gen.py
-cli/ccc/ver/v5_leetcode_readme_gen.py
-cli/ccc/ver/v6_leetcode_readme_gen.py
-cli/ccc/ver/v7_leetcode_readme_gen.py

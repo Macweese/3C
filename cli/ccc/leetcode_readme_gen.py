@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-import datetime
 import datetime as dt
 import json
 import os
@@ -274,6 +273,20 @@ DIFFICULTY_COLOR = {
 CONTEST_MAP_CACHE = CACHE_DIR / "contest_map.json"
 PROBLEM_MAP_CACHE = CACHE_DIR / "problems_all.json"
 
+# GraphQL for Problem of the Day
+POTD_QUERY = """
+query questionOfToday {
+  activeDailyCodingChallengeQuestion {
+    date
+    link
+    question {
+      questionFrontendId
+      titleSlug
+    }
+  }
+}
+"""
+
 
 # -------------------------------- Utilities --------------------------------
 
@@ -393,6 +406,57 @@ def query_graphql(slug: str, cookies: Dict[str, str], debug: bool = False) -> Di
     s = _ensure_session(cookies)
     data = _post_graphql_with_retries(s, slug, payload, debug=debug)
     return data["data"]["question"]
+
+
+def fetch_potd_slug(cookies: Dict[str, str], debug: bool = False) -> Tuple[str, Dict[str, str]]:
+    """
+    Fetch the current LeetCode Problem of the Day (POTD).
+
+    Returns:
+        (slug, potd_date_dict)
+
+    potd_date_dict layout matches format_today_utc() keys.
+    """
+    s = _ensure_session(cookies)
+    # For POTD, we don't have a specific problem slug yet; pass None to _ensure_csrf
+    cs = _ensure_csrf(s, slug=None)
+    headers = headers_for_graphql(cs, referer=LEETCODE_BASE)
+    payload = {
+        "operationName": "questionOfToday",
+        "variables": {},
+        "query": POTD_QUERY,
+    }
+    r = s.post(GRAPHQL_URL, headers=headers, json=payload, timeout=30)
+    if debug:
+        print_debug(f"POTD GraphQL status: {r.status_code}")
+    r.raise_for_status()
+    body = r.json()
+    active = (body.get("data") or {}).get("activeDailyCodingChallengeQuestion")
+    if not active:
+        raise RuntimeError("LeetCode POTD not available (no activeDailyCodingChallengeQuestion).")
+
+    date_str = active.get("date")
+    q = active.get("question") or {}
+    slug = q.get("titleSlug")
+    if not slug:
+        raise RuntimeError("LeetCode POTD missing titleSlug in response.")
+
+    # Build a date dict similar to format_today_utc but based on POTD's date
+    try:
+        dt_obj = dt.datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=dt.timezone.utc)
+    except Exception:
+        # Fallback: use current UTC date if parsing fails
+        dt_obj = dt.datetime.now(dt.timezone.utc)
+
+    potd_date = {
+        "iso": dt_obj.strftime("%Y-%m-%d"),
+        "day": dt_obj.strftime("%d"),
+        "month": dt_obj.strftime("%m"),
+        "year": dt_obj.strftime("%Y"),
+        "weekday_short": dt_obj.strftime("%a"),
+        "month_full": dt_obj.strftime("%B"),
+    }
+    return slug, potd_date
 
 
 # ------------------------------ Problem map ---------------------------------
@@ -806,7 +870,8 @@ def expand_problem_inputs(inputs: Iterable[str]) -> List[str]:
 
 # ---------------------------- Generation routine ----------------------------
 
-def generate_one(slug: str, args, cookies: Dict[str, str]) -> Tuple[
+def generate_one(slug: str, args, cookies: Dict[str, str],
+                 potd_date: Optional[Dict[str, str]] = None) -> Tuple[
     Optional[str], Optional[str], List[str], Optional[Path]]:
     q = query_graphql(slug, cookies, debug=args.debug)
 
@@ -814,7 +879,6 @@ def generate_one(slug: str, args, cookies: Dict[str, str]) -> Tuple[
         print_skip(f"Paid-only problem: {slug}")
         return None, None, [], None
 
-    today = format_today_utc()
     similar = parse_similar(q.get("similarQuestions"))
     similar_slugs = [s.get("slug") for s in similar if s.get("slug")]
     similar_enriched = enrich_similar_with_ids(similar, cookies, debug=args.debug) if similar else []
@@ -843,6 +907,8 @@ def generate_one(slug: str, args, cookies: Dict[str, str]) -> Tuple[
     title = q.get("title", "")
     difficulty = q.get("difficulty", "Easy")
     title_slug = q.get("titleSlug", slug)
+    # POTD context: only set when this run is explicitly for POTD
+    potd_ctx = potd_date if getattr(args, "potd", False) and potd_date else None
 
     context = {
         "question_id": problem_id,
@@ -857,7 +923,7 @@ def generate_one(slug: str, args, cookies: Dict[str, str]) -> Tuple[
         "hints": q.get("hints", []) or [],
         "tags": tags,
         "similar": similar_enriched,
-        "today": today,
+        "potd": potd_ctx,
     }
 
     out_root_str = args.out_dir if (args.out_dir is not None and str(args.out_dir).strip() != "") else (
@@ -923,13 +989,23 @@ def run_with_args(args) -> int:
     # Counters for summary
     success_count = skip_count = fail_count = 0
 
-    try:
-        items = expand_problem_inputs(args.problems)
-    except Exception as e:
-        print_error(str(e))
-        return 1
-
     cookies = load_env_cookie()
+
+    # If --potd is set, ignore explicit problem and resolve today's POTD slug
+    potd_date: Optional[Dict[str, str]] = None
+    if getattr(args, "potd", False):
+        try:
+            slug, potd_date = fetch_potd_slug(cookies, debug=args.debug)
+            items = [slug]
+        except Exception as e:
+            print_error(f"Failed to fetch LeetCode POTD: {e}")
+            return 1
+    else:
+        try:
+            items = expand_problem_inputs(args.problems)
+        except Exception as e:
+            print_error(str(e))
+            return 1
 
     queue: List[str] = []
     seen: Set[str] = set()
@@ -949,7 +1025,7 @@ def run_with_args(args) -> int:
     while queue:
         slug = queue.pop(0)
         try:
-            pid, title, similar_slugs, written = generate_one(slug, args, cookies)
+            pid, title, similar_slugs, written = generate_one(slug, args, cookies, potd_date=potd_date)
             if written:
                 last_written = written
                 success_count += 1
@@ -967,7 +1043,7 @@ def run_with_args(args) -> int:
     if getattr(args, "also_similar", False) and to_add_similar:
         for s in to_add_similar:
             try:
-                pid, title, similar_slugs, written = generate_one(s, args, cookies)
+                pid, title, similar_slugs, written = generate_one(s, args, cookies, potd_date=None)
                 if written:
                     last_written = written
                     success_count += 1
@@ -1003,8 +1079,13 @@ def register_subparser(subparsers, parents: Optional[List[argparse.ArgumentParse
 
     p.add_argument(
         "problems",
-        nargs="+",
-        help="One or more problems (URL, slug, number, or numeric range like 40-50)"
+        nargs="*",
+        help="One or more problems (URL, slug, number, or numeric range like 40-50)",
+    )
+    p.add_argument(
+        "--potd",
+        action="store_true",
+        help="Generate README for today's LeetCode Problem of the Day",
     )
     p.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
                    help="R|Base output directory\nDefault: current directory or $3C_OUT_DIR if set")
@@ -1043,8 +1124,13 @@ def build_standalone_parser() -> argparse.ArgumentParser:
                                 formatter_class=SmartFormatter)
     p.add_argument(
         "problems",
-        nargs="+",
-        help="One or more problems (URL, slug, number, or numeric range like 40-50)"
+        nargs="*",
+        help="One or more problems (URL, slug, number, or numeric range like 40-50)",
+    )
+    p.add_argument(
+        "--potd",
+        action="store_true",
+        help="Generate README for today's LeetCode Problem of the Day",
     )
     p.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
                    help="R|Base output directory\nDefault: current directory or $3C_OUT_DIR if set")
