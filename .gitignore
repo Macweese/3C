@@ -51,4 +51,4 @@ build/**
 out/**
 target/**
 ./leetcode/**
-./src/main/java/challenge/unofficial/**
+./src/main/java/challenge/unofficial/**/**
