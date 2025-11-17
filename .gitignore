@@ -50,6 +50,8 @@ venv
 build/**
 out/**
 target/**
+./Challenges
+Challenges/
 ./leetcode
 leetcode/
 ./projecteuler
