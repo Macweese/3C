@@ -50,5 +50,5 @@ venv
 build/**
 out/**
 target/**
-./leetcode/**
+./leetcode
 src/main/java/challenge/unofficial
