@@ -31,3 +31,13 @@
 /.idea/workspace.xml
 /cli/ccc/.env.example
 /cli/ccc/ver/
+/.venv
+/target/classes
+target/classes/logback.xml
+src/main/resources/logback.xml
+/out/production
+/out/production/3C
+out/production/3C/logback.xml
+/build
+/build/lib
+/build/lib/ccc
