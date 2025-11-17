@@ -41,3 +41,12 @@ out/production/3C/logback.xml
 /build
 /build/lib
 /build/lib/ccc
+ascii.md
+TEST.md
+TODO.md
+venv
+.venv
+.idea
+build
+out
+target
