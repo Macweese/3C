@@ -63,3 +63,4 @@ target/**
 /codewars/
 /codingame/
 src/main/java/challenge/unofficial
+src/main/java/PwGenerator.java
