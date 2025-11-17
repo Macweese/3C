@@ -24,10 +24,6 @@ import java.util.Arrays;
  * @author Administrator
  * @Created 26/10/2025, 06:36 Sun 26 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class SimpleBankSystem
 {
@@ -37,23 +33,18 @@ public class SimpleBankSystem
 		Bank bank = new Bank(new long[]{10, 100, 20, 50, 30});
 		System.out.println(Arrays.toString(bank.accounts));
 
-//		System.out.println("\nWithdraw: 3, -10");
 		bank.withdraw(3, 10);
 		System.out.println(Arrays.toString(bank.accounts));
 
-//		System.out.println("\nTransfer: 5 -> 1, 20");
 		bank.transfer(5, 1, 20);
 		System.out.println(Arrays.toString(bank.accounts));
 
-//		System.out.println("\nDeposit: 5, 20");
 		bank.deposit(5, 20);
 		System.out.println(Arrays.toString(bank.accounts));
 
-//		System.out.println("\nTransfer: 3 -> 4, 15");
 		bank.transfer(3, 4, 15);
 		System.out.println(Arrays.toString(bank.accounts));
 
-//		System.out.println("\nWithdraw: 10, 50");
 		bank.withdraw(10, 50);
 		System.out.println(Arrays.toString(bank.accounts));
 	}
@@ -122,16 +113,6 @@ class Bank
 
 	private synchronized boolean accountExists(int accountId)
 	{
-//		try
-//		{
-//			long i = accounts[accountId - 1];
-//		}
-//		catch (ArrayIndexOutOfBoundsException e)
-//		{
-//			return false;
-//		}
-//
-//		return true;
 		return accountId > 0 && accountId <= accounts.length;
 	}
 }
