@@ -116,6 +116,9 @@ Basic:
 
 # Also generate one-hop similar problems
 3c lc 998 --also-similar
+
+# Today's LeetCode Problem of the Day 
+3c lc --potd
 ```
 
 Common flags:
@@ -149,20 +152,25 @@ Common flags:
 Examples:
 
 ```bash
-# Default layout (source + difficulty + id) into repo root
-3c lc 3508 --out-dir .
+# Default (into repo root)
+3c lc 3508
 # -> ./leetcode/medium/3508/README.md
 
+# Default layout (source + difficulty + id) into cwd
+3c lc 3508 --out-dir .
+# -> cwd/leetcode/medium/3508/README.md
+
 # “Flat-by-source” with readable leaf name
-3c lc 50 --out-dir . --layout source-id --namefmt "{id}-{slug}"
+3c lc 50 --layout source-id --namefmt "{id}-{slug}"
 # -> ./leetcode/50-powx-n/README.md
 
 # Legacy flat mode (internally coerced to source-id to avoid cross-source collisions)
-3c lc 64 --mode flat --out-dir .
+3c lc 64 --mode flat
 # -> ./leetcode/64/README.md
 
 # Generate a batch, then write under a custom out dir
-3c lc 40-45 --out-dir "E:\Scratch\LeetCode"
+3c lc 40-45 --out-dir E:/directory
+# -> E:/directory/leetcode/64/README.md
 ```
 
 ---
