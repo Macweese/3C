@@ -32,6 +32,7 @@
 /cli/ccc/.env.example
 /cli/ccc/ver/
 /cli/ccc/leetcode_graphql_query.graphlq
+/cli/ccc/templates/v**
 /.venv
 /target/classes
 target/classes/logback.xml
