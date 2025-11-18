@@ -95,9 +95,9 @@ class DesignAFoodRatingSystemTest
 		{
 			generateTest();
 
-			log.debug("{}", String.format("%n%-25s %-25s%n", "TEST #", testCount));
-			log.debug("{}", String.format("%-25s %-25s%n", "Expected", "Actual"));
-			log.debug("{}", String.format("------------------------- -------------------------%n"));
+			log.debug("{}", String.format("%-25s %-25s", "TEST #", testCount));
+			log.debug("{}", String.format("%-25s %-25s", "Expected", "Actual"));
+			log.debug("{}", String.format("------------------------- -------------------------"));
 
 			for (int i = 0; i < r.nextInt(0, 20_000); i++)
 			{
@@ -128,7 +128,7 @@ class DesignAFoodRatingSystemTest
 
 					if (expected.isBlank() && actual.isBlank())
 					{
-						log.debug("{}", String.format("%-25s %-25s%n", expected, actual));
+						log.debug("{}", String.format("%-25s %-25s", expected, actual));
 					}
 				}
 			}
