@@ -52,12 +52,12 @@ See “3C CLI” and the detailed docs in [cli/ccc/README](cli/ccc/README.md).
 
 Problems are sourced from:
 
-- Leetcode
-- Project Euler
-- CodeForces
-- Kattis
 - atCoder
-- HackerRank
-- TopCoder
+- CodeForces
 - CodeWars
 - CodinGame
+- HackerRank
+- Kattis
+- Leetcode
+- Project Euler
+- TopCoder
