@@ -3,7 +3,7 @@
 ## Mathematics
 
 #### Square root
-Finding the nearest floored integer square root $ x $ of a number $ n $
+Finding the nearest floored integer square root $x$ of a number $n$
 
 ```java
 public int sqrt(int n)
@@ -102,9 +102,9 @@ static List<Integer> getPrimeList(int min, int max)
 ```
 
 #### Sum of range
-The sum of integers (inclusive) &emsp; $ \lbrack a ... b\rbrack  $ &emsp; as &emsp; $ \sum_{n=a}^{b}n $  
+The sum of integers (inclusive) &emsp; $\lbrack a ... b\rbrack$ &emsp; as &emsp; $\sum_{n=a}^{b}n$  
 
-$$$ f\left(a,b\right)=\frac{\left(\max\left(a,b\right)-\min\left(a,b\right)+1\right)\left(a+b\right)}{2} $$$
+$$ f\left(a,b\right)=\frac{\left(\max\left(a,b\right)-\min\left(a,b\right)+1\right)\left(a+b\right)}{2} $$
 ```java
 public long sumRange(long a, long b)
 {
@@ -113,7 +113,7 @@ public long sumRange(long a, long b)
 ```
 
 #### Fibonacci numbers
-Finding the $ n^{th} $ number in sequence (Binet's formula)
+Finding the $n^{th}$ number in sequence (Binet's formula)
 
 ```java
 public int getN_thFib(int n)
@@ -123,7 +123,7 @@ public int getN_thFib(int n)
 ```
 
 ### Combinatorics
-Combinations of $ n $ elements, given a pool $ r $
+Combinations of $n$ elements, given a pool $r$
 
 ```java
 int getCombinations(int n)
@@ -149,7 +149,7 @@ static long nCr(int n, int r)
 }
 ```
 
-Permutations of $ n $ elements
+Permutations of $n$ elements
 
 ```java
 
@@ -266,15 +266,15 @@ static List<List<int[]>> getAdjWeighted(int[][] graph, int nNodes, boolean isDir
 
 ### Data structures iteration
 
-| Algorithm                   | Time                        | Space               | Modifies data |
-|-----------------------------|-----------------------------|---------------------|---------------|
-| BruteForce                  | $ n^{\text{loop-nesting}} $ | $ \text{constant} $ | No            |
-| Sorting                     | $ n \times \log(n) $        | $ \log(n) $         | Yes           |
-| Binary Search               | $ n \times \log(n) $        | $ \text{constant} $ | No            |
-| Vector/set/hashmap          | $ n $                       | $ n $               | No            |
-| Negative marking            | $ n $                       | $ \text{constant} $ | Yes           |
-| Mapping Values with indices | $ n $                       | $ \text{constant} $ | Yes           |
-| Tortoise-Hare (Fast-Slow)   | $ n $                       | $ \text{constant} $ | No            |
+| Algorithm                   | Time                      | Space             | Modifies data |
+|-----------------------------|---------------------------|-------------------|---------------|
+| BruteForce                  | $n^{\text{loop-nesting}}$ | $\text{constant}$ | No            |
+| Sorting                     | $n \times \log(n)$        | $\log(n) $        | Yes           |
+| Binary Search               | $n \times \log(n)$        | $\text{constant}$ | No            |
+| Vector/set/hashmap          | $n$                       | $n$               | No            |
+| Negative marking            | $n$                       | $\text{constant}$ | Yes           |
+| Mapping Values with indices | $n$                       | $\text{constant}$ | Yes           |
+| Tortoise-Hare (Fast-Slow)   | $n$                       | $\text{constant}$ | No            |
 
 <br>
 
@@ -762,12 +762,12 @@ private static void reverse(int[] a, int l, int r)
 ### Logic
 Truth table
 
-| $ \text{A} $ | $ \text{B} $ | $ \lnot \text{A} $ | $ \lnot \text{B} $ | $ \text{A} \land \text{B} $ | $ \text{A}  \lor \text{B} $ | $ \text{A}  \Rightarrow \text{B} $ | $ \text{A} \Leftrightarrow  \text{B} $ |
-|--------------|--------------|--------------------|--------------------|-----------------------------|-----------------------------|------------------------------------|----------------------------------------|
-| $ 0 $        | $ 0 $        | $ 1 $              | $ 1 $              | $ 0 $                       | $ 0 $                       | $ 1 $                              | $ 1 $                                  |
-| $ 0 $        | $ 1 $        | $ 1 $              | $ 0 $              | $ 0 $                       | $ 1 $                       | $ 1 $                              | $ 0 $                                  |
-| $ 1 $        | $ 0 $        | $ 0 $              | $ 1 $              | $ 0 $                       | $ 1 $                       | $ 0 $                              | $ 0 $                                  |
-| $ 1 $        | $ 1 $        | $ 0 $              | $ 0 $              | $ 1 $                       | $ 1 $                       | $ 1 $                              | $ 1 $                                  |
+| $\text{A}$ | $\text{B}$ | $\lnot \text{A}$ | $\lnot \text{B}$ | $\text{A} \land \text{B}$ | $\text{A} \lor \text{B}$ | $\text{A} \Rightarrow \text{B}$ | $\text{A} \Leftrightarrow \text{B}$ |
+|------------|------------|------------------|------------------|---------------------------|--------------------------|---------------------------------|-------------------------------------|
+| $0$        | $0$        | $1$              | $1$              | $0$                       | $0$                      | $1$                             | $1$                                 |
+| $0$        | $1$        | $1$              | $0$              | $0$                       | $1$                      | $1$                             | $0$                                 |
+| $1$        | $0$        | $0$              | $1$              | $0$                       | $1$                      | $0$                             | $0$                                 |
+| $1$        | $1$        | $0$              | $0$              | $1$                       | $1$                      | $1$                             | $1$                                 |
 
 <br>
 
