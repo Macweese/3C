@@ -9,8 +9,8 @@ Personal repository for solutions to Competitive Coding Challenges.
 # Code Challenges
 
 This repository is a collection of various coding and system design challenges, around the themes of mathematics, computational math,
-golfing, DSA (data structures and algorithms) and holistic program architecture. There is a wide variety of categories or 'types' of questions of varying
-difficulty, which touch different areas of programming and solution techniques.
+golfing, DSA (data structures and algorithms) and holistic program architecture. There is a wide variety of categories and types of questions of varying
+difficulty, which touch different areas of programming and problem-solving techniques.
 
 ## Problems
 
