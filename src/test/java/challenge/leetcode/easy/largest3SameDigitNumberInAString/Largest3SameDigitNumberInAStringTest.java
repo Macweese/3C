@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.largest3SameDigitNumberInAString;
 
-import challenge.leetcode.easy.largest3SameDigitNumberInAString.Largest3SameDigitNumberInAString;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.powerOfTwo;
 
-import challenge.leetcode.easy.powerOfTwo.PowerOfTwo;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

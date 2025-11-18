@@ -18,7 +18,6 @@
 
 package challenge.leetcode.hard.trappingRainWaterII;
 
-import challenge.leetcode.hard.trappingRainWaterII.TrappingRainWaterII;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

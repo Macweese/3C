@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.fruitIntoBaskets;
 
-import challenge.leetcode.medium.fruitIntoBaskets.FruitIntoBaskets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

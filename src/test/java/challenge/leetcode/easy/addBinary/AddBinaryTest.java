@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.addBinary;
 
-import challenge.leetcode.easy.addBinary.AddBinary;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

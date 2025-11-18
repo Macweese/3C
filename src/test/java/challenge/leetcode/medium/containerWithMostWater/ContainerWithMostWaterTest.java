@@ -18,7 +18,6 @@
 
 package challenge.leetcode.medium.containerWithMostWater;
 
-import challenge.leetcode.medium.containerWithMostWater.ContainerWithMostWater;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

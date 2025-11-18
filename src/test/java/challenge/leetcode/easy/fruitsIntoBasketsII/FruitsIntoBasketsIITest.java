@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.fruitsIntoBasketsII;
 
-import challenge.leetcode.easy.fruitsIntoBasketsII.FruitsIntoBasketsII;
 import java.util.Arrays;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;

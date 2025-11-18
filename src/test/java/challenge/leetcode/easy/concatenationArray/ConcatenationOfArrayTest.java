@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.concatenationArray;
 
-import challenge.leetcode.easy.concatenationArray.ConcatenationOfArray;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

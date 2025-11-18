@@ -17,13 +17,13 @@
  */
 package challenge.leetcode.easy.mergeTwoSortedLists;
 
+import static challenge.leetcode.easy.mergeTwoSortedLists.MergeTwoSortedLists.merge;
 import data.ListNode;
 import java.util.Arrays;
 import org.apache.commons.lang3.ArrayUtils;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static challenge.leetcode.easy.mergeTwoSortedLists.MergeTwoSortedLists.merge;
 import static utils.DataUtils.createListNode;
 
 @DisplayName("21. Merge Two Sorted Lists")

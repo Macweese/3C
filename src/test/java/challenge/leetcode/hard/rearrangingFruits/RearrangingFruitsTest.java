@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.hard.rearrangingFruits;
 
-import challenge.leetcode.hard.rearrangingFruits.RearrangingFruits;
 import java.util.Arrays;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;

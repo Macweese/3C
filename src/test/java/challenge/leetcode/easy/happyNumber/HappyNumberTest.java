@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.happyNumber;
 
-import challenge.leetcode.easy.happyNumber.HappyNumber;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

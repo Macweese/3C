@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.middleOfTheLinkedList;
 
-import challenge.leetcode.easy.middleOfTheLinkedList.MiddleOfTheLinkedList;
 import data.ListNode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

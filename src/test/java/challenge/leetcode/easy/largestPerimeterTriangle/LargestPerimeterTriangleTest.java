@@ -18,7 +18,6 @@
 
 package challenge.leetcode.easy.largestPerimeterTriangle;
 
-import challenge.leetcode.easy.largestPerimeterTriangle.LargestPerimeterTriangle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;

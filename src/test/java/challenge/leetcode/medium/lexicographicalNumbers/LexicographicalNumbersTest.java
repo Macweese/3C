@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.lexicographicalNumbers;
 
-import challenge.leetcode.medium.lexicographicalNumbers.LexicographicalNumbers;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

@@ -17,8 +17,6 @@
  */
 package challenge.leetcode.easy.removeDuplicatesFromSortedList;
 
-import challenge.leetcode.easy.removeDuplicatesFromSortedList.ListNode;
-import challenge.leetcode.easy.removeDuplicatesFromSortedList.RemoveDuplicatesFromSortedList;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;

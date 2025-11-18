@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.lengthOfLastWord;
 
-import challenge.leetcode.easy.lengthOfLastWord.LengthOfLastWord;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

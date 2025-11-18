@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.buildArrayFromPermutation;
 
-import challenge.leetcode.easy.buildArrayFromPermutation.BuildArrayFromPermutation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

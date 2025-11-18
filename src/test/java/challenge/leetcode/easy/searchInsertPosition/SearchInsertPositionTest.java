@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.searchInsertPosition;
 
-import challenge.leetcode.easy.searchInsertPosition.SearchInsertPosition;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

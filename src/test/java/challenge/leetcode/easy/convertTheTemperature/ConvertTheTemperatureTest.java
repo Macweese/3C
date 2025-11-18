@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.convertTheTemperature;
 
-import challenge.leetcode.easy.convertTheTemperature.ConvertTheTemperature;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

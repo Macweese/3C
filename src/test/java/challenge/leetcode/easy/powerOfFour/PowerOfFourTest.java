@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.powerOfFour;
 
-import challenge.leetcode.easy.powerOfFour.PowerOfFour;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

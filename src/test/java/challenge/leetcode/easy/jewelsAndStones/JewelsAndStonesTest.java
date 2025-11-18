@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.jewelsAndStones;
 
-import challenge.leetcode.easy.jewelsAndStones.JewelsAndStones;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import static org.junit.jupiter.api.Assertions.assertEquals;

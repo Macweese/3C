@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.finalValueOfVariableAfterPerformingOperations;
 
-import challenge.leetcode.easy.finalValueOfVariableAfterPerformingOperations.FinalValueOfVariableAfterPerformingOperations;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

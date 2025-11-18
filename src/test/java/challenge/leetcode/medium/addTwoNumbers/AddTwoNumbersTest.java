@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.addTwoNumbers;
 
-import challenge.leetcode.medium.addTwoNumbers.AddTwoNumbers;
 import data.ListNode;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;

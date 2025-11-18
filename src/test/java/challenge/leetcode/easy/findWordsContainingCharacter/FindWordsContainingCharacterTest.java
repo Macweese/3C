@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.findWordsContainingCharacter;
 
-import challenge.leetcode.easy.findWordsContainingCharacter.FindWordsContainingCharacter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

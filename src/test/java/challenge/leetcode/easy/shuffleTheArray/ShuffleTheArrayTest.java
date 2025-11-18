@@ -18,7 +18,6 @@
 
 package challenge.leetcode.easy.shuffleTheArray;
 
-import challenge.leetcode.easy.shuffleTheArray.ShuffleTheArray;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

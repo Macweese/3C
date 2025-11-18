@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.powerOfThree;
 
-import challenge.leetcode.easy.powerOfThree.PowerOfThree;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

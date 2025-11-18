@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.longestCommonPrefix;
 
-import challenge.leetcode.easy.longestCommonPrefix.LongestCommonPrefix;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

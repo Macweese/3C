@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.closestPrimeNumbersInRange;
 
-import challenge.leetcode.medium.closestPrimeNumbersInRange.Solution;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

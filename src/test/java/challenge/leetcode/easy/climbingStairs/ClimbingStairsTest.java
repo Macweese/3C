@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.climbingStairs;
 
-import challenge.leetcode.easy.climbingStairs.ClimbingStairs;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.palindromeNumber;
 
-import challenge.leetcode.easy.palindromeNumber.PalindromeNumber;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.DisplayName;

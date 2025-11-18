@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.divisibleAndNonDivisibleSumsDifference;
 
-import challenge.leetcode.easy.divisibleAndNonDivisibleSumsDifference.DivisibleAndNonDivisibleSumsDifference;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.tuple.Pair;

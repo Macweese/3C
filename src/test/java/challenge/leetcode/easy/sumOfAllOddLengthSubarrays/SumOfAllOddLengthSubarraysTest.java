@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.sumOfAllOddLengthSubarrays;
 
-import challenge.leetcode.easy.sumOfAllOddLengthSubarrays.SumOfAllOddLengthSubarrays;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

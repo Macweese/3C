@@ -18,17 +18,19 @@
 
 package challenge.leetcode.easy.maximumNumberOfWordsYouCanType;
 
-import challenge.leetcode.easy.maximumNumberOfWordsYouCanType.MaximumNumberOfWordsYouCanType;
-import data.lexicography.words.*;
+import data.lexicography.words.Attribute;
+import data.lexicography.words.CsvWordSource;
+import data.lexicography.words.Word;
+import data.lexicography.words.WordProvider;
+import data.lexicography.words.WordType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Random;
 
 @DisplayName("1935. Maximum Number of Words You Can Type")
 class MaximumNumberOfWordsYouCanTypeTest

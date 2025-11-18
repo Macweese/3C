@@ -17,6 +17,7 @@
  */
 package challenge.leetcode.easy.transformArrayByParity;
 
+import static challenge.leetcode.easy.transformArrayByParity.TransformArrayByParityTest.SIZE;
 import com.google.common.util.concurrent.AtomicDouble;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,7 +27,6 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static challenge.leetcode.easy.transformArrayByParity.TransformArrayByParityTest.SIZE;
 import static utils.DataUtils.generateRandomArray;
 
 @DisplayName("3467. Transform Array by Parity")

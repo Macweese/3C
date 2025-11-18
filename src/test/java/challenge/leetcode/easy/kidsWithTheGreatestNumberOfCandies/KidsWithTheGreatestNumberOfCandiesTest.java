@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.kidsWithTheGreatestNumberOfCandies;
 
-import challenge.leetcode.easy.kidsWithTheGreatestNumberOfCandies.KidsWithTheGreatestNumberOfCandies;
 import com.google.common.primitives.Booleans;
 import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutableTriple;

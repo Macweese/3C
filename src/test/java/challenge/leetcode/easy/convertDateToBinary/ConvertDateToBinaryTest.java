@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.convertDateToBinary;
 
-import challenge.leetcode.easy.convertDateToBinary.ConvertDateToBinary;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

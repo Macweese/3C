@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.reorderedPowerOf2;
 
-import challenge.leetcode.medium.reorderedPowerOf2.ReorderedPowerOf2;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

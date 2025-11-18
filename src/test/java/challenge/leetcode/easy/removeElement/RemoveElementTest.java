@@ -17,12 +17,12 @@
  */
 package challenge.leetcode.easy.removeElement;
 
+import static challenge.leetcode.easy.removeElement.RemoveElement.removeElement;
 import java.util.Arrays;
 import static java.util.Arrays.sort;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static challenge.leetcode.easy.removeElement.RemoveElement.removeElement;
 import static utils.DataUtils.generateRandomArray;
 
 @DisplayName("27. Remove Element")

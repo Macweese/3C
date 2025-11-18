@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.bitwiseOROfSubarrays;
 
-import challenge.leetcode.medium.bitwiseOROfSubarrays.BitwiseOROfSubarrays;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

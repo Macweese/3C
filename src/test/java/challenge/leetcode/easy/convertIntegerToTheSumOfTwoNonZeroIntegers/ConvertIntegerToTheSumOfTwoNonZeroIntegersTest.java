@@ -18,7 +18,6 @@
 
 package challenge.leetcode.easy.convertIntegerToTheSumOfTwoNonZeroIntegers;
 
-import challenge.leetcode.easy.convertIntegerToTheSumOfTwoNonZeroIntegers.ConvertIntegerToTheSumOfTwoNonZeroIntegers;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.DisplayName;

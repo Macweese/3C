@@ -18,7 +18,6 @@
 
 package challenge.leetcode.medium.sortVowelsInAString;
 
-import challenge.leetcode.medium.sortVowelsInAString.SortVowelsInAString;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

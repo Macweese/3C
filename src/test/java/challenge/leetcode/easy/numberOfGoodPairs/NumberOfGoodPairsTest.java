@@ -18,7 +18,6 @@
 
 package challenge.leetcode.easy.numberOfGoodPairs;
 
-import challenge.leetcode.easy.numberOfGoodPairs.NumberOfGoodPairs;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

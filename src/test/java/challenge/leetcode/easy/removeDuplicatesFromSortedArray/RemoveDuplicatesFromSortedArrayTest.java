@@ -17,11 +17,11 @@
  */
 package challenge.leetcode.easy.removeDuplicatesFromSortedArray;
 
+import static challenge.leetcode.easy.removeDuplicatesFromSortedArray.RemoveDuplicatesFromSortedArray.removeDuplicates;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static challenge.leetcode.easy.removeDuplicatesFromSortedArray.RemoveDuplicatesFromSortedArray.removeDuplicates;
 import static utils.DataUtils.generateRandomArray;
 
 @DisplayName("26. Remove Duplicates from Sorted Array")

@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.findIndexFirstOccurrenceString;
 
-import challenge.leetcode.easy.findIndexFirstOccurrenceString.FindIndexFirstOccuranceString;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

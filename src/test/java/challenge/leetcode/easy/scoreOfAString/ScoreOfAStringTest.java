@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.scoreOfAString;
 
-import challenge.leetcode.easy.scoreOfAString.ScoreOfAString;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

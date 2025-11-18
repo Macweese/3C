@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.trionicArrayI;
 
-import challenge.leetcode.easy.trionicArrayI.TrionicArrayI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

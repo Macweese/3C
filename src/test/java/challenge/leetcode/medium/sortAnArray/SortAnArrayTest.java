@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.sortAnArray;
 
-import challenge.leetcode.medium.sortAnArray.SortAnArray;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;

@@ -18,7 +18,6 @@
 
 package challenge.leetcode.easy.richestCustomerWealth;
 
-import challenge.leetcode.easy.richestCustomerWealth.RichestCustomerWealth;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

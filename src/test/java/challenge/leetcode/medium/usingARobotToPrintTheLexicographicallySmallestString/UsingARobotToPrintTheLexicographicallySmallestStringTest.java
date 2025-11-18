@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.usingARobotToPrintTheLexicographicallySmallestString;
 
-import challenge.leetcode.medium.usingARobotToPrintTheLexicographicallySmallestString.UsingARobotToPrintTheLexicographicallySmallestString;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;

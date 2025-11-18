@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.longestSubarrayWithMaximumBitwiseAnd;
 
-import challenge.leetcode.medium.longestSubarrayWithMaximumBitwiseAnd.LongestSubarrayWithMaximumBitwiseAnd;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
