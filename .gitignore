@@ -31,6 +31,7 @@
 /.idea/workspace.xml
 /cli/ccc/.env.example
 /cli/ccc/ver/
+/cli/ccc/leetcode_graphql_query.graphlq
 /.venv
 /target/classes
 target/classes/logback.xml
