@@ -18,8 +18,6 @@
 
 package challenge.leetcode.medium.simpleBankSystem;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 26/10/2025, 06:36 Sun 26 October 2025
@@ -29,24 +27,6 @@ public class SimpleBankSystem
 {
 	static void main(String[] args)
 	{
-		System.out.println("Create bank accounts");
-		Bank bank = new Bank(new long[]{10, 100, 20, 50, 30});
-		System.out.println(Arrays.toString(bank.accounts));
-
-		bank.withdraw(3, 10);
-		System.out.println(Arrays.toString(bank.accounts));
-
-		bank.transfer(5, 1, 20);
-		System.out.println(Arrays.toString(bank.accounts));
-
-		bank.deposit(5, 20);
-		System.out.println(Arrays.toString(bank.accounts));
-
-		bank.transfer(3, 4, 15);
-		System.out.println(Arrays.toString(bank.accounts));
-
-		bank.withdraw(10, 50);
-		System.out.println(Arrays.toString(bank.accounts));
 	}
 }
 class Bank
@@ -70,7 +50,17 @@ class Bank
 			System.out.printf("Transfer error: account recipient {%s} does not exist.%n", accountDest);
 			return false;
 		}
-		if (accounts[accountSource - 1] < amount)
+		if (accountSource == accountDest)
+		{
+			System.out.printf("Transfer error - invalid transfer: account sender {%s} and account recipient {%s} are identical.%n", accountSource, accountDest);
+			return false;
+		}
+		if (amount < 0)
+		{
+			System.out.printf("Transfer error - invalid amount: account source={%s}, balance={%s}, transfer amount={%s}.%n", accountSource, accounts[accountSource - 1], amount);
+			return false;
+		}
+		if (accounts[accountSource - 1] < 0 || accounts[accountSource - 1] < amount)
 		{
 			System.out.printf("Transfer error - insufficient funds: account source={%s}, balance={%s}, transfer amount={%s}.%n", accountSource, accounts[accountSource - 1], amount);
 			return false;
@@ -101,7 +91,13 @@ class Bank
 			return false;
 		}
 
-		if (accounts[account - 1] < amount)
+		if (amount < 0)
+		{
+			System.out.printf("Withdraw error - invalid amount: account={%s}, balance={%s}, transfer amount={%s}.%n", account, accounts[account - 1], amount);
+			return false;
+		}
+
+		if (accounts[account - 1] < 0 || accounts[account - 1] < amount)
 		{
 			System.out.printf("Withdraw error - insufficient funds: account={%s}, balance={%s}.%n", account, accounts[account - 1]);
 			return false;
