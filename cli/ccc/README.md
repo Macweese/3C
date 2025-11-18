@@ -152,7 +152,8 @@ Common flags:
 Examples:
 
 ```bash
-# Default (into repo root)
+# Default
+# Writes to repo root, or to the location of `3C_OUT_DIR` ENV-variable, if it is assigned a custom value  
 3c lc 3508
 # -> ./leetcode/medium/3508/README.md
 
