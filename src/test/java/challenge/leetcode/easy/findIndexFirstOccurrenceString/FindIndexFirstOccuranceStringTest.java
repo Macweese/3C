@@ -22,20 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Administrator
- * @Created 04/06/2025,
- * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
- **/
 @DisplayName("28. Find the Index of the First Occurrence in a String")
 class FindIndexFirstOccuranceStringTest
 {
-
 	static final Map<String, String> MAP = Map.of(
 		"sadbutsad", "sad",
 		"leetcode", "leeto",

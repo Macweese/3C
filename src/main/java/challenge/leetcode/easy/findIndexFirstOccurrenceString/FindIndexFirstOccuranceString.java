@@ -18,7 +18,6 @@
 package challenge.leetcode.easy.findIndexFirstOccurrenceString;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -61,17 +60,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class FindIndexFirstOccuranceString
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-//		log.info("sadbutsad: {}", find("sadbutsad", "sad"));
-//		log.info("leetcode: {}", find("leetcode", "leeto"));
-//		log.info("monkey: {}", find("monkey", "key"));
-//		log.info("aaa: {}", find("aaa", "aaaa"));
-//		log.info("hgeriludvnbedoberihbipniourvbeprhgowrpoeruhvreisudbvpswreiubgiesdylvhosedhbvkjudyg8uwsrjivlbeyvgorshfvbsuyrfvrsugbwoalhybvkesuveoslgveirufhvbrgorfsjutsdrfjytgskdjrgkljfhjgjkglfgjuflgibusjvhnhgddcyhrgddjyjgdcgfhgnjyrdgxjyjytdhtdvhytydcdjtryddjutrdkdsrwidwytwwdwqydrcwujcytdesdryrehdyjttrddjuygffkcubfvkuuuu: {}", find("hgeriludvnbedoberihbipniourvbeprhgowrpoeruhvreisudbvpswreiubgiesdylvhosedhbvkjudyg8uwsrjivlbeyvgorshfvbsuyrfvrsugbwoalhybvkesuveoslgveirufhvbrgorfsjutsdrfjytgskdjrgkljfhjgjkglfgjuflgibusjvhnhgddcyhrgddjyjgdcgfhgnjyrdgxjyjytdhtdvhytydcdjtryddjutrdkdsrwidwytwwdwqydrcwujcytdesdryrehdyjttrddjuygffkcubfvkuuuu", "jyjy"));
-	}
-
 	public static int cheatFind(String haystack, String needle)
 	{
 		return haystack.indexOf(needle);
