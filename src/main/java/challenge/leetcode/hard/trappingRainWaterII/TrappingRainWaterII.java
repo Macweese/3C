@@ -31,48 +31,6 @@ import java.util.PriorityQueue;
  **/
 public class TrappingRainWaterII
 {
-	static void main(String[] args)
-	{
-		int[][] TEST_1 = new int[][]{
-			{1, 4, 3, 1, 3, 2},
-			{3, 2, 1, 3, 2, 4},
-			{2, 3, 3, 2, 3, 1}
-		};
-		int[][] TEST_2 = new int[][]{
-			{4, 4, 4, 4, 4, 4},
-			{4, 3, 3, 3, 3, 4},
-			{4, 3, 2, 2, 3, 4},
-			{4, 3, 2, 2, 3, 4},
-			{4, 3, 3, 3, 3, 4},
-			{4, 4, 4, 4, 4, 4},
-		};
-		int[][] TEST_3 = new int[][]{
-			{4, 4, 4, 4, 4, 4},
-			{4, 0, 0, 0, 0, 4},
-			{4, 0, 0, 0, 0, 4},
-			{4, 0, 0, 0, 0, 4},
-			{4, 0, 0, 0, 0, 4},
-			{4, 4, 4, 4, 4, 4},
-		};
-		int[][] TEST_4 = new int[][]{
-			{1, 1, 1, 1},
-			{1, 0, 1, 1},
-			{1, 0, 0, 1},
-			{1, 1, 1, 1},
-		};
-		int[][] TEST_5 = new int[][]{
-			{9, 9, 9, 9},
-			{9, 0, 6, 9},
-			{9, 0, 0, 9},
-			{9, 9, 9, 9},
-		};
-		System.out.println(trapRainWater(TEST_1));
-		System.out.println(trapRainWater(TEST_2));
-		System.out.println(trapRainWater(TEST_3));
-		System.out.println(trapRainWater(TEST_4));
-		System.out.println(trapRainWater(TEST_5));
-	}
-
 	public static int trapRainWater(int[][] elevationMatrix)
 	{
 		int row = elevationMatrix.length;
