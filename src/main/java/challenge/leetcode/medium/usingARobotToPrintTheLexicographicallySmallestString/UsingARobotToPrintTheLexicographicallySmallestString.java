@@ -19,7 +19,6 @@ package challenge.leetcode.medium.usingARobotToPrintTheLexicographicallySmallest
 
 import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -88,37 +87,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class UsingARobotToPrintTheLexicographicallySmallestString
 {
-	static final String TEST_CASE_1 = "bydizfve";
-	static final String TEST_CASE_2 = "bzeyxf";
-	static final String TEST_CASE_3 = "vzhofnpo"; // fnohopzv
-	static final String TEST_CASE_4 = "mmuqezwmomeplrtskz";
-	static final String TEST_CASE_5 = "zza";
-	static final String TEST_CASE_6 = "bac";
-	static final String TEST_CASE_7 = "bdda";
-	static final String TEST_CASE_8 = "z";
-	static final String TEST_CASE_9 = "wwqwvysxyrrxttvxtsurqwvxqvrsxxrxqxwutvqtuwqyryquyrqxrqvwsvxsvvyuquqwxxyqyqwtuqyvsqyqxyvquxyysrtuswxs";
-	static final String TEST_CASE_10 = "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab";
-	static final String TEST_CASE_11 = "lcnzsfnzzialfjjxjvtmmjfsldphhilhbjslvgsepspjzucntpdzobmzkdcbztlqggfxxtenytncikbcaktbesmnppbmigvkdttuycmfsyaruytxcfnxzrqpwehslaukcphsgglvchvdeshiyhtvplhqaefclgcvxkbcruqiyecdvhamqfzfxcualrcibtnbcpjggjxdtjcliclfafoypqphuchpigilunhavdsmokcohbccjpezhzuahmqmvcimghsmjmkiwbsumxsorcxshozkmjkxgufupebxoffhenjvqslzfvrbzgiurxcqlkzsibugdcznkiusygenerngrgrnuyzouebgmdcaxtcquhjxqgcmfcdumjfpzixanklglmlqdgfskslpqaehevmuiumkaeklvtpxuxtvbndejicufamyckfmxgeptjoepoogagjjdeceqfezkciuwiephcmeuqfbczgunpvovcaxcalocpzogdeezvqawnmyqnujsvvueivzmsawbdfmlhhktuldadzaaipyqvisodsupaswxosquxjuwnnlxbbmfxnuvnccjakqnzgmpchypivykyzoqumiljgeamflxiwambgsfaennsrymnqaqakiwuawosmwqdpqjismjqzweydqydoozrwaxsflxfzcyjrcbiytxpckjiqbjyhccthyagbwtqryiyjajpljaenjucmyxfzgqgekjgoecvsegorkotriukoxenztgofensvqgxbksfkppgolqwvarzxwwpkqjdpzhvxbcozswivsfvpwozkyzebuavttrdgjjtvlnwewtepvwboxiasuulqhwplvrkxumuudccuulcxiovycychhovtjyurgjbrycmwdxgwaetzshohqpbrybyligsnujvyesgfuetlcmeyurufpxwxmhzgdnbnyxujxlubfuejweuqytxmagjwjnlagtwfgbgwysohjemkaljymdglj";
-	static final String TEST_CASE_12 = "cadb"; // acbd
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		System.out.println(robotWithString(TEST_CASE_1));
-		System.out.println(robotWithString(TEST_CASE_2));
-		System.out.println(robotWithString(TEST_CASE_3));
-		System.out.println(robotWithString(TEST_CASE_4));
-		System.out.println(robotWithString(TEST_CASE_5));
-		System.out.println(robotWithString(TEST_CASE_6));
-		System.out.println(robotWithString(TEST_CASE_7));
-		System.out.println(robotWithString(TEST_CASE_8));
-		System.out.println(robotWithString(TEST_CASE_9));
-		System.out.println(robotWithString(TEST_CASE_10));
-		System.out.println(robotWithString(TEST_CASE_11));
-		System.out.println(robotWithString(TEST_CASE_12));
-	}
-
 	/**
 	 * <b>Solution scratchpad:</b>
 	 * <br>
