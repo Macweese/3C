@@ -81,12 +81,6 @@ package challenge.leetcode.easy.findMostFrequentVowelAndConsonant;
  **/
 public class FindMostFrequentVowelAndConsonant
 {
-	public static void main(String[] args)
-	{
-		System.out.println(maxFreqSum("successes"));
-		System.out.println(maxFreqSum("aeiaeia"));
-	}
-
 	public static int maxFreqSum(String s)
 	{
 		int con = 0;
