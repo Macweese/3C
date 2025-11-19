@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package challenge.leetcode.medium;
+package challenge.personal;
 
 /*
 	Given an m x n 2D binary grid which represents
