@@ -22,10 +22,6 @@ package challenge.leetcode.easy.checkIfAll1sAreAtLeastLengthKPlacesAway;
  * @author Administrator
  * @Created 17/11/2025, 01:07 Mon 17 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class CheckIfAll1sAreAtLeastLengthKPlacesAway
 {
