@@ -22,22 +22,11 @@ package challenge.leetcode.medium.maximumTotalDamageWithSpellCasting;
  * @author Administrator
  * @Created 11/10/2025, 07:37 Sat 11 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MaximumTotalDamageWithSpellCasting
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static long maximumTotalDamage(int[] power)
 	{
-
-
 		return 0;
 	}
 }
