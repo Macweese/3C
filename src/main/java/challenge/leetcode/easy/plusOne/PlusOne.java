@@ -17,10 +17,6 @@
  */
 package challenge.leetcode.easy.plusOne;
 
-import java.util.Arrays;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 05/06/2025,
@@ -74,18 +70,9 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class PlusOne
 {
 	static final int[] DIGITS = new int[]{9, 0, 9};
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		System.out.println(Arrays.toString(plusOneCopyArrayStripLeadingZeros(DIGITS)));
-	}
-
 
 	// Solution scratchpad comments
 
