@@ -25,62 +25,9 @@ import java.util.Map;
  * @author Administrator
  * @Created 22/09/2025, 02:17 Mon 22 September 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
- * @link <a href="">www.leetcode.com/999999999999999999999</a>
- * @Description Description
- *
- * <ul>
- * 		<li><b>Example 1:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 				<br>&emsp;
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 2:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 3:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- *
- * <p>
- * <b>Constraints:</b>
- * <ul>
- * 		<li></li>
- * </ul>
- * </p>
- *
- * <br>
- * <hr>
- * @Similar <a href=""/>1000. NAME (Leetcode)</a><br>
- * <br>
- * {@link solution. 10000. NAME (local)}<br>
  **/
 public class CountElementsWithMaximumFrequency
 {
-	static void main(String[] args)
-	{
-		int[] CASE_1 = new int[]{1,2,2,3,1,4};
-		int[] CASE_2 = new int[]{1,2,3,4,5};
-		int[] CASE_3 = new int[]{10,12,11,9,6,19,11};
-
-		System.out.println(maxFrequencyElements(CASE_1));
-		System.out.println(maxFrequencyElements(CASE_2));
-		System.out.println(maxFrequencyElements(CASE_3));
-	}
-
 	public static int maxFrequencyElements(int[] nums)
 	{
 		int maxFreq = 0;
@@ -91,7 +38,6 @@ public class CountElementsWithMaximumFrequency
 		{
 			map.put(num, map.getOrDefault(num, 0) + 1);
 		}
-
 
 		for (int i : map.values())
 		{
