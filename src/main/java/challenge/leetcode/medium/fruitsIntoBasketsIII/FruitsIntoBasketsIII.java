@@ -87,11 +87,6 @@ import challenge.leetcode.hard.blockPlacementQueries.BlockPlacementQueries;
  **/
 public class FruitsIntoBasketsIII
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	// use segment tree
 	public static int numOfUnplacedFruits(int[] fruits, int[] baskets)
 	{
