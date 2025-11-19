@@ -83,16 +83,6 @@ import challenge.leetcode.easy.findFirstPalindromicStringInArray.FindFirstPalind
  **/
 public class ValidPalindrome
 {
-	public static void main(String[] args)
-	{
-		System.out.println("A man, a plan, a canal: Panama: " + isPalindromeSolution3("A man, a plan, a canal: Panama"));
-		System.out.println("race a car: " + isPalindromeSolution3("race a car"));
-//		System.out.println(" : " + isPalindrome(" "));
-		System.out.println(" : " + isPalindromeSolution3(" "));
-		System.out.println("ab: " + isPalindromeSolution3("ab"));
-		System.out.println("0P: " + isPalindromeSolution3("0P"));
-	}
-
 	public static boolean isPalindrome(String s)
 	{
 		s = s.toLowerCase().replaceAll("\\P{Alnum}", "");
@@ -113,7 +103,6 @@ public class ValidPalindrome
 	{
 		s = s.toLowerCase().replaceAll("\\P{Alnum}", "");
 
-		System.out.println(s);
 		int i = 0;
 		int j = s.length() - 1;
 		while (i < j)
@@ -131,7 +120,6 @@ public class ValidPalindrome
 
 	public static boolean isPalindromeSolution3(String s)
 	{
-		System.out.println(s);
 		int i = 0;
 		int j = s.length() - 1;
 		while (i <= j)
@@ -146,8 +134,6 @@ public class ValidPalindrome
 				j--;
 				continue;
 			}
-			System.out.println("i=" + i + ",  " + s.charAt(i));
-			System.out.println("j=" + j + ",  " + s.charAt(j));
 			if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j)))
 			{
 				return false;
