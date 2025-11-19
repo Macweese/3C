@@ -94,11 +94,6 @@ package challenge.leetcode.easy.sumOfAllSubsetXORTotals;
  **/
 public class SumOfAllSubsetXORTotals
 {
-	public static void main(String[] args)
-	{
-		System.out.println(subsetXORSum(new int[]{1, 8}));
-	}
-
 	/**
 	 * <h1>Bit-manipulation & combinatorics</h1>
 	 *
@@ -120,12 +115,13 @@ public class SumOfAllSubsetXORTotals
 	 * 		because knowing or keeping track of the constitution of any subset is unimportant in our mission,
 	 * 		as any given element of <i>S</i> will be found in the half of the cardinality of the power set.<br>
 	 * 		<br>
-	 * 		<h4>
-	 * 			Mathematical note:<br>
-	 * 			This is proven to us by combinatorial reasoning.<br>
-	 * 			The frequency of element <i>s</i> in all the subsets of <i>S</i> can be calculated by:<br>
-	 * 			<i>Frequency</i> = 2<sup>|S|-1</sup>
-	 * 		</h4>
+	 * </p>
+	 * <p>
+	 * 		Mathematical note:<br>
+	 * 		This is proven to us by combinatorial reasoning.<br>
+	 * 		The frequency of element <i>s</i> in all the subsets of <i>S</i> can be calculated by:<br>
+	 * 		<i>Frequency</i> = 2<sup>|S|-1</sup>
+	 *
 	 * </p>
 	 * <br>
 	 *
