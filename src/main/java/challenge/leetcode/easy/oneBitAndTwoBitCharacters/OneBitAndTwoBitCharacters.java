@@ -25,10 +25,6 @@ package challenge.leetcode.easy.oneBitAndTwoBitCharacters;
  **/
 public class OneBitAndTwoBitCharacters
 {
-	static void main()
-	{
-	}
-
 	public static boolean isOneBitCharacter(int[] bits)
 	{
 		int countTrailingOnes = 0;
