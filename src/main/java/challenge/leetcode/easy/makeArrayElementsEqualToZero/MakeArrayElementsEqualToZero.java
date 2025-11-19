@@ -22,22 +22,11 @@ package challenge.leetcode.easy.makeArrayElementsEqualToZero;
  * @author Administrator
  * @Created 28/10/2025, 05:13 Tue 28 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MakeArrayElementsEqualToZero
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int countValidSelections(int[] nums)
 	{
-
-
 		return 0;
 	}
 }
