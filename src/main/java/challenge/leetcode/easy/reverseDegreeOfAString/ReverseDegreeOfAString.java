@@ -25,10 +25,6 @@ package challenge.leetcode.easy.reverseDegreeOfAString;
  **/
 public class ReverseDegreeOfAString
 {
-	static void main()
-	{
-	}
-
 	public static int reverseDegree(String s)
 	{
 		int degree = 0;
