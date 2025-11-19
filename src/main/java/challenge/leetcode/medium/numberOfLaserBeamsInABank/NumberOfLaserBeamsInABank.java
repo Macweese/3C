@@ -22,18 +22,9 @@ package challenge.leetcode.medium.numberOfLaserBeamsInABank;
  * @author Administrator
  * @Created 27/10/2025, 07:39 Mon 27 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class NumberOfLaserBeamsInABank
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int numberOfBeams(String[] bank)
 	{
 		int beams = 0;
