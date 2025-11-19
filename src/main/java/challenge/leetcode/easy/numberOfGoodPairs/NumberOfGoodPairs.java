@@ -78,10 +78,6 @@ import java.util.Map;
  **/
 public class NumberOfGoodPairs
 {
-	public static void main(String[] args)
-	{
-	}
-
 	public static int numIdenticalPairs(int[] ints)
 	{
 		HashMap<Integer, Integer> map = new HashMap<>();
