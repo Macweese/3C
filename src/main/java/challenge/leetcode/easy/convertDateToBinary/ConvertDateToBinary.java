@@ -67,14 +67,6 @@ package challenge.leetcode.easy.convertDateToBinary;
  **/
 public class ConvertDateToBinary
 {
-	public static void main(String[] args)
-	{
-		String date_1 = "1900-01-01";
-		String date_2 = "2080-02-29";
-		System.out.printf("%s %2s%n", date_1, convertDateToBinary(date_1));
-		System.out.printf("%s %2s%n", date_2, convertDateToBinary(date_2));
-	}
-
 	public static String convertDateToBinary(String date)
 	{
 		final String[] d = date.split("-");
