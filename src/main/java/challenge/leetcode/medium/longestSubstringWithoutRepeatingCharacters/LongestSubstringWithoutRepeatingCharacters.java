@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package challenge.leetcode.easy.longestSubstringWithoutRepeatingCharacters;
+package challenge.leetcode.medium.longestSubstringWithoutRepeatingCharacters;
 
 import lombok.extern.slf4j.Slf4j;
 
