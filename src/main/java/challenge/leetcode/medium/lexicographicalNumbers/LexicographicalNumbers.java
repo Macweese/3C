@@ -22,8 +22,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -60,15 +58,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class LexicographicalNumbers
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-	}
-
 	public static List<Integer> lexicalOrder(int n)
 	{
 		List<Integer> list = new ArrayList<>();
