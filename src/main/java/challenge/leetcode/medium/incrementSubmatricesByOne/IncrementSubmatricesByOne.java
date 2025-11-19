@@ -18,25 +18,13 @@
 
 package challenge.leetcode.medium.incrementSubmatricesByOne;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 14/11/2025, 05:56 Fri 14 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class IncrementSubmatricesByOne
 {
-	static void main(String[] args)
-	{
-		rangeAddQueries(3, new int[][]{{1, 1, 2, 2}, {0, 0, 1, 1}});
-		solution(3, new int[][]{{1, 1, 2, 2}, {0, 0, 1, 1}});
-	}
-
 	public static int[][] solution(int n, int[][] queries)
 	{
 		int[][] diff = new int[n + 1][n + 1];
@@ -83,12 +71,12 @@ public class IncrementSubmatricesByOne
 	{
 		int[][] matrix = new int[n][n];
 
-		for (int query = 0; query < queries.length; ++query)
+		for (int[] query : queries)
 		{
-			int x1 = queries[query][0];
-			int y1 = queries[query][1];
-			int x2 = queries[query][2];
-			int y2 = queries[query][3];
+			int x1 = query[0];
+			int y1 = query[1];
+			int x2 = query[2];
+			int y2 = query[3];
 			for (int x = x1; x <= x2; ++x)
 			{
 				for (int y = y1; y <= y2; ++y)
@@ -96,10 +84,6 @@ public class IncrementSubmatricesByOne
 					matrix[x][y]++;
 				}
 			}
-		}
-		for (int[] row : matrix)
-		{
-			System.out.println(Arrays.toString(row));
 		}
 
 		return matrix;
