@@ -22,21 +22,11 @@ package challenge.leetcode.hard.maximizeTheNumberOfPartitionsAfterOperations;
  * @author Administrator
  * @Created 17/10/2025, 23:54 Fri 17 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class MaximizeTheNumberOfPartitionsAfterOperations
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int maxPartitionsAfterOperations(String s, int k)
 	{
-
-
 		return 0;
 	}
 }
