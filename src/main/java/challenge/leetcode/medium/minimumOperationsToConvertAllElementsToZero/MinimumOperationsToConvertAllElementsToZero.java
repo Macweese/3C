@@ -18,30 +18,17 @@
 
 package challenge.leetcode.medium.minimumOperationsToConvertAllElementsToZero;
 
-import java.util.Arrays;
 import java.util.TreeMap;
 
 /**
  * @author Administrator
  * @Created 10/11/2025, 01:31 Mon 10 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MinimumOperationsToConvertAllElementsToZero
 {
-	static void main(String[] args)
-	{
-		System.out.println(minOperations(new int[]{0,2}));
-		System.out.println(minOperations(new int[]{3,1,2,1}));
-		System.out.println(minOperations(new int[]{1,2,1,2,1,2}));
-	}
-
 	public static int minOperations(int[] ints)
 	{
-		System.out.println();
 		int operations = 0;
 		TreeMap<Integer, Integer> map = new TreeMap<>();
 		for (int i : ints)
@@ -55,7 +42,6 @@ public class MinimumOperationsToConvertAllElementsToZero
 
 		while (!map.isEmpty())
 		{
-			System.out.println(operations + " : " + Arrays.toString(ints));
 			int key = map.firstEntry().getKey();
 
 			boolean segmentFound = false;
@@ -72,7 +58,7 @@ public class MinimumOperationsToConvertAllElementsToZero
 				}
 				if (ints[i] == key)
 				{
-					operations = !segmentFound? operations + 1 : operations;
+					operations = !segmentFound ? operations + 1 : operations;
 					segmentFound = true;
 					ints[i] = 0;
 					map.put(key, map.get(key) - 1);
@@ -85,7 +71,6 @@ public class MinimumOperationsToConvertAllElementsToZero
 			}
 		}
 
-		System.out.println(operations + " : " + Arrays.toString(ints));
 		return operations;
 	}
 }
