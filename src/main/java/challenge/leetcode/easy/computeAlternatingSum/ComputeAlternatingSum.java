@@ -25,10 +25,6 @@ package challenge.leetcode.easy.computeAlternatingSum;
  **/
 public class ComputeAlternatingSum
 {
-	static void main()
-	{
-	}
-
 	public static int alternatingSum(int[] ints)
 	{
 		int result = 0;
