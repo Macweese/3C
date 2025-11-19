@@ -20,7 +20,6 @@ package challenge.leetcode.easy.findXSumOfAllKLongSubarraysI;
 
 import java.util.AbstractMap;
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,38 +30,15 @@ import java.util.TreeSet;
  * @author Administrator
  * @Created 04/11/2025, 05:02 Tue 04 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class FindXSumOfAllKLongSubarraysI
 {
-	static void main(String[] args)
-	{
-		int[] TEST_1 = {1, 1, 2, 2, 3, 4, 2, 3};
-		int[] TEST_2 = {3, 8, 7, 8, 7, 5};
-//		System.out.println(Arrays.toString(TEST_1));
-//		System.out.println();
-		System.out.println(Arrays.toString(solve(TEST_1, 6, 2)));;
-		System.out.println(Arrays.toString(solve(TEST_2, 2, 2)));;
-	}
-
 	public static int findXSum(int[] ints, int k, int x)
 	{
-		// sliding window
-		// max heap
-		// frequency map
-
 		int[] result = new int[ints.length - k + 1];
 		HashMap<Integer, Integer> frequencyMap = new HashMap<>();
-//		for (int i : ints)
-//		{
-//			frequencyMap.put(i, 0);
-//		}
 
 		TreeSet<Integer> set = new TreeSet<>(Comparator.reverseOrder());
-//		PriorityQueue<Map.Entry<Integer, Integer>> frequencyHeap = new PriorityQueue<>(Map.Entry.<Integer, Integer>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()));
 		PriorityQueue<Map.Entry<Integer, Integer>> frequencyHeap = new PriorityQueue<>(Map.Entry.<Integer, Integer>comparingByValue(Comparator.reverseOrder()).thenComparing(Map.Entry.comparingByKey(Comparator.reverseOrder())));
 		ArrayDeque<Integer> deque = new ArrayDeque<>();
 		for (int i = 0; i < k; i++)
@@ -70,10 +46,6 @@ public class FindXSumOfAllKLongSubarraysI
 			frequencyMap.put(ints[i], frequencyMap.getOrDefault(ints[i], 0) + 1);
 			set.add(ints[i]);
 			deque.push(ints[i]);
-			System.out.println();
-			System.out.println(deque);
-			System.out.println(set);
-			System.out.println(frequencyMap);
 		}
 
 		frequencyHeap.addAll(frequencyMap.entrySet());
@@ -94,24 +66,8 @@ public class FindXSumOfAllKLongSubarraysI
 			}
 			set.add(added);
 
-			System.out.println();
-			System.out.println(deque);
-			System.out.println(set);
-			System.out.println(frequencyMap);
 			result[i - k + 1] = getSumMaxFreq(frequencyHeap, frequencyMap, x);
 		}
-		System.out.println();
-
-//		System.out.println(deque);
-//		System.out.println(frequencyMap);
-//		System.out.println(set);
-//		System.out.println(frequencyHeap);
-//		System.out.println(frequencyHeap.peek());
-//		System.out.println(deque.getFirst());
-//		System.out.println(deque.getLast());
-
-		System.out.println();
-		System.out.println(Arrays.toString(result));
 
 		return 0;
 	}
@@ -128,7 +84,6 @@ public class FindXSumOfAllKLongSubarraysI
 		}
 
 		int i = 0;
-		System.out.println(heap);
 		PriorityQueue<Map.Entry<Integer, Integer>> t = new PriorityQueue<>(heap);
 		while (!t.isEmpty() && i < x)
 		{
@@ -136,7 +91,6 @@ public class FindXSumOfAllKLongSubarraysI
 			sum += entry.getKey() * entry.getValue();
 			++i;
 		}
-		System.out.println(sum);
 
 		return sum;
 	}
