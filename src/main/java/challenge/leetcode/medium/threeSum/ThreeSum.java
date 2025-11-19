@@ -15,12 +15,17 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package challenge.leetcode.easy.threeSum;
+package challenge.leetcode.medium.threeSum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Administrator
+ * @Created 
+ * @Project 3C: Competitive Coding Challenges
+ **/
 public class ThreeSum
 {
 	public static List<List<Integer>> threeSum(int[] nums, int sum)
