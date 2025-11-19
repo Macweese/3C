@@ -52,11 +52,6 @@ package challenge.leetcode.easy.defangingAnIpAddress;
  **/
 public class DefangingAnIPAddress
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static String defangIPaddr(String address)
 	{
 		return address.replaceAll("\\.", "[.]");

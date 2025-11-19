@@ -25,16 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Administrator
- * @Created 24/07/2025,
- * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
- **/
 @DisplayName("1108. Defanging an IP Address")
 class DefangingAnIPAddressTest
 {
@@ -161,16 +151,6 @@ class DefangingAnIPAddressTest
 
 			assertEquals(expected, actual, message);
 		}
-	}
-
-	public static void main(String[] args)
-	{
-		generateTests(10);
-	}
-
-	private static void generateTests()
-	{
-		generateTests(1);
 	}
 
 	private static void generateTests(int quantity)
