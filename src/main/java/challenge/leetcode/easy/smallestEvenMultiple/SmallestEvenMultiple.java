@@ -25,10 +25,6 @@ package challenge.leetcode.easy.smallestEvenMultiple;
  **/
 public class SmallestEvenMultiple
 {
-	static void main()
-	{
-	}
-
 	public static int smallestEvenMultiple(int n)
 	{
 		return n << (n & 1);
