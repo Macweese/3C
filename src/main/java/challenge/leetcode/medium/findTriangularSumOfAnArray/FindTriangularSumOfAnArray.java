@@ -25,27 +25,6 @@ package challenge.leetcode.medium.findTriangularSumOfAnArray;
  **/
 public class FindTriangularSumOfAnArray
 {
-	static void main(String[] args)
-	{
-		int[] TEST_1 = new int[]{5};
-		int[] TEST_2 = new int[]{3,7};
-		int[] TEST_3 = new int[]{9,9,9,9,9};
-		int[] TEST_4 = new int[]{0,0,0,0,0,0};
-		int[] TEST_5 = new int[]{1,2,3,4,5,6,7,8,9};
-		int[] TEST_6 = new int[]{9,0,9,0,9,0,9,0,9,0};
-		int[] TEST_7 = new int[]{8,7,6,5,4,3,2,1};
-		int[] TEST_8 = new int[]{1,1,1,1,1,1,1,1,1,1};
-
-		System.out.println(triangularSum(TEST_1));
-		System.out.println(triangularSum(TEST_2));
-		System.out.println(triangularSum(TEST_3));
-		System.out.println(triangularSum(TEST_4));
-		System.out.println(triangularSum(TEST_5));
-		System.out.println(triangularSum(TEST_6));
-		System.out.println(triangularSum(TEST_7));
-		System.out.println(triangularSum(TEST_8));
-	}
-
 	public static int triangularSum(int[] nums)
 	{
 		if (nums.length == 1)
