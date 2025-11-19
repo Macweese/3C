@@ -25,99 +25,9 @@ import java.util.List;
  * @author Administrator
  * @Created 18/09/2025, 09:53 Thu 18 September 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
- * @link <a href="">www.leetcode.com/999999999999999999999</a>
- * @Description <a href="README.md">README</a>
- *
- * <ul>
- * 		<li><b>Example 1:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 				<br>&emsp;
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 2:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 3:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- *
- * <p>
- * <b>Constraints:</b>
- * <ul>
- * 		<li></li>
- * </ul>
- * </p>
- *
- * <br>
- * <hr>
- * @Similar <a href=""/>1000. NAME (Leetcode)</a><br>
- * <br>
- * {@link solution. 10000. NAME (local)}<br>
  **/
 public class DesignTaskManager
 {
-	public static void main(String[] args)
-	{
-		// Simple sanity demo
-//		List<List<Integer>> init = Arrays.asList(
-//			Arrays.asList(1, 1, 2),
-//			Arrays.asList(1, 3, 3),
-//			Arrays.asList(1, 4, 10),
-//			Arrays.asList(1, 5, 10),
-//			Arrays.asList(2, 2, 20),
-//			Arrays.asList(2, 6, 5),
-//			Arrays.asList(2, 7, 10),
-//			Arrays.asList(2, 8, 10)
-//		);
-//		TaskManager tm = new TaskManager(init);
-//		System.out.println(tm.execTop()); // 2 (taskId 2 prio 20)
-//		tm.edit(6, 30);
-//		System.out.println(tm.execTop()); // 2 (taskId 6 prio 30)
-//		System.out.println(tm.execTop()); // 1 or 2 depending on highest taskId among prio 10 (should be user of taskId 8 -> 2)
-//		tm.rmv(5);
-//
-//		List<List<Integer>> EXAMPLE_1 = Arrays.asList(
-//			Arrays.asList(1, 101, 10),
-//			Arrays.asList(2, 102, 20),
-//			Arrays.asList(3, 103, 15)
-//		);
-
-//		TaskManager taskManager = new TaskManager(EXAMPLE_1);
-//		taskManager.inspect();
-//		taskManager.add(4, 104, 5);
-//		taskManager.inspect();
-//		taskManager.edit(102, 8);
-//		taskManager.inspect();
-//		System.out.println(taskManager.execTop());
-//		taskManager.rmv(101);
-//		taskManager.inspect();
-//		taskManager.add(5, 105, 15);
-//		taskManager.inspect();
-//		System.out.println(taskManager.execTop());
-
-		TaskManager taskManager = new TaskManager(List.of(
-			Arrays.asList(3, 0, 48)
-		));
-
-		taskManager.rmv(0);
-		taskManager.add(0, 27, 43);
-		taskManager.add(6, 16, 21);
-		System.out.println(taskManager.execTop());
-	}
 }
 
 class TaskManager
@@ -202,8 +112,6 @@ class TaskManager
 			}
 		}
 	}
-
-	// API
 
 	public final void add(int userId, int taskId, int priority)
 	{
@@ -307,8 +215,6 @@ class TaskManager
 		return topUser;
 	}
 
-	// -------- Heap internals (bubble with single writeback) --------
-
 	private void siftUp(int i)
 	{
 		long k = key[i];
@@ -373,8 +279,6 @@ class TaskManager
 		pos[t] = i;
 	}
 
-	// -------- Packing helpers --------
-
 	private static long packKey(int priority, int taskId)
 	{
 		// Higher priority => bigger key; tie => higher taskId => bigger key
@@ -385,8 +289,6 @@ class TaskManager
 	{
 		return (((long) userId) << 32) | (taskId & 0xFFFF_FFFFL);
 	}
-
-	// -------- Capacity helpers --------
 
 	private void ensureCapacity(int requiredIndex)
 	{
