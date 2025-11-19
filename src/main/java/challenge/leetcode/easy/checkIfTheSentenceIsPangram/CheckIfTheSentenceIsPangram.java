@@ -55,19 +55,6 @@ package challenge.leetcode.easy.checkIfTheSentenceIsPangram;
  **/
 public class CheckIfTheSentenceIsPangram
 {
-	public static void main(String[] args)
-	{
-
-		for (int i = 'a'; i < 'z'; i++)
-		{
-			System.out.println(Character.toString(i) + " : " + Integer.toBinaryString(1 << i - 1));
-		}
-		System.out.println(checkIfPangram("thequickbrownfoxjumpsoverthelazydog"));
-		System.out.println(checkIfPangram("thequickbrownfoxjumpsoverthelazydot"));
-		System.out.println(checkIfPangram("thequickbrownfoxjumpsoverthelazycatinthehandbag"));
-//		System.out.println(checkIfPangram("leetcode"));
-	}
-
 	public static boolean checkIfPangram(String s)
 	{
 		if (s.length() < 26)
