@@ -24,19 +24,9 @@ import java.util.List;
  * @author Administrator
  * @Created 14/10/2025, 06:26 Tue 14 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class AdjacentIncreasingSubarrayDetectionI
 {
-	static void main(String[] args)
-	{
-		List<Integer> TEST_1 = List.of(2,5,7,8,9,2,3,4,3,1);
-		System.out.println(hasIncreasingSubarrays(TEST_1, 3));
-	}
-
 	public static boolean hasIncreasingSubarrays(List<Integer> ints, int k)
 	{
 		int subArraySize = 1;
