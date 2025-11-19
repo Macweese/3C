@@ -79,13 +79,30 @@ class SumOfAllOddLengthSubarraysTest
 	}
 
 	@Test
-	void sumOddLengthSubarrays()
+	void sumOddLengthSubarraysTest()
 	{
 		for (Map.Entry<int[], Integer> entry : MAP.entrySet())
 		{
 			int[] array = entry.getKey();
 			int expected = entry.getValue();
 			int actual = SumOfAllOddLengthSubarrays.sumOddLengthSubarrays(array);
+
+			String message = "Test failed for case: " + Arrays.toString(array)
+				+ "\nExpected: " + expected
+				+ "\n  Actual: " + actual;
+
+			assertEquals(expected, actual, message);
+		}
+	}
+
+	@Test
+	void alternativeSolutionTest()
+	{
+		for (Map.Entry<int[], Integer> entry : MAP.entrySet())
+		{
+			int[] array = entry.getKey();
+			int expected = entry.getValue();
+			int actual = SumOfAllOddLengthSubarrays.solution(array);
 
 			String message = "Test failed for case: " + Arrays.toString(array)
 				+ "\nExpected: " + expected

@@ -17,8 +17,8 @@
  */
 package challenge.leetcode.easy.sumOfAllOddLengthSubarrays;
 
+import com.google.common.annotations.VisibleForTesting;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -90,16 +90,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class SumOfAllOddLengthSubarrays
 {
-	private static final int[] CASE_1 = new int[]{1, 4, 2, 5, 3};
-	private static final int[] CASE_2 = new int[]{1, 2};
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		System.out.println(sumOddLengthSubarrays(CASE_1));
-	}
-
 	public static int sumOddLengthSubarrays(int[] arr)
 	{
 		int sum = 0;
@@ -199,7 +189,7 @@ public class SumOfAllOddLengthSubarrays
 	 * [-------------------------]   subarray of length 7
 	 *  4   6   8   8   8   6   4    multipliers
 	 */
-	private static int solution(int[] arr)
+	static int solution(int[] arr)
 	{
 		int sum = 0;
 		for (int i = 0; i < arr.length; i++)
