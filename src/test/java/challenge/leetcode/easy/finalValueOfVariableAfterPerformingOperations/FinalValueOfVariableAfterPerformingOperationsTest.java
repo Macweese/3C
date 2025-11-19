@@ -25,16 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Administrator
- * @Created 24/07/2025,
- * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
- **/
 @DisplayName("2011. Final Value of Variable After Performing Operations")
 class FinalValueOfVariableAfterPerformingOperationsTest
 {
@@ -42,7 +32,6 @@ class FinalValueOfVariableAfterPerformingOperationsTest
 
 	static
 	{
-
 		MAP.put(new String[]{"--X", "X++", "X++"}, 1);
 		MAP.put(new String[]{"++X", "++X", "X++"}, 3);
 		MAP.put(new String[]{"X++", "++X", "--X", "X--"}, 0);
@@ -165,16 +154,6 @@ class FinalValueOfVariableAfterPerformingOperationsTest
 
 			assertEquals(expected, actual, message);
 		}
-	}
-
-	public static void main(String[] args)
-	{
-		generateTests(100);
-	}
-
-	private static void generateTests()
-	{
-		generateTests(1);
 	}
 
 	private static void generateTests(int quantity)
