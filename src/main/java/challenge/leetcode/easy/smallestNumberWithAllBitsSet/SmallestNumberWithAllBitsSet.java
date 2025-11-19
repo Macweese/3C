@@ -22,18 +22,9 @@ package challenge.leetcode.easy.smallestNumberWithAllBitsSet;
  * @author Administrator
  * @Created 29/10/2025, 01:39 Wed 29 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class SmallestNumberWithAllBitsSet
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int smallestNumber(int n)
 	{
 		int max = 1;
