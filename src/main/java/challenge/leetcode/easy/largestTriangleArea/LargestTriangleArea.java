@@ -24,62 +24,9 @@ import java.awt.Point;
  * @author Administrator
  * @Created 27/09/2025, 14:11 Sat 27 September 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
- * @link <a href="">www.leetcode.com/999999999999999999999</a>
- * @Description Description
- *
- * <ul>
- * 		<li><b>Example 1:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 				<br>&emsp;
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 2:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 3:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- *
- * <p>
- * <b>Constraints:</b>
- * <ul>
- * 		<li></li>
- * </ul>
- * </p>
- *
- * <br>
- * <hr>
- * @Similar <a href=""/>1000. NAME (Leetcode)</a><br>
- * <br>
- * {@link solution. 10000. NAME (local)}<br>
  **/
 public class LargestTriangleArea
 {
-	static void main(String[] args)
-	{
-		int[][] CASE_1 = new int[][]{ {0,0}, {0,1}, {1,0}, {0,2}, {2,0} };
-		int[][] CASE_2 = new int[][]{ {1,0}, {0,0}, {0,1} };
-		int[][] CASE_3 = new int[][]{ {-35,19}, {40,19}, {27,-20}, {35,-3}, {44,20}, {22,-21}, {35,33}, {-19,42}, {11,47}, {11,37} };
-
-		System.out.println(largestTriangleArea(CASE_1));
-		System.out.println(largestTriangleArea(CASE_2));
-		System.out.println(largestTriangleArea(CASE_3));
-	}
-
 	public static double largestTriangleArea(int[][] points)
 	{
 		double maxArea = 0;
