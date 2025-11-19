@@ -24,26 +24,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Administrator
- * @Created 22/07/2025,
- * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
- **/
 @DisplayName("2894. Divisible And Non-divisible Sums Difference")
 class DivisibleAndNonDivisibleSumsDifferenceTest
 {
-
 	private static final Map<Pair<Integer, Integer>, Integer> MAP = new HashMap<>();
 
 	static
 	{
 		// Map = Pair (left: n, right: m) : result
-
 		MAP.put(Pair.of(10, 3), 19);
 		MAP.put(Pair.of(5, 6), 15);
 		MAP.put(Pair.of(5, 1), -15);

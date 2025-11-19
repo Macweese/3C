@@ -17,10 +17,6 @@
  */
 package challenge.leetcode.easy.divisibleAndNonDivisibleSumsDifference;
 
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Administrator
  * @Created 22/07/2025,
@@ -85,18 +81,6 @@ import org.slf4j.LoggerFactory;
  **/
 public class DivisibleAndNonDivisibleSumsDifference
 {
-	private static final Logger log = LoggerFactory.getLogger(DivisibleAndNonDivisibleSumsDifference.class);
-
-	static
-	{
-		BasicConfigurator.configure();
-	}
-
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int differenceOfSums(int n, int m)
 	{
 		int a = 0;
