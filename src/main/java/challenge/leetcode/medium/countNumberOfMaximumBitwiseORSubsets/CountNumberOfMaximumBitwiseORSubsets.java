@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.medium.countNumberOfMaximumBitwiseORSubsets;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,30 +84,9 @@ import java.util.Map;
  * </ul>
  * </p>
  **/
+// TODO: cleanup
 public class CountNumberOfMaximumBitwiseORSubsets
 {
-	public static void main(String[] args)
-	{
-
-//		System.out.println(test(40, 35));
-
-		int[] CASE_1 = new int[]{17, 25, 35, 40};
-		int[] CASE_2 = new int[]{3, 2, 1, 5};
-		int[] CASE_3 = new int[]{2, 2, 2};
-		int[] CASE_4 = new int[]{35569, 91997, 54930, 66672, 12363};
-//		Arrays.sort(CASE_1);
-//		Arrays.sort(CASE_2);
-//		Arrays.sort(CASE_3);
-//		Arrays.sort(CASE_4);
-//		subset(ints);
-
-
-		System.out.println(dfs(CASE_1));
-		System.out.println(dfs(CASE_2));
-		System.out.println(dfs(CASE_3));
-		System.out.println(dfs(CASE_4));
-	}
-
 	static int subtract(int x, int y)
 	{
 		while (y != 0)
@@ -144,9 +122,8 @@ public class CountNumberOfMaximumBitwiseORSubsets
 			if (m == 0)
 			{
 				end = end == 0 ? i : end;
-				result = Arrays.copyOfRange(ints, 0, i + 1);
-				System.out.println(Arrays.toString(result));
-//				m = max;
+//				result = Arrays.copyOfRange(ints, 0, i + 1);
+//				System.out.println(Arrays.toString(result));
 			}
 		}
 
@@ -157,9 +134,8 @@ public class CountNumberOfMaximumBitwiseORSubsets
 			if (m == 0)
 			{
 				start = start == 0 ? i : start;
-				result = Arrays.copyOfRange(ints, start, end + 1);
-				System.out.println(Arrays.toString(result));
-				m = max;
+//				result = Arrays.copyOfRange(ints, start, end + 1);
+//				System.out.println(Arrays.toString(result));
 			}
 		}
 		System.out.println("start: " + start + ", int[start]: " + ints[start]);
@@ -202,7 +178,6 @@ public class CountNumberOfMaximumBitwiseORSubsets
 		{
 			map2.put(i, map2.getOrDefault(i, 0) + 1);
 		}
-
 
 		int a = 0;
 		int b = 0;
