@@ -67,15 +67,6 @@ import java.util.Map;
  **/
 public class CountTheDigitsThatDivideANumber
 {
-	public static void main(String[] args)
-	{
-
-		System.out.println(countDigits(1));            // Expected: 1
-		System.out.println(countDigits(57));            // Expected: 0
-		System.out.println(countDigits(575));            // Expected: 2
-		System.out.println(countDigits(11111111));        // Expected: 8
-	}
-
 	public static int countDigits(int num)
 	{
 		Map<Integer, Integer> map = getDigits(num);
