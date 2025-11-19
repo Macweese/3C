@@ -21,11 +21,6 @@ package challenge.leetcode.medium.permutationsII;
  * @author Administrator
  * @Created 10/08/2025,
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
  **/
 public class PermutationsII
 {
