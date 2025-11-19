@@ -18,8 +18,6 @@
 
 package challenge.leetcode.easy.shuffleTheArray;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 13/09/2025, 07:10 Sat 13 September 2025
@@ -73,21 +71,6 @@ import java.util.Arrays;
  **/
 public class ShuffleTheArray
 {
-	public static void main(String[] args)
-	{
-		int[] CASE_1 = new int[]{2, 5, 1, 3, 4, 7};
-		int[] CASE_2 = new int[]{1, 2, 3, 4, 4, 3, 2, 1};
-		int[] CASE_3 = new int[]{1, 1, 2, 2};
-
-//		System.out.println(Arrays.toString(shuffle(CASE_1, CASE_1.length / 2)));
-//		System.out.println(Arrays.toString(shuffle(CASE_2, CASE_2.length / 2)));
-//		System.out.println(Arrays.toString(shuffle(CASE_3, CASE_3.length / 2)));
-
-		int[] TEST = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-//		int[] TEST = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11};
-		perfectShuffle(TEST);
-	}
-
 	public static int[] interleaveSimple(int[] ints, int n)
 	{
 		int[] result = new int[ints.length];
@@ -103,16 +86,11 @@ public class ShuffleTheArray
 
 	public static int[] shuffle(int[] ints, int n)
 	{
-		System.out.println();
-		System.out.println(Arrays.toString(ints));
 		for (int i = 1; i <= n; i += 2)
 		{
 			int t = ints[i];
 			ints[i] = ints[n + i];
-//			System.out.printf("    swapping -> i=%s, ints[%s]=%s <-> i+n-1=%s, ints[i+n-1]=%s%n",i, i, t, (i+n-1), ints[i]);
-			System.out.printf("    x=%s, ints[x]=%s <-> y=%s, ints[y]=%s%n", i, t, (i + n - 1), ints[i + n - 1]);
 			ints[i + n - 1] = t;
-			System.out.println(Arrays.toString(ints));
 		}
 
 		return ints;
@@ -139,11 +117,8 @@ public class ShuffleTheArray
 		prev = next;
 		next = next < ints.length / 2 ? next * 2 : 2 * next - ints.length + 1;
 
-
-		System.out.println(Arrays.toString(ints));
 		return swap(ints, cycle, next, prev, value);
 	}
-
 
 	/**
 	 * Performs perfect (out-)shuffle,

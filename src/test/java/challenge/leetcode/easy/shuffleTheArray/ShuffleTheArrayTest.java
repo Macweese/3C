@@ -164,13 +164,33 @@ class ShuffleTheArrayTest
 	}
 
 	@Test
-	void shuffle()
+	@DisplayName("Test: Perfect Shuffle Huang-Langston")
+	void shuffleHuangLangstonTest()
 	{
 		for (Map.Entry<int[], int[]> entry : MAP.entrySet())
 		{
 			final int[] ints = entry.getKey();
 			final int[] expected = entry.getValue();
 			final int[] actual = ShuffleTheArray.perfectShuffle(ints.clone());
+
+			String message = "\nTest failed on case: \nInput    : " + Arrays.toString(ints)
+				+ "\nExpected : " + Arrays.toString(expected)
+				+ "\nActual   : " + Arrays.toString(actual)
+				+ "\n      ";
+
+			assertArrayEquals(expected, actual, message);
+		}
+	}
+
+	@Test
+	@DisplayName("Test: Perfect Shuffle")
+	void shuffleSimpleTest()
+	{
+		for (Map.Entry<int[], int[]> entry : MAP.entrySet())
+		{
+			final int[] ints = entry.getKey();
+			final int[] expected = entry.getValue();
+			final int[] actual = ShuffleTheArray.interleaveSimple(ints.clone(), ints.length / 2);
 
 			String message = "\nTest failed on case: \nInput    : " + Arrays.toString(ints)
 				+ "\nExpected : " + Arrays.toString(expected)
@@ -192,10 +212,10 @@ class ShuffleTheArrayTest
 		for (int i = 0; i < 50; i++)
 		{
 			int[] ints = DataUtils.generateArray(IntArraySpec.builder(r.nextInt(1, 501) * 2).sorting(SortingMode.SHUFFLED).build());
-			String a = Arrays.toString(ints).replaceAll("[\\[\\] ]","");
+			String a = Arrays.toString(ints).replaceAll("[\\[\\] ]", "");
 
 			int[] expected = validate(ints);
-			String b = Arrays.toString(expected).replaceAll("[\\[\\] ]","");
+			String b = Arrays.toString(expected).replaceAll("[\\[\\] ]", "");
 
 			System.out.printf("MAP.put(new int[]{%s},new int[]{%s});%n", a, b);
 		}
@@ -205,16 +225,16 @@ class ShuffleTheArrayTest
 	{
 		int n = ints.length / 2;
 		int max = 1001;
-		for(int i=n;i<ints.length;i++)
+		for (int i = n; i < ints.length; i++)
 		{
-			ints[i] = max*ints[i]+ints[i-n];
+			ints[i] = max * ints[i] + ints[i - n];
 		}
 		int ind = 0;
-		for(int i=n;i<ints.length;i++)
+		for (int i = n; i < ints.length; i++)
 		{
-			ints[ind] = ints[i]%max;
-			ints[ind+1] = ints[i]/max;
-			ind+=2;
+			ints[ind] = ints[i] % max;
+			ints[ind + 1] = ints[i] / max;
+			ind += 2;
 		}
 
 		return ints;
