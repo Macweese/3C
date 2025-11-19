@@ -17,9 +17,6 @@
  */
 package challenge.leetcode.easy.addBinary;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 06/06/2025,
@@ -55,15 +52,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class AddBinary
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-	}
-
 	public static String addBinary(String a, String b)
 	{
 		int carry = 0;
