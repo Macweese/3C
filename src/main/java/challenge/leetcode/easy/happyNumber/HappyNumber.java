@@ -19,8 +19,6 @@ package challenge.leetcode.easy.happyNumber;
 
 import java.util.HashSet;
 import java.util.Set;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -70,19 +68,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class HappyNumber
 {
-	static
-	{
-		BasicConfigurator.configure();
-	}
-
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static boolean isHappy(int n)
 	{
 		String number = String.valueOf(n);
