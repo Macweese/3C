@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.pascalsTriangle;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,38 +64,6 @@ import java.util.stream.Collectors;
  **/
 public class PascalsTriangle
 {
-	public static void main(String[] args)
-	{
-		for (List<Integer> list : generate(5))
-		{
-			System.out.println(list);
-		}
-
-		String s = "test";
-		for (byte b : s.getBytes())
-		{
-			System.out.printf("%2x", b);
-		}
-		System.out.println();
-		System.out.println(h(s));
-
-	}
-
-	//
-	// 00000000: 436f 6465 2047 6f6c 6620 6973 2061 2067  Code Golf is a g
-	// 00000010: 616d 6520 6465 7369 676e 6564 2074 6f20  ame designed to
-	// 00000020: 6c65 7420 796f 7520 7368 6f77 206f 6666  let you show off
-	// 00000030: 2079 6f75 7220 636f 6465 2d66 7520 6279   your code-fu by
-	// 00000040: 2073 6f6c 7669 6e67 2070 726f 626c 656d   solving problem
-	// 00000050: 7320 696e 2074 6865 206c 6561 7374 206e  s in the least n
-	// 00000060: 756d 6265 7220 6f66 2063 6861 7261 6374  umber of charact
-	// 00000070: 6572 732e                                ers.
-	public static String h(String s)
-	{
-		return String.format("%040x", new BigInteger(1, s.getBytes()));
-	}
-
-
 	public static List<List<Integer>> generate(int n)
 	{
 		return generatePascalTriangle(new ArrayList<>(), new int[]{1}, 1, n);
