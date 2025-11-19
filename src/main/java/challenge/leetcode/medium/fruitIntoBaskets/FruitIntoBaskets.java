@@ -109,11 +109,6 @@ import java.util.HashSet;
  **/
 public class FruitIntoBaskets
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int getLongestSequenceOfTwoValues(int[] fruits)
 	{
 		int maxLen = 0;
