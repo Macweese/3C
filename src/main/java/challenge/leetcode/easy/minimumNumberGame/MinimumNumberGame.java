@@ -75,24 +75,14 @@ import java.util.Arrays;
  **/
 public class MinimumNumberGame
 {
-	public static void main(String[] args)
-	{
-		int[] INTS = new int[]{5, 4, 2, 3};
-		System.out.println(Arrays.toString(INTS));
-		System.out.println(Arrays.toString(numberGame(INTS)));
-	}
-
 	public static int[] numberGame(int[] nums)
 	{
-		System.out.println();
 		Arrays.sort(nums);
-		System.out.println(Arrays.toString(nums));
 		for (int i = 1; i < nums.length; i = i + 2)
 		{
 			int t = nums[i - 1];
 			nums[i - 1] = nums[i];
 			nums[i] = t;
-			System.out.println(Arrays.toString(nums));
 		}
 
 		return nums;
