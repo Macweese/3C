@@ -26,28 +26,21 @@ import java.util.List;
  * @author Administrator
  * @Created 05/10/2025, 02:16 Sun 05 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class PacificAtlanticWaterFlow
 {
 	static void main(String[] args)
 	{
-		int[][] TEST_ = {
+		int[][] TEST = {
 			{1, 2, 2, 3, 5},        //	1, 2, 2, 3, 5		1, 2, -, 3, 5
 			{3, 2, 3, 4, 4},        //	3, 2, 3, 4, 4		-, 2, 3, 4, 4
 			{2, 4, 5, 3, 1},        //	2, 4, 5, 3, 1		-, 4, 5, -, 1
 			{6, 7, 1, 4, 5},        //	6, 7, 1, 4, 5		-, 7, 1, 4, 5
-			{5, 1, 1, 2, 4}            //	5, 1, 1, 2, 4		5, 1, -, 2, 4
+			{5, 1, 1, 2, 4}         //	5, 1, 1, 2, 4		5, 1, -, 2, 4
 		};
-		pacificAtlantic(TEST_);
-//		System.out.println(djikstra(TEST_));
+		pacificAtlantic(TEST);
 
 		List<int[]> path = new ArrayList<>();
-//		path.add(new int[]{0,2});
-//		path.add(new int[]{2,0});
-//		path.add(new int[]{2,2});
 		path.add(new int[]{0, 0});
 		path.add(new int[]{1, 1});
 		path.add(new int[]{0, 1});
@@ -113,11 +106,9 @@ public class PacificAtlanticWaterFlow
 		boolean reachesNW = false;
 		boolean reachesSE = false;
 
-		System.out.printf("%-10s %-12s %-12s %n", " ", "north-west", "south-east");
 		for (int[] coord : coordinatePath)
 		{
 			reachesNW = (reachesNW | coord[0] == 0 | coord[1] == 0);
-			System.out.printf("%-10s %-12s %-12s%n", Arrays.toString(coord), (coord[0] == 0 | coord[1] == 0), (coord[0] == xMax - 1 | coord[1] == yMax - 1));
 			reachesSE = (reachesSE | coord[0] == xMax - 1 | coord[1] == yMax - 1);
 		}
 		return reachesNW && reachesSE;
@@ -136,10 +127,6 @@ public class PacificAtlanticWaterFlow
 		return reachesNW && reachesSE;
 	}
 }
-
-
-
-
 
 class Solution
 {
