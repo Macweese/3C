@@ -22,18 +22,9 @@ package challenge.leetcode.easy.checkIfDigitsAreEqualInStringAfterOperationsI;
  * @author Administrator
  * @Created 23/10/2025, 05:42 Thu 23 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class CheckIfDigitsAreEqualInStringAfterOperationsI
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static boolean hasDigits(String s)
 	{
 
