@@ -22,17 +22,9 @@ package challenge.leetcode.medium.containerWithMostWater;
  * @author Administrator
  * @Created 04/10/2025, 08:46 Sat 04 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class ContainerWithMostWater
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int maxArea(int[] height)
 	{
 		int left = 0;
