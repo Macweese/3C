@@ -24,8 +24,8 @@ import challenge.leetcode.easy.powerOfTwo.PowerOfTwo;
  * @author Administrator
  * @Created 15/08/2025,
  * @Project 3C: Competitive Coding Challenges
- * @Problem 242
- * @Name Power of Two
+ * @Problem 342
+ * @Name Power of Four
  * @Difficulty Easy
  * @Tags math
  * bit manipulation
@@ -75,11 +75,6 @@ import challenge.leetcode.easy.powerOfTwo.PowerOfTwo;
  **/
 public class PowerOfFour
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static boolean isPowerOfFour(int n)
 	{
 		return n > 0 && Integer.bitCount(n) == 1 && Integer.numberOfTrailingZeros(n) % 2 == 0;
