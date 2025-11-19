@@ -22,29 +22,11 @@ package challenge.leetcode.hard.minimumOneBitOperationsToMakeIntegersZero;
  * @author Administrator
  * @Created 08/11/2025, 23:22 Sat 08 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MinimumOneBitOperationsToMakeIntegersZero
 {
-	static void main(String[] args)
-	{
-		System.out.println(minimumOneBitOperations(15));
-		System.out.println(minimumOneBitOperations(8));
-	}
-
 	public static int minimumOneBitOperations(int n)
 	{
-		System.out.println();
-		int k = (int) (Math.log(n) / Math.log(2)) + 1;
-		Integer.highestOneBit(n);
-
-		System.out.println(Integer.toBinaryString(n));
-		int r = Integer.highestOneBit(n) ^ n;
-		System.out.println(Integer.toBinaryString(r));
-
-		return (int) Math.pow(2, k) - 1;
+		return (int) Math.pow(2, (Math.log(n) / Math.log(2)) + 1) - 1;
 	}
 }
