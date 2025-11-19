@@ -25,30 +25,13 @@ import java.util.HashMap;
  * @author Administrator
  * @Created 16/10/2025, 23:10 Thu 16 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class SmallestMissingNonNegativeIntegerAfterOperations
 {
-	static void main(String[] args)
-	{
-		int[] TEST_1 = {1,-10,7,13,6,8};
-		int[] TEST_1a = {-1,-10,7,13,6,8};
-		int[] TEST_2 = {1,-10,7,13,6,8};
-		int[] TEST_3 = {1,3,5,7};
-		int[] TEST_4 = {3,2,3,1,0,1,4,2,3,1,4,1,3};
-		int[] TEST_5 = {0,0,0,0,1,0,0,1,0,0,1,1,0,1,0,1,1};
-
-		System.out.println(findSmallestInteger(TEST_5, 2));
-	}
-
 	public static int findSmallestInteger(int[] ints, int value)
 	{
 		HashMap<Integer, Integer> map = new HashMap<>();
 
-		System.out.println(Arrays.toString(ints));
 		for (int i = 0; i < ints.length; ++i)
 		{
 			ints[i] = ints[i] % value;
@@ -59,7 +42,6 @@ public class SmallestMissingNonNegativeIntegerAfterOperations
 			map.put(ints[i], map.getOrDefault(ints[i], 0) + 1);
 		}
 
-		System.out.println(Arrays.toString(ints));
 		while (ints[0] < 0)
 		{
 			ints[0] += value;
@@ -76,7 +58,6 @@ public class SmallestMissingNonNegativeIntegerAfterOperations
 		}
 
 		Arrays.sort(ints);
-		System.out.println(Arrays.toString(ints));
 		int mex = 0;
 		for (int i : ints)
 		{
@@ -86,7 +67,6 @@ public class SmallestMissingNonNegativeIntegerAfterOperations
 			}
 		}
 
-		System.out.println(mex);
 		return mex;
 	}
 }
