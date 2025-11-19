@@ -91,23 +91,18 @@ import challenge.leetcode.medium.fruitIntoBaskets.FruitIntoBaskets;
  **/
 public class FruitsIntoBasketsII
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int numOfUnplacedFruits(int[] fruits, int[] baskets)
 	{
 		int skippedFruits = 0;
-		nextfruit:
-		for (int i = 0; i < fruits.length; i++)
+
+		nextFruit: for (int fruit : fruits)
 		{
 			for (int j = 0; j < baskets.length; j++)
 			{
-				if (baskets[j] >= fruits[i])
+				if (baskets[j] >= fruit)
 				{
 					baskets[j] = 0;
-					continue nextfruit;
+					continue nextFruit;
 				}
 			}
 			skippedFruits++;
