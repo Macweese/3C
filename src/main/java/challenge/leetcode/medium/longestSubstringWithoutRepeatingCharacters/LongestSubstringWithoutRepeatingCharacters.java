@@ -17,8 +17,6 @@
  */
 package challenge.leetcode.medium.longestSubstringWithoutRepeatingCharacters;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author Administrator
  * @Created 25/03/2025,
@@ -64,11 +62,6 @@ import lombok.extern.slf4j.Slf4j;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class LongestSubstringWithoutRepeatingCharacters
 {
-	public static void main(String[] args)
-	{
-
-	}
 }
