@@ -18,8 +18,6 @@
 package challenge.leetcode.medium.addTwoNumbers;
 
 import data.ListNode;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -67,14 +65,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class AddTwoNumbers
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-	}
-
 	public static ListNode add(ListNode a, ListNode b)
 	{
 		ListNode head = new ListNode();
