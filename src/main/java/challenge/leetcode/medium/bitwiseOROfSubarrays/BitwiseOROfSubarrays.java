@@ -74,11 +74,6 @@ import java.util.Set;
  **/
 public class BitwiseOROfSubarrays
 {
-	public static void main(String[] args)
-	{
-	}
-
-
 	// dynamic programming?
 	// ints = [1,4,6]   0001 0100 0110
 	// []               0 0000
