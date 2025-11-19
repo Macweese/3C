@@ -22,20 +22,11 @@ package challenge.leetcode.hard.findSumOfArrayProductOfMagicalSequences;
  * @author Administrator
  * @Created 12/10/2025, 23:10 Sun 12 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class FindSumOfArrayProductOfMagicalSequences
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int magicalSum(int[] nums)
 	{
-
 		return 0;
 	}
 }
