@@ -25,9 +25,6 @@ import java.util.PriorityQueue;
  * @author Administrator
  * @Created 03/10/2025, 07:16 Fri 03 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class TrappingRainWaterII
 {
