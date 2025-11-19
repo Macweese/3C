@@ -19,8 +19,6 @@ package challenge.leetcode.medium.closestPrimeNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -68,14 +66,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class ClosestPrimeNumberInRange
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-	}
-
 	// Solution works but TLE
 	// TODO: function for checking if a number is a prime number is faulty
 	public static int[] closestPrimes(int left, int right)
