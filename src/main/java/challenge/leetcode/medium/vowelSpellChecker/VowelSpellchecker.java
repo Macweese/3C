@@ -115,18 +115,9 @@ import java.util.Set;
  * 		<li><code>wordlist[i]</code> and <code>queries[i]</code> consist only of only English letters.</li>
  * </ul>
  * </p>
- *
- * <br>
- * <hr>
- * @Similar <br>
  **/
 public class VowelSpellchecker
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static String[] spellchecker(String[] wordlist, String[] queries)
 	{
 		Set<String> words = new HashSet<>(Arrays.asList(wordlist));
