@@ -20,7 +20,6 @@ package challenge.leetcode.easy.validParentheses;
 import java.util.Map;
 import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -82,15 +81,6 @@ public class ValidParentheses
 		Map.entry('}', '{'),
 		Map.entry(']', '[')
 	);
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		String s = "";
-//		log.info("Valid parentheses: {}, \"{}\"", isValid(s), s);
-//		log.debug("test");
-	}
 
 	public static boolean isValid(String s)
 	{
