@@ -36,22 +36,6 @@ class RemoveElementTest
 	@Test
 	void testRemoveElement()
 	{
-/*
-		// LeetCode test
-		int[] nums = generateRandomSortedArray();    // Input array
-		int val = (int) (Math.random() * 101);       // Value to remove
-		int[] expectedNums = filterArray(nums, val); // The expected answer with correct length.
-                                                     // It is sorted with no values equaling val.
-		int k = removeElement(nums, val);            // Calls your implementation
-		int actualLength = expectedNums.length;
-		assertEquals(k, actualLength);
-		sort(nums, 0, k);                            // Sort the first k elements of nums
-		for (int i = 0; i < actualLength; i++)
-		{
-			assertEquals(nums[i], expectedNums[i]);
-		}
-*/
-
 		testRemoveElementPredefined(ARRAY_0, 0, 0);
 		testRemoveElementPredefined(ARRAY_1, 3, 2);
 		testRemoveElementPredefined(ARRAY_2, 2, 5);
@@ -59,7 +43,6 @@ class RemoveElementTest
 		testRemoveElementRandom();
 	}
 
-	//	@Test
 	void testRemoveElementPredefined(int[] ints, int val, int k)
 	{
 		int[] expected = filterArray(ints, val);

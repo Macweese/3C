@@ -17,13 +17,6 @@
  */
 package challenge.leetcode.easy.removeElement;
 
-import java.util.Arrays;
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-;
-
 /**
  * @author Administrator
  * @Created 23/03/2018,
@@ -99,31 +92,12 @@ import org.slf4j.LoggerFactory;
  **/
 public class RemoveElement
 {
-	static final int[] ARRAY_0 = new int[]{};
-	static final int[] ARRAY_1 = new int[]{3, 2, 2, 3};
-	static final int[] ARRAY_2 = new int[]{0, 1, 2, 2, 3, 0, 4, 2};
-	static final int[] ARRAY_3 = new int[]{2};
-
-	private static final Logger log = LoggerFactory.getLogger(RemoveElement.class);
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		log.info("Expected={}, Actual={}", 0, removeElement(ARRAY_0, 0));
-		log.info("Expected={}, Actual={}", 2, removeElement(ARRAY_1, 3));
-		log.info("Expected={}, Actual={}", 5, removeElement(ARRAY_2, 2));
-		log.info("Expected={}, Actual={}", 0, removeElement(ARRAY_3, 3));
-	}
-
 	public static int removeElement(int[] ints, int val)
 	{
 		int i = 0;
-		System.out.println("ints = " + Arrays.toString(ints) + ", k=" + i);
 
 		for (int j = 0; j < ints.length; j++)
 		{
-			System.out.println("ints = " + Arrays.toString(ints) + ", k=" + i);
 			if (ints[j] != val)
 			{
 				int t = ints[i];
