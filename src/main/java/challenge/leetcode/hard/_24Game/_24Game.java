@@ -109,17 +109,9 @@ import java.util.Arrays;
  **/
 public class _24Game
 {
-	public static void main(String[] args)
-	{
-
-		int[] ints = new int[]{0, 0, 0, 0};
-		judgePoint24(ints);
-	}
-
 	public static boolean judgePoint24(int[] ints)
 	{
 		float[] digits = new float[]{ints[0], ints[1], ints[2], ints[3]};
-
 
 		return false;
 	}
