@@ -17,8 +17,6 @@
  */
 package challenge.leetcode.easy.transformArrayByParity;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
  * @author Administrator
  * @Created 24/07/2025,
@@ -72,15 +70,6 @@ import java.util.concurrent.ThreadLocalRandom;
  **/
 public class TransformArrayByParity
 {
-	public static void main(String[] args)
-	{
-
-//		System.out.println(Arrays.toString(transformArray(new int[]{4, 3, 2, 1})));
-//		System.out.println(Arrays.toString(transformArray(new int[]{1, 5, 1, 4, 2})));
-		int[] ints = generateRandomArray();
-		transformArray(ints);
-	}
-
 	/**
 	 * Transforms an array and sorts in-place.
 	 * <table>
@@ -126,16 +115,5 @@ public class TransformArrayByParity
 		}
 
 		return nums;
-	}
-
-	private static int[] generateRandomArray()
-	{
-		int[] ints = new int[ThreadLocalRandom.current().nextInt(100) + 1];
-
-		for (int i = 0; i < ints.length; i++)
-		{
-			ints[i] = ThreadLocalRandom.current().nextInt(1000) + 1;
-		}
-		return ints;
 	}
 }
