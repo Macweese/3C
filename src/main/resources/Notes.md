@@ -3,6 +3,7 @@
 ## Mathematics
 
 #### Square root
+
 Finding the nearest floored integer square root $x$ of a number $n$
 
 ```java
@@ -18,6 +19,7 @@ public int sqrt(int n)
 ```
 
 #### Power
+
 ```java
 static long pow(long base, long exp)
 {
@@ -25,7 +27,7 @@ static long pow(long base, long exp)
 	long ans = 1L;
 	boolean isNegativeExponent = exp < 0;
 	exp = Math.abs(exp);
-	
+
 	while (exp > 0)
 	{
 		if ((exp & 1) == 1)
@@ -42,6 +44,7 @@ static long pow(long base, long exp)
 ```
 
 #### Factorial
+
 ```java
 static void computeFact()
 {
@@ -57,6 +60,7 @@ static void computeFact()
 ```
 
 #### Prime numbers
+
 ```java
 static boolean isPrime(int n)
 {
@@ -75,36 +79,39 @@ static boolean isPrime(int n)
 	return true;
 }
 ```
+
 ```java
 static List<Integer> getPrimeList(int min, int max)
 {
-    boolean[] isPrime = new boolean[max + 1];
-    List<Integer> primesList = new ArrayList<>();
-    Arrays.fill(isPrime, true);
+	boolean[] isPrime = new boolean[max + 1];
+	List<Integer> primesList = new ArrayList<>();
+	Arrays.fill(isPrime, true);
 
-    for (int i = 2; i <= max; i++)
-    {
-        if (isPrime[i])
-        {
-            if (i >= min)
-            {
-                primesList.add(i);
-            }
-            for (int j = i * i; j <= max; j += i)
-            {
-                isPrime[j] = false;
-            }
-        }
-    }
+	for (int i = 2; i <= max; i++)
+	{
+		if (isPrime[i])
+		{
+			if (i >= min)
+			{
+				primesList.add(i);
+			}
+			for (int j = i * i; j <= max; j += i)
+			{
+				isPrime[j] = false;
+			}
+		}
+	}
 
-    return primesList;
+	return primesList;
 }
 ```
 
 #### Sum of range
-The sum of integers (inclusive) &emsp; $\lbrack a ... b\rbrack$ &emsp; as &emsp; $\sum_{n=a}^{b}n$  
+
+The sum of integers (inclusive) &emsp; $\lbrack a ... b\rbrack$ &emsp; as &emsp; $\sum_{n=a}^{b}n$
 
 $$ f\left(a,b\right)=\frac{\left(\max\left(a,b\right)-\min\left(a,b\right)+1\right)\left(a+b\right)}{2} $$
+
 ```java
 public long sumRange(long a, long b)
 {
@@ -113,6 +120,7 @@ public long sumRange(long a, long b)
 ```
 
 #### Fibonacci numbers
+
 Finding the $n^{th}$ number in sequence (Binet's formula)
 
 ```java
@@ -123,6 +131,7 @@ public int getN_thFib(int n)
 ```
 
 ### Combinatorics
+
 Combinations of $n$ elements, given a pool $r$
 
 ```java
@@ -156,6 +165,7 @@ Permutations of $n$ elements
 ```
 
 #### LCM Least Common Multiple
+
 ```java
 static int LCM(int a, int b)
 {
@@ -164,10 +174,11 @@ static int LCM(int a, int b)
 ```
 
 #### GCD Greatest Common Denominator
+
 ```java
 static int GCD(int a, int b)
 {
-    return (b == 0) ? (a) : GCD(b, a % b);
+	return (b == 0) ? (a) : GCD(b, a % b);
 }
 ```
 
@@ -187,7 +198,7 @@ static List<int[]> getMSTGraph(int nNodes, int[][] graph, boolean isDirected)
 	int src = 0;
 	PriorityQueue<int[]> pq = new PriorityQueue<>((x, y) -> x[2] - y[2]);
 	// Store format: [node, parent, weightWithParent]
-	pq.offer(new int[] { src, -1, 0 });
+	pq.offer(new int[]{src, -1, 0});
 
 	int ans = 0;
 
@@ -205,7 +216,7 @@ static List<int[]> getMSTGraph(int nNodes, int[][] graph, boolean isDirected)
 
 		if (parent != -1)
 		{
-			mstEdges.add(new int[] { parent, curr, weight });
+			mstEdges.add(new int[]{parent, curr, weight});
 		}
 
 		isVisited[curr] = true;
@@ -214,7 +225,7 @@ static List<int[]> getMSTGraph(int nNodes, int[][] graph, boolean isDirected)
 		{
 			int neighbourNodeNumber = neighbour[0];
 			int weightOfCurrentNeighbour = neighbour[1];
-			pq.offer(new int[] { neighbourNodeNumber, curr, weightOfCurrentNeighbour });
+			pq.offer(new int[]{neighbourNodeNumber, curr, weightOfCurrentNeighbour});
 		}
 	}
 
@@ -237,7 +248,7 @@ static List<int[]> getMSTGraph(int nNodes, int[][] graph, boolean isDirected)
 static List<List<int[]>> getAdjWeighted(int[][] graph, int nNodes, boolean isDirected)
 {
 	List<List<int[]>> adj = new ArrayList<>();
-	
+
 	for (int i = 0; i < nNodes; i++)
 	{
 		adj.add(new ArrayList<>());
@@ -245,18 +256,17 @@ static List<List<int[]>> getAdjWeighted(int[][] graph, int nNodes, boolean isDir
 
 	for (int[] con : graph)
 	{
-		adj.get(con[0] - 1).add(new int[] { con[1] - 1, con[2] });
+		adj.get(con[0] - 1).add(new int[]{con[1] - 1, con[2]});
 
 		if (!isDirected)
 		{
-			adj.get(con[1] - 1).add(new int[] { con[0] - 1, con[2] });
+			adj.get(con[1] - 1).add(new int[]{con[0] - 1, con[2]});
 		}
 	}
 	return adj;
 }
 ```
 
-  
 </details>
 
 
@@ -319,7 +329,7 @@ static int djikstra(int[][] g, int nNodes, int src, int dest)
 	int[] dis = new int[nNodes];
 	Arrays.fill(dis, (int) 1e9);
 	dis[src] = 0;
-	pq.offer(new int[] { src, 0 });
+	pq.offer(new int[]{src, 0});
 
 	while (!pq.isEmpty())
 	{
@@ -337,7 +347,7 @@ static int djikstra(int[][] g, int nNodes, int src, int dest)
 			if (dis[curr] + w < dis[to])
 			{
 				dis[to] = dis[curr] + w;
-				pq.offer(new int[] { to, dis[to] });
+				pq.offer(new int[]{to, dis[to]});
 			}
 		}
 	}
@@ -348,7 +358,7 @@ static int djikstra(int[][] g, int nNodes, int src, int dest)
 static List<List<int[]>> getAdjWeighted(int[][] graph, int nNodes, boolean isDirected)
 {
 	List<List<int[]>> adj = new ArrayList<>();
-	
+
 	for (int i = 0; i < nNodes; i++)
 	{
 		adj.add(new ArrayList<>());
@@ -356,11 +366,11 @@ static List<List<int[]>> getAdjWeighted(int[][] graph, int nNodes, boolean isDir
 
 	for (int[] con : graph)
 	{
-		adj.get(con[0] - 1).add(new int[] { con[1] - 1, con[2] });
+		adj.get(con[0] - 1).add(new int[]{con[1] - 1, con[2]});
 
 		if (!isDirected)
 		{
-			adj.get(con[1] - 1).add(new int[] { con[0] - 1, con[2] });
+			adj.get(con[1] - 1).add(new int[]{con[0] - 1, con[2]});
 		}
 	}
 	return adj;
@@ -387,9 +397,8 @@ static List<List<Integer>> getAdj(int[][] graph, int nNodes, boolean isDirected)
 	return adj;
 }
 ```
-  
-</details>
 
+</details>
 
 #### WFI Floyd-Warshall
 
@@ -446,7 +455,7 @@ static long[][] floydWarshall(int nNodes, int[][] g, boolean isDirected)
 	return dis;
 }
 ```  
-  
+
 </details>
 
 
@@ -491,7 +500,7 @@ static boolean hasCycles(int[][] edges, int[] distances)
 	{
 		relaxEdges(each[0], each[1], each[2], clone);
 	}
-	
+
 	for (int i = 0; i < distances.length; i++)
 	{
 		if (distances[i] != clone[i])
@@ -511,9 +520,8 @@ static void relaxEdges(int u, int v, int wt, int[] distances)
 	}
 }
 ```  
-  
-</details>
 
+</details>
 
 ### DFS Depth-First-Search
 
@@ -523,7 +531,7 @@ static void relaxEdges(int u, int v, int wt, int[] distances)
 ```java
 public void dfs(List<Integer>[] adjList, boolean[] visited, int node)
 {
-	visited[node]= true;
+	visited[node] = true;
 
 	// Explore all of node's neighbors
 	for (int neighbor : adjList[node])
@@ -569,7 +577,7 @@ public int countComponents(int n, int[][] edges)
 	return components;
 }
 ```  
-  
+
 </details>
 
 
@@ -603,7 +611,7 @@ public int countComponents(int n, int[][] edges)
 	* Tim Sort
 
 
-* **Shuffling:**  
+* **Shuffling:**
 	* Perfect Shuffle (Faro Shuffle / Weave Shuffle)
 
 <br>
@@ -613,20 +621,41 @@ public int countComponents(int n, int[][] edges)
 <summary><b>Bubble sort</b></summary>
 
 ```java
-void bubble(int[] array)
+import java.util.Arrays;
+
+public class BubbleSort
 {
-	// ...
-	for (int i = 0; i < n; i++)
+
+	private static void bubbleSort(int[] nums)
 	{
-		for (int j = 0; j < n - 1; j++)
+		boolean hasChange = true;
+		for (int i = 0, n = nums.length; i < n - 1 && hasChange; ++i)
 		{
-			if (array[j] > array[j + 1])
+			hasChange = false;
+			for (int j = 0; j < n - i - 1; ++j)
 			{
-				swap(array[j], array[j + 1]);
+				if (nums[j] > nums[j + 1])
+				{
+					swap(nums, j, j + 1);
+					hasChange = true;
+				}
 			}
 		}
 	}
-	// ...
+
+	private static void swap(int[] nums, int i, int j)
+	{
+		int t = nums[i];
+		nums[i] = nums[j];
+		nums[j] = t;
+	}
+
+	public static void main(String[] args)
+	{
+		int[] nums = {1, 2, 7, 9, 5, 8};
+		bubbleSort(nums);
+		System.out.println(Arrays.toString(nums));
+	}
 }
 ```
 
@@ -634,10 +663,364 @@ void bubble(int[] array)
 
 
 <details>
+<summary><b>Shell sort</b></summary>
+
+```java
+import java.util.Arrays;
+
+public class ShellSort
+{
+
+	private static int[] shellSort(int[] arr)
+	{
+		int n = arr.length;
+
+		for (int gap = n / 2; gap > 0; gap /= 2)
+		{
+			for (int i = gap; i < n; i++)
+			{
+				int key = arr[i];
+				int j = i;
+				while (j >= gap && arr[j - gap] > key)
+				{
+					arr[j] = arr[j - gap];
+					j -= gap;
+				}
+				arr[j] = key;
+			}
+		}
+		return arr;
+	}
+
+	public static void main(String[] args)
+	{
+		System.out.println(Arrays.toString(shellSort(new int[]{1, 2, 7, 9, 5, 8})));
+	}
+}
+```
+
+</details>
+
+
+<details>
+<summary><b>Selection sort</b></summary>
+
+```java
+import java.util.Arrays;
+
+public class SelectionSort
+{
+
+	private static void selectionSort(int[] nums)
+	{
+		for (int i = 0, n = nums.length; i < n - 1; ++i)
+		{
+			int minIndex = i;
+			for (int j = i; j < n; ++j)
+			{
+				if (nums[j] < nums[minIndex])
+				{
+					minIndex = j;
+				}
+			}
+			swap(nums, minIndex, i);
+		}
+	}
+
+	private static void swap(int[] nums, int i, int j)
+	{
+		int t = nums[i];
+		nums[i] = nums[j];
+		nums[j] = t;
+	}
+
+	public static void main(String[] args)
+	{
+		int[] nums = {1, 2, 7, 9, 5, 8};
+		selectionSort(nums);
+		System.out.println(Arrays.toString(nums));
+	}
+}
+```
+
+</details>
+
+
+<details>
+<summary><b>Quick sort</b></summary>
+
+```java
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] nums = new int[n];
+		for (int i = 0; i < n; ++i)
+		{
+			nums[i] = sc.nextInt();
+		}
+		quickSort(nums, 0, n - 1);
+		for (int i = 0; i < n; ++i)
+		{
+			System.out.print(nums[i] + " ");
+		}
+	}
+
+	public static void quickSort(int[] nums, int left, int right)
+	{
+		if (left >= right)
+		{
+			return;
+		}
+		int i = left - 1, j = right + 1;
+		int x = nums[(left + right) >> 1];
+		while (i < j)
+		{
+			while (nums[++i] < x)
+				;
+			while (nums[--j] > x)
+				;
+			if (i < j)
+			{
+				int t = nums[i];
+				nums[i] = nums[j];
+				nums[j] = t;
+			}
+		}
+		quickSort(nums, left, j);
+		quickSort(nums, j + 1, right);
+	}
+}
+```
+
+</details>
+
+
+
+<details>
 <summary><b>Merge sort</b></summary>
 
 ```java
+import java.util.Scanner;
+
+public class Main
+{
+	private static int[] tmp = new int[100010];
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] nums = new int[n];
+		for (int i = 0; i < n; ++i)
+		{
+			nums[i] = sc.nextInt();
+		}
+		mergeSort(nums, 0, n - 1);
+		for (int i = 0; i < n; ++i)
+		{
+			System.out.printf("%d ", nums[i]);
+		}
+	}
+
+	public static void mergeSort(int[] nums, int left, int right)
+	{
+		if (left >= right)
+		{
+			return;
+		}
+		int mid = (left + right) >>> 1;
+		mergeSort(nums, left, mid);
+		mergeSort(nums, mid + 1, right);
+		int i = left, j = mid + 1, k = 0;
+		while (i <= mid && j <= right)
+		{
+			if (nums[i] <= nums[j])
+			{
+				tmp[k++] = nums[i++];
+			}
+			else
+			{
+				tmp[k++] = nums[j++];
+			}
+		}
+		while (i <= mid)
+		{
+			tmp[k++] = nums[i++];
+		}
+		while (j <= right)
+		{
+			tmp[k++] = nums[j++];
+		}
+		for (i = left, j = 0; i <= right; ++i, ++j)
+		{
+			nums[i] = tmp[j];
+		}
+	}
+}
 ```
+
+</details>
+
+
+<details>
+<summary><b>Insertion sort</b></summary>
+
+```java
+import java.util.Arrays;
+
+public class InsertionSort
+{
+	private static void insertionSort(int[] nums)
+	{
+		for (int i = 1, j, n = nums.length; i < n; ++i)
+		{
+			int num = nums[i];
+			for (j = i - 1; j >= 0 && nums[j] > num; --j)
+			{
+				nums[j + 1] = nums[j];
+			}
+			nums[j + 1] = num;
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		int[] nums = {1, 2, 7, 9, 5, 8};
+		insertionSort(nums);
+		System.out.println(Arrays.toString(nums));
+	}
+}
+```
+
+</details>
+
+
+<details>
+<summary><b>Heap sort</b></summary>
+
+```java
+import java.util.Scanner;
+
+public class Main
+{
+	private static int[] h = new int[100010];
+	private static int size;
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt(), m = sc.nextInt();
+		for (int i = 1; i <= n; ++i)
+		{
+			h[i] = sc.nextInt();
+		}
+		size = n;
+		for (int i = n / 2; i > 0; --i)
+		{
+			down(i);
+		}
+		while (m-- > 0)
+		{
+			System.out.print(h[1] + " ");
+			h[1] = h[size--];
+			down(1);
+		}
+	}
+
+	public static void down(int u)
+	{
+		int t = u;
+		if (u * 2 <= size && h[u * 2] < h[t])
+		{
+			t = u * 2;
+		}
+		if (u * 2 + 1 <= size && h[u * 2 + 1] < h[t])
+		{
+			t = u * 2 + 1;
+		}
+		if (t != u)
+		{
+			swap(t, u);
+			down(t);
+		}
+	}
+
+	public static void up(int u)
+	{
+		while (u / 2 > 0 && h[u / 2] > h[u])
+		{
+			swap(u / 2, u);
+			u /= 2;
+		}
+	}
+
+	public static void swap(int i, int j)
+	{
+		int t = h[i];
+		h[i] = h[j];
+		h[j] = t;
+	}
+}
+```
+
+</details>
+
+
+<details>
+<summary><b>Counting sort</b></summary>
+
+```java
+import java.util.Arrays;
+
+public class CountingSort
+{
+	public static void countingSort(int[] nums, int min, int max)
+	{
+		int n = nums.length;
+		int k = max - min + 1;
+		int[] c = new int[k];
+		for (int v : nums)
+		{
+			c[v - min]++;
+		}
+
+		for (int i = 1; i < k; i++)
+		{
+			c[i] += c[i - 1];
+		}
+
+		int[] r = new int[n];
+		for (int i = n - 1; i >= 0; i--)
+		{
+			int v = nums[i];
+			int a = c[v - min];
+			r[a - 1] = v;
+			c[v - min]--;
+		}
+		System.arraycopy(r, 0, nums, 0, n);
+	}
+
+	public static void main(String[] args)
+	{
+
+		// test case 1
+		int[] nums = {1, 2, 7, 9, 5, 5, 8};
+		countingSort(nums, 1, 9);
+		System.out.println(Arrays.toString(nums));
+
+		// test case 2
+		int[] nums2 = {2, 7, 9, 5, 5, 8};
+		countingSort(nums2, 2, 9);
+		System.out.println(Arrays.toString(nums2));
+	}
+}
+```
+
 </details>
 
 <br>
@@ -749,17 +1132,17 @@ private static void reverse(int[] a, int l, int r)
 	}
 }
 ```
+
 </details>
 
 <br>
-
-
 
 ### PLACEHOLDER
 
 <br>
 
 ### Logic
+
 Truth table
 
 | $\text{A}$ | $\text{B}$ | $\lnot \text{A}$ | $\lnot \text{B}$ | $\text{A} \land \text{B}$ | $\text{A} \lor \text{B}$ | $\text{A} \Rightarrow \text{B}$ | $\text{A} \Leftrightarrow \text{B}$ |
