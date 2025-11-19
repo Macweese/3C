@@ -69,23 +69,6 @@ import java.util.Stack;
  **/
 public class FindFirstPalindromicStringInArray
 {
-	public static void main(String[] args)
-	{
-		String[] CASE_1 = new String[]{"abc", "car", "ada", "racecar", "cool"};
-		String[] CASE_2 = new String[]{"notapalindrome", "racecar"};
-		String[] CASE_3 = new String[]{"def", "ghi"};
-
-
-		System.out.println("Palindrome: " + firstPalindrome(CASE_1));            // Expected: ada
-		System.out.println("Palindrome: " + firstPalindrome(CASE_2));            // Expected: racecar
-		System.out.println("Palindrome: " + firstPalindrome(CASE_3));            // Expected: ""
-
-		System.out.println("Palindrome: " + firstPalindromeOptimal(CASE_1));    // Expected: ada
-		System.out.println("Palindrome: " + firstPalindromeOptimal(CASE_2));    // Expected: racecar
-		System.out.println("Palindrome: " + firstPalindromeOptimal(CASE_3));    // Expected: ""
-	}
-
-
 	/**
 	 * Uses stack
 	 * <br>
@@ -102,8 +85,8 @@ public class FindFirstPalindromicStringInArray
 	public static String firstPalindrome(String[] words)
 	{
 		Stack<Character> stack = new Stack<>();
-		outer:
-		for (String word : words)
+
+		outer: for (String word : words)
 		{
 			stack.clear();
 			for (int i = 0; i < (word.length() / 2); i++)
@@ -141,8 +124,7 @@ public class FindFirstPalindromicStringInArray
 	 */
 	public static String firstPalindromeOptimal(String[] words)
 	{
-		outer:
-		for (String word : words)
+		outer: for (String word : words)
 		{
 			int l = 0;
 			int r = word.length() - 1;
