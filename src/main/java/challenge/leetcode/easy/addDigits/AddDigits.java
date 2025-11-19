@@ -57,11 +57,6 @@ package challenge.leetcode.easy.addDigits;
  **/
 public class AddDigits
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int addDigits(int num)
 	{
 		return num < 10 ? num : num % 9;
