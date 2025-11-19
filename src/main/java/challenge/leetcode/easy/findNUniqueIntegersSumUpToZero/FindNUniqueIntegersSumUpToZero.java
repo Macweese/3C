@@ -18,8 +18,6 @@
 
 package challenge.leetcode.easy.findNUniqueIntegersSumUpToZero;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 19/11/2017
@@ -64,18 +62,6 @@ import java.util.Arrays;
  **/
 public class FindNUniqueIntegersSumUpToZero
 {
-	public static void main(String[] args)
-	{
-
-		sumZero(7);
-		sumZero(5);
-		sumZero(4);
-		sumZero(3);
-		sumZero(2);
-		sumZero(1);
-//		System.out.println(Arrays.toString(sumZero(4)));
-	}
-
 	public static int[] sumZero(int n)
 	{
 		int[] ints = new int[n];
@@ -87,7 +73,6 @@ public class FindNUniqueIntegersSumUpToZero
 			ints[(n - 1) - i] = val;
 			val--;
 		}
-		System.out.println(Arrays.toString(ints));
 
 		return ints;
 	}
