@@ -17,9 +17,6 @@
  */
 package challenge.leetcode.easy.excelSheetColumnNumber;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 20/07/2025,
@@ -70,27 +67,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class ExcelSheetColumnNumber
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-
-		System.out.println("A       = " + titleToNumber("A"));
-		System.out.println("B       = " + titleToNumber("B"));
-		System.out.println("Z       = " + titleToNumber("Z"));
-		System.out.println("AA      = " + titleToNumber("AA"));
-		System.out.println("AB      = " + titleToNumber("AB"));
-		System.out.println("ZY      = " + titleToNumber("ZY"));
-		System.out.println("BAF     = " + titleToNumber("BAF"));
-		System.out.println("FXSHRXW = " + titleToNumber("FXSHRXW"));
-
-		System.out.println(ALPHABET_SIZE);
-		System.out.println(CHAR_VALUE_OFFSET);
-	}
-
 	private static final int ALPHABET_SIZE = ('Z' - 'A') + 1;
 	private static final int CHAR_VALUE_OFFSET = 'A' - 1;
 
