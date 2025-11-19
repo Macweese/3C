@@ -25,10 +25,6 @@ package challenge.leetcode.easy.goalParserInterpretation;
  **/
 public class GoalParserInterpretation
 {
-	static void main()
-	{
-	}
-
 	public static String interpret(String command)
 	{
 		return command
