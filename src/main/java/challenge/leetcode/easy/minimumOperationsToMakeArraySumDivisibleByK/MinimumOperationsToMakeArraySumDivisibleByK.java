@@ -25,11 +25,6 @@ package challenge.leetcode.easy.minimumOperationsToMakeArraySumDivisibleByK;
  **/
 public class MinimumOperationsToMakeArraySumDivisibleByK
 {
-	static void main()
-	{
-
-	}
-
 	public static int minOperations(int[] ints, int k)
 	{
 		int operations = 0;
