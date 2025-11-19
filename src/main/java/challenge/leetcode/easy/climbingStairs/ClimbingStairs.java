@@ -17,10 +17,6 @@
  */
 package challenge.leetcode.easy.climbingStairs;
 
-import java.util.Arrays;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 06/06/2025,
@@ -61,18 +57,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class ClimbingStairs
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		int n = 19;
-//		log.info("{} -> {}", n, climbStairs(n));
-//		log.info("{} -> {}", 25, climbStairs(25));
-	}
-
 	/**
 	 * <br><b>Solution scratchpad</b><br>
 	 * <br><a href="https://excalidraw.com/#json=dI9oG8XbvJUqGxL0QFzrb,6Zni3HoirJeFC1UnQMiK_A">View scratchpad online</a>
@@ -101,7 +87,6 @@ public class ClimbingStairs
 		{
 			ints[i] = ints[i - 1] + ints[i - 2];
 		}
-		System.out.println(Arrays.toString(ints));
 
 		return ints[n - 1];
 	}
