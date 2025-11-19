@@ -17,9 +17,6 @@
  */
 package challenge.leetcode.easy.findTheMaximumNumberAchievable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Administrator
  * @Created 22/07/2025,
@@ -64,13 +61,6 @@ import org.slf4j.LoggerFactory;
  **/
 public class FindTheMaximumNumberAchievable
 {
-	private static final Logger log = LoggerFactory.getLogger(FindTheMaximumNumberAchievable.class);
-
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int theMaximumAchievableX(int num, int t)
 	{
 		return num + t * 2;
