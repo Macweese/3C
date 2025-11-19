@@ -17,10 +17,6 @@
  */
 package challenge.leetcode.easy.convertTheTemperature;
 
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Administrator
  * @Created 23/07/2025,
@@ -65,18 +61,6 @@ import org.slf4j.LoggerFactory;
  **/
 public class ConvertTheTemperature
 {
-	private static final Logger log = LoggerFactory.getLogger(ConvertTheTemperature.class);
-
-	static
-	{
-		BasicConfigurator.configure();
-	}
-
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static double[] convertTemperature(double c)
 	{
 		return new double[]{convertCelsiusToKelvin(c), convertCelsiusToFahrenheit(c)};

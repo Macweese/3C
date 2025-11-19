@@ -24,16 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Administrator
- * @Created 23/07/2025,
- * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
- **/
 @DisplayName("2469. Convert The Temperature")
 class ConvertTheTemperatureTest
 {
