@@ -31,7 +31,6 @@ class TrionicArrayITest
 	private static final Map<int[], Boolean> MAP = new HashMap<>();
 
 	{
-
 		MAP.put(new int[]{1, 2, 3}, false);
 		MAP.put(new int[]{1, 2, 1}, false);
 		MAP.put(new int[]{1, 2, 1, 2}, true);
@@ -123,14 +122,15 @@ class TrionicArrayITest
 	}
 
 	@Test
-	void isTrionic()
+	@DisplayName("Test: isTrionic")
+	void isTrionicTest()
 	{
 		String message;
 		for (Map.Entry<int[], Boolean> entry : MAP.entrySet())
 		{
 			final int[] ints = entry.getKey();
 			final boolean expected = entry.getValue();
-			final boolean actual = TrionicArrayI.g(ints);
+			final boolean actual = TrionicArrayI.isTrionic(ints);
 
 			message = "Test failed for case: " + Arrays.toString(ints)
 				+ "\nExpected: " + expected
@@ -140,10 +140,43 @@ class TrionicArrayITest
 		}
 	}
 
-//	public static void main(String[] args)
-//	{
-//		generateTests(15, 100);
-//	}
+	@Test
+	@DisplayName("Test: Golfed solution")
+	void golfedTest()
+	{
+		String message;
+		for (Map.Entry<int[], Boolean> entry : MAP.entrySet())
+		{
+			final int[] ints = entry.getKey();
+			final boolean expected = entry.getValue();
+			final boolean actual = TrionicArrayI.golfed(ints);
+
+			message = "Test failed for case: " + Arrays.toString(ints)
+				+ "\nExpected: " + expected
+				+ "\n  Actual: " + actual;
+
+			assertEquals(expected, actual, message);
+		}
+	}
+
+	@Test
+	@DisplayName("Test: Golf compacted solution")
+	void golfedCompactedTest()
+	{
+		String message;
+		for (Map.Entry<int[], Boolean> entry : MAP.entrySet())
+		{
+			final int[] ints = entry.getKey();
+			final boolean expected = entry.getValue();
+			final boolean actual = TrionicArrayI.$(ints);
+
+			message = "Test failed for case: " + Arrays.toString(ints)
+				+ "\nExpected: " + expected
+				+ "\n  Actual: " + actual;
+
+			assertEquals(expected, actual, message);
+		}
+	}
 
 	private static void generateTests()
 	{

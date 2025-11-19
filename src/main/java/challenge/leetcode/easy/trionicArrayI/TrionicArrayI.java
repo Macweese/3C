@@ -73,11 +73,6 @@ package challenge.leetcode.easy.trionicArrayI;
  **/
 public class TrionicArrayI
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static boolean isTrionic(int[] ints)
 	{
 		int sign = ints[1] - ints[0];
@@ -107,66 +102,9 @@ public class TrionicArrayI
 		return signChanges == 2 && ascending;
 	}
 
+	static boolean $(int[]a){int m,c=0,i=0;var s=a[1]>a[0];for(;++i<a.length;s=m>0)if((m=a[i]-a[i-1])==0|++c>3)return 0>1;else c-=m>0==s?1:0;return c==2&s;}
 
-	public static boolean golfed(int[] a)
-	{
-		int m = a[1] - a[0], c = 0, i = 1;
-		boolean s = m > 0;
-		for (; ++i < a.length; s ^= m > 0 != s)
-		{
-			m = a[i] - a[i - 1];
-			if (m == 0 | c > 2)
-			{
-				return 0 > 1;
-			}
-			c += m > 0 != s ? 1 : 0;
-		}
-		return c == 2 & s;
-	}
-
-//	static boolean g(int[]a){
-//		int c=0,i=1;
-//		boolean s=a[1]>a[0];
-//		for(;i++<a.length;){
-//			int m=a[i]-a[i-1];
-//			s^=m>0!=s;
-//			if(m==0|c++>1)return 0>1;
-//		}return c==2&s;}
-
-
-	//turbo golfed xd
-//	static boolean g(int[]a){
-//		int m,c=0,i=0;
-//		var s=a[1]>a[0];
-//		for(;++i<a.length;) {
-//			m=a[i]-a[i-1];
-//			if(m==0|c>2) return 0>1;
-//			if(m>0!=s)c++;s=m>0;
-//		}
-//		return c==2&s;}
-
-	// CRAZY GOLFED
-//	static boolean g(int[]a) {
-//		int m,c=0,i=0;
-//		var s=a[1]>a[0];
-//		for(;++i<a.length;s=m>0)
-//			if((m=a[i]-a[i-1])==0|c>2) return 0>1;
-//		else if(m>0!=s) c++;
-//		return c==2&s;
-//	}
-
-	// Best yet
-//	static boolean g(int[]a){
-//		int m,c=0,i=0;
-//		var s=a[1]>a[0];
-//		for(;++i<a.length;s=m>0)
-//			if((m=a[i]-a[i-1])==0|++c>3)return 0>1;
-//		else c-=m>0==s?1:0;
-//		return c==2&s;
-//	}
-
-
-	static boolean g(int[] a)
+	static boolean golfed(int[] a)
 	{
 		int m, c = 0, i = 0;
 		var s = a[1] > a[0];
@@ -183,6 +121,4 @@ public class TrionicArrayI
 		}
 		return c == 2 & s;
 	}
-
-
 }
