@@ -72,11 +72,6 @@ package challenge.leetcode.easy.maximum69Number;
  **/
 public class Maximum69Number
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int maximum69Number(int n)
 	{
 		return Integer.parseInt(Integer.toString(n).replaceFirst("6", "9"));
