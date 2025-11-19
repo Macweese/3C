@@ -2,6 +2,12 @@ use std::cell::RefCell;
 use std::collections::{HashMap, VecDeque};
 use std::hash::{BuildHasherDefault, Hasher};
 
+/*
+ * Author	Administrator
+ * Created	20/09/2025, 06:38 Sat 20 September 2025
+ * Project	3C: Competitive Coding Challenges
+ */
+
 type Int3 = (i32, i32, i32);
 
 #[derive(Clone)]
