@@ -17,8 +17,6 @@
  */
 package challenge.leetcode.medium.findTheDuplicateNumber;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 30/07/2025,
@@ -79,17 +77,6 @@ import java.util.Arrays;
  **/
 public class FindTheDuplicateNumber
 {
-	public static void main(String[] args)
-	{
-		int[] CASE_1 = new int[]{1, 3, 4, 2, 2};
-		int[] CASE_2 = new int[]{3, 1, 3, 4, 2};
-		int[] CASE_3 = new int[]{3, 3, 3, 3, 3};
-
-		System.out.println(findDuplicate(CASE_1));
-		System.out.println(findDuplicate(CASE_2));
-		System.out.println(findDuplicate(CASE_3));
-	}
-
 	// The problem statement and the problem restrictions
 	// clouds the conception of a solution
 	// If we start by thinking of listing the possible algorithms that fit our problem
@@ -114,11 +101,8 @@ public class FindTheDuplicateNumber
 		int slow = 0;
 		int fast = 0;
 
-		System.out.println();
-		System.out.println(Arrays.toString(nums));
 		do
 		{
-			System.out.println("Slow " + "[" + slow + "]=" + nums[slow] + "     Fast: [" + fast + "]=" + nums[slow]);
 			slow = nums[slow];
 			fast = nums[nums[fast]];
 		}
@@ -129,7 +113,6 @@ public class FindTheDuplicateNumber
 		{
 			slow = nums[slow];
 			fast = nums[fast];
-			System.out.println("Slow " + "[" + slow + "]=" + nums[slow] + "     Fast: [" + fast + "]=" + nums[slow]);
 		}
 
 		return slow;
