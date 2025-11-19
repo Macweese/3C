@@ -17,11 +17,8 @@
  */
 package challenge.leetcode.medium.smallestSubarraysWithMaximumBitwiseOR;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * @author Administrator
@@ -89,30 +86,28 @@ import java.util.Queue;
  **/
 public class SmallestSubarraysWithMaximumBitwiseOR
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	/*
+	 *
+	 * depth
+	 * root = 0               1                2^0 nodes
+	 *                  _____/ \____
+	 * 1               2            3          2^1 nodes
+	 *                / \          / \
+	 * 2            4     5      6     7       2^2 nodes
+	 *             / \   / \    / \   / \
+	 * 3          8   9 10 11  12 13 14 15     2^3 nodes
+	 *           / \
+	 * 4        16 17                          2^4 nodes
+	 *
+	 *
+	 *
 	 *
 	 *
 	 */
-
 	public static int[] smallestSubarrays(int[] nums)
 	{
-
-
-		List<List<Integer>> result = new ArrayList<>();
-
-
-		List<Integer> nodes = Arrays.stream(nums).boxed().toList();
-		result = bfs(nodes, result, new ArrayList<>());
-
-		test(nums, 0);
 		return nums;
 	}
-
 
 	public static List<List<Integer>> bfs(List<Integer> nodes, List<List<Integer>> result, List<Integer> current)
 	{
@@ -121,139 +116,9 @@ public class SmallestSubarraysWithMaximumBitwiseOR
 			return result;
 		}
 
-		Queue<Integer> queue = new ArrayDeque<>(current);
 		List<Integer> currentLevel = new ArrayList<>();
-
-		for (int i = 0; i < current.size(); i++)
-		{
-//			currentLevel.add();
-		}
 
 		result.add(currentLevel);
 		return result;
-	}
-
-	public static void test(int[] ints, int depth)
-	{
-		List<Integer> result = new ArrayList<>();
-
-		int size = (int) Math.max(ints.length - Math.pow(2, depth + 1), Math.pow(2, depth - 1));
-
-
-	}
-}
-
-
-/*
- *
- * depth
- * root = 0               1                2^0 nodes
- *                  _____/ \____
- * 1               2            3          2^1 nodes
- *                / \          / \
- * 2            4     5      6     7       2^2 nodes
- *             / \   / \    / \   / \
- * 3          8   9 10 11  12 13 14 15     2^3 nodes
- *           / \
- * 4        16 17                          2^4 nodes
- *
- *
- *
- *
- *
- */
-class TreeNode
-{
-	private int value = 0;
-	private TreeNode leftNode = null;
-	private TreeNode rightNode = null;
-
-	TreeNode()
-	{
-	}
-
-	TreeNode(int value)
-	{
-		this.value = value;
-	}
-
-	public void addLeft()
-	{
-		this.leftNode = new TreeNode();
-	}
-
-	public void addRight()
-	{
-		this.rightNode = new TreeNode();
-	}
-
-	public void addRight(int value)
-	{
-		this.rightNode = new TreeNode(value);
-	}
-
-	public void addLeft(int value)
-	{
-		this.leftNode = new TreeNode(value);
-	}
-
-	public void removeLeft()
-	{
-		this.leftNode = null;
-	}
-
-	public void removeRight()
-	{
-		this.rightNode = null;
-	}
-
-	public boolean hasLeft()
-	{
-		return this.leftNode != null;
-	}
-
-	public boolean hasRight()
-	{
-		return this.rightNode != null;
-	}
-
-	public boolean hasChildren()
-	{
-		return hasLeft() || hasRight();
-	}
-
-	public TreeNode getLeftNode()
-	{
-		return leftNode;
-	}
-
-	public TreeNode getRightNode()
-	{
-		return rightNode;
-	}
-
-	public TreeNode createTree(int size)
-	{
-		TreeNode root = new TreeNode(1);
-		TreeNode node = root;
-
-		int value = 1;
-		int d = (int) (Math.log(size) / Math.log(2));
-		int index = (int) Math.pow(2, d);
-		TreeNode[] nodes = new TreeNode[size];
-		for (int i = 0; i < size; i++)
-		{
-			nodes[i] = new TreeNode();
-			value++;
-		}
-
-		return node;
-	}
-
-	TreeNode createTree(TreeNode parent, int depth, int value)
-	{
-
-
-		return null;
 	}
 }
