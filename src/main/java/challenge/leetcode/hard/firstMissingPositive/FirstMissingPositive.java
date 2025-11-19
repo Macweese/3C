@@ -54,75 +54,9 @@ import java.util.function.IntPredicate;
  * or the next following integer if the sequence of integers
  * has no discrepancy
  */
-public class FirstMissingPositive implements Runnable
+public class FirstMissingPositive
 {
-	final int[] ARRAY_0 = new int[]{0};
-	final int[] ARRAY_1 = new int[]{1, 2, 0};
-	final int[] ARRAY_2 = new int[]{3, 4, -1, 1};
-	final int[] ARRAY_3 = new int[]{7, 8, 9, 11, 12};
-	final int[] ARRAY_4 = new int[]{1, 2, 3, 5, 6, 7, 10, 12, 13, 14, 16, 18, 19, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 41, 43, 44, 45, 46, 48, 49, 50, 51, 52, 53, 54, 55};
-
-	public static void main(String[] args)
-	{
-		FirstMissingPositive firstMissingPositive = new FirstMissingPositive();
-		firstMissingPositive.run();
-	}
-
-	@Override
-	public void run()
-	{
-		//System.out.println("\nResult array 1: " + find(ARRAY_1));
-		//System.out.println("\nResult array 2: " + find(ARRAY_2));
-		//System.out.println("\nResult array 3: " + find(ARRAY_3));
-
-		//final int[] generated = gen(2 << 15);
-		//final int[] generated = gen(2 << 7);
-		//System.out.println(Arrays.toString(generated));
-		//t(generated);
-		//solve(generated);
-		//System.out.println("LeetCode: " + fmp(generated));
-		//System.out.println("LeetCode: " + firstMissingPositive(generated));
-		//streamSolution(generated);
-		//solve(ARRAY_4);
-
-		//allSolutions(ARRAY_0);
-		//System.out.println();
-		//allSolutions(ARRAY_1);
-		//System.out.println();
-		//allSolutions(ARRAY_2);
-		//System.out.println();
-		//allSolutions(ARRAY_3);
-		//System.out.println();
-		//allSolutions(ARRAY_4);
-		//System.out.println();
-		//allSolutions(gen(2 << 8));
-		//System.out.println();
-		//allSolutions(gen(2 << 8));
-		//System.out.println();
-		allSolutions(gen(2 << 8));
-
-		//System.out.println("Finder: " + finder(ARRAY_0) + ", Control: " + fmp(ARRAY_0));
-		//System.out.println("Finder: " + finder(ARRAY_1) + ", Control: " + fmp(ARRAY_1));
-		//System.out.println("Finder: " + finder(ARRAY_2) + ", Control: " + fmp(ARRAY_2));
-		//System.out.println("Finder: " + finder(ARRAY_3) + ", Control: " + fmp(ARRAY_3));
-		//System.out.println("Finder: " + finder(ARRAY_4) + ", Control: " + fmp(ARRAY_4));
-	}
-
-	public void allSolutions(int[] array)
-	{
-		solve(array);
-		System.out.println("solve2(): " + solve2(array));
-		System.out.println("  find(): " + find(array));
-		System.out.println("     f(): " + f(array));
-		System.out.println("  leet(): " + leet(array));
-		System.out.println("   fmp(): " + fmp(array));
-		streamSolution(array);
-		streamSolution2(array);
-		streamSolution3(array);
-		streamSolution4(array);
-	}
-
-	public static void streamSolution(int[] array)
+	public static int fmpStreamSolutionAtomicInteger(int[] array)
 	{
 		AtomicInteger a = new AtomicInteger(1);
 		IntPredicate sequential = (i) -> i == a.get();
@@ -132,10 +66,10 @@ public class FirstMissingPositive implements Runnable
 			.filter(i -> i > 0)
 			.takeWhile(sequential)
 			.forEach(i -> a.set(a.incrementAndGet()));
-		System.out.println(" streamSolution(): " + a.get());
+		return a.get();
 	}
 
-	public static void streamSolution2(int[] ints)
+	public static int fmpStreamSolutionAlternatingArray(int[] ints)
 	{
 		int[] a = new int[]{1, ints.length};
 		Arrays.stream(ints)
@@ -150,10 +84,10 @@ public class FirstMissingPositive implements Runnable
 					a[0] = a[0] + 1;
 				}
 			});
-		System.out.println("streamSolution2(): " + a[0]);
+		return a[0];
 	}
 
-	public static void streamSolution3(int[] ints)
+	public static int fmpStreamSolutionAlternatingArray2(int[] ints)
 	{
 		int[] a = new int[]{1, ints.length};
 		Arrays.stream(ints)
@@ -168,10 +102,10 @@ public class FirstMissingPositive implements Runnable
 					a[0] = a[0] + 1;
 				}
 			});
-		System.out.println("streamSolution3(): " + a[0]);
+		return a[0];
 	}
 
-	public static void streamSolution4(int[] ints)
+	public static int fmpStreamSolutionAlternatingArray3(int[] ints)
 	{
 		int[] a = new int[]{1, ints.length};
 		Arrays.stream(ints)
@@ -186,14 +120,11 @@ public class FirstMissingPositive implements Runnable
 					a[0] = a[0] + 1;
 				}
 			});
-		System.out.println("streamSolution3(): " + a[0]);
+		return a[0];
 	}
 
-	public static void solve(int[] array)
+	public static int fmpSolve(int[] array)
 	{
-		int pass = 0;
-		//array = Arrays.stream(array).sorted().distinct().dropWhile(i -> i < 1).toArray();
-		//array = Arrays.stream(array).sorted().distinct().dropWhile(i -> i < 1).limit(array.length).toArray();
 		array = Arrays.stream(array).parallel().sorted().distinct().filter(i -> i > 0).limit(array.length).toArray();
 
 		int min = Arrays.stream(array).min().orElse(-1);
@@ -201,41 +132,34 @@ public class FirstMissingPositive implements Runnable
 
 		if (min > 1)
 		{
-			System.out.println("Min value in the array: " + min + "\nDefault min: " + 1);
-			return;
+			return 1;
 		}
 		else if (max == array.length)
 		{
-			System.out.println("Array does not contain any missing value.\nDefault sequential value: " + (max + 1));
-			return;
+			return max;
 		}
 
 		while (array.length > 2)
 		{
 			int index = (array.length + 1) / 2;
-			System.out.println("\tPass: " + pass + ", Array size: " + array.length + ", Index: " + index + ", " + Arrays.toString(array));
 			if (array[index] - array[0] != index)
 			{
 				array = Arrays.copyOfRange(array, 0, index);
-				//System.out.println("\tCopied lower segment, new array: " + Arrays.toString(array));
 			}
 			else
 			{
 				array = Arrays.copyOfRange(array, index, array.length);
-				//System.out.println("\tCopied upper segment, new array: " + Arrays.toString(array));
 			}
-			pass++;
 		}
 
 		min = array[0];
 		max = array[array.length - 1];
 
-		System.out.println("Lowest missing value: " + (min + 1 == max ? max + 1 : min + 1));
+		return (min + 1 == max ? max + 1 : min + 1);
 	}
 
-	public static int solve2(int[] array)
+	public static int fmpSolve2(int[] array)
 	{
-		int pass = 0;
 		array = Arrays.stream(array).parallel().sorted().distinct().filter(i -> i > 0).limit(array.length).toArray();
 
 		boolean upper = false;
@@ -243,8 +167,6 @@ public class FirstMissingPositive implements Runnable
 
 		while (array.length != 2)
 		{
-			System.out.println("\tPass: " + pass + ", Array size: " + array.length + ", Index: " + (upper ? array.length / 2 : Math.round((float) array.length / 2)) + ", " + Arrays.toString(array));
-
 			if (array[0] != 1 && !upperTraversed)
 			{
 				return 1;
@@ -260,7 +182,6 @@ public class FirstMissingPositive implements Runnable
 				upper = true;
 				upperTraversed = true;
 			}
-			pass++;
 		}
 		return array[0] == array[array.length - 1] - 1 ? array[array.length - 1] + 1 : array[0] + 1;
 	}
@@ -300,9 +221,7 @@ public class FirstMissingPositive implements Runnable
 			}
 		}
 
-		System.out.println(Arrays.toString(array));
 		return array.length == 1 ? array[0] : array[0] + 1 == array[array.length - 1] ? array[array.length - 1] + 1 : array[0] + 1;
-		//return array[0] + 1 == array[array.length - 1] ? array[array.length - 1] + 1 : array[0] + 1;
 	}
 
 	/*
@@ -312,7 +231,6 @@ public class FirstMissingPositive implements Runnable
 	static int f(int[] a)
 	{
 		int[] finalA = a;
-		//a = Arrays.stream(a).distinct().sorted().takeWhile(i -> 0 < i || i < finalA.length).toArray();
 		a = Arrays.stream(a).sorted().distinct().takeWhile(i -> 0 < i || i < finalA.length).toArray();
 		int l = Arrays.stream(a).min().orElse(1), g = Arrays.stream(a).min().orElse(-1);
 		if (l > 1)
@@ -335,8 +253,6 @@ public class FirstMissingPositive implements Runnable
 				a = Arrays.copyOfRange(a, i, a.length);
 			}
 		}
-		//int mi = a[0], ma = a[a.length - 1];
-		//return mi + 1 == ma ? ma + 1 : mi + 1;
 		return a[0] + 1;
 	}
 
@@ -355,10 +271,9 @@ public class FirstMissingPositive implements Runnable
 	/*
 		TODO: has bug
     */
-	public static int leet(int[] array)
+	public static int testing(int[] array)
 	{
 		int[] finalArray = array;
-		//array = Arrays.stream(array).distinct().sorted().takeWhile(i -> 0 < i || i < finalArray.length).toArray();
 		array = Arrays.stream(array).sorted().distinct().takeWhile(i -> 0 < i || i < finalArray.length).toArray();
 
 		while (array.length > 1)
@@ -374,52 +289,13 @@ public class FirstMissingPositive implements Runnable
 			}
 		}
 
-		//return (array[0] + 1 == array[array.length - 1] ? array[array.length - 1] + 1 : array[0] + 1);
 		return (array[0] > 1 ? 1 : array[0] + 1);
-	}
-
-	/***********************************************
-	 LeetCode top answer below
-	 */
-	public int fmp(int[] a)
-	{
-		int i = 0;
-		while (i < a.length)
-		{
-			if (a[i] == i + 1 || a[i] <= 0 || a[i] > a.length)
-			{
-				i++;
-			}
-			else if (a[a[i] - 1] != a[i])
-			{
-				_swap(a, i, a[i] - 1);
-			}
-			else
-			{
-				i++;
-			}
-		}
-		i = 0;
-		while (i < a.length && a[i] == i + 1)
-		{
-			i++;
-		}
-		return i + 1;
-	}
-
-	private void _swap(int[] a, int i, int j)
-	{
-		int t = a[i];
-		a[i] = a[j];
-		a[j] = t;
 	}
 
 	// Made readable
 	public int firstMissingPositive(int[] array)
 	{
-		System.out.println();
 		int i = 0;
-		int pass = 0;
 
 		while (i < array.length)
 		{
@@ -443,15 +319,12 @@ public class FirstMissingPositive implements Runnable
 			{
 				i++;
 			}
-			System.out.println(pass + ": " + Arrays.toString(array));
-			pass++;
 		}
 
 		i = 0;
 
 		while (i < array.length && array[i] == i + 1)
 		{
-			System.out.println("array[" + i + "]: " + array[i]);
 			i++;
 		}
 
@@ -464,9 +337,6 @@ public class FirstMissingPositive implements Runnable
 		array[i] = array[j];
 		array[j] = temp;
 	}
-
-
-	//---------------------------------------------------------------------//
 
 	public int finder(int[] array)
 	{
