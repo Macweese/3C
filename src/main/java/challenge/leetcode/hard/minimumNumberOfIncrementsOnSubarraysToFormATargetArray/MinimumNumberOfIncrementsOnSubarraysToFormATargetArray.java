@@ -22,18 +22,9 @@ package challenge.leetcode.hard.minimumNumberOfIncrementsOnSubarraysToFormATarge
  * @author Administrator
  * @Created 30/10/2025, 02:26 Thu 30 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MinimumNumberOfIncrementsOnSubarraysToFormATargetArray
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int minNumberOperations(int[] ints)
 	{
 		int ops = 0;
