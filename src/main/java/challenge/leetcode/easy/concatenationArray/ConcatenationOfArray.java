@@ -18,8 +18,6 @@
 package challenge.leetcode.easy.concatenationArray;
 
 import java.util.Arrays;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -65,24 +63,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class ConcatenationOfArray
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		int[] ints = new int[(int) (Math.random() * 1000) + 1];
-		for (int i = 0; i < ints.length; i++)
-		{
-			ints[i] = (int) (Math.random() * 101);
-		}
-
-//		log.info("arr  = {}", ints);
-//		log.info("nums = {}", getConcatenation(ints));
-//		log.info("nums = {}", getConcatenationSystemArrayCopy(ints));
-	}
-
 	/**
 	 * Without use of built-in java features
 	 *
