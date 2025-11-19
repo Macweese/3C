@@ -17,9 +17,6 @@
  */
 package challenge.leetcode.easy.sumOfAllOddLengthSubarrays;
 
-import com.google.common.annotations.VisibleForTesting;
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author Administrator
  * @Created 15/07/2025,
@@ -87,7 +84,6 @@ import lombok.extern.slf4j.Slf4j;
  * <h3>Follow up</h3>
  * • Could you solve this problem in O(n) time complexity?
  **/
-@Slf4j
 public class SumOfAllOddLengthSubarrays
 {
 	public static int sumOddLengthSubarrays(int[] arr)
