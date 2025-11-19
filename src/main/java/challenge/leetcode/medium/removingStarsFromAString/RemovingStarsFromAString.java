@@ -20,7 +20,6 @@ package challenge.leetcode.medium.removingStarsFromAString;
 import java.util.Stack;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -76,32 +75,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class RemovingStarsFromAString
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		String string_1 = "leet**cod*e";
-		String string_2 = "erase*****";
-		String string_3 = "G*****";
-		String string_4 = "n";
-
-		String[] strings = {string_1, string_2, string_3, string_4};
-
-		for (String s : strings)
-		{
-//			log.info("USING removeStars(String s):\ninput : {}", s);
-//			log.info("output: {}", removeStars(s));
-		}
-
-		System.out.println("");
-
-		for (String s : strings)
-		{
-//			log.info("USING remove(String s):\ninput : {}", s);
-//			log.info("output: {}", remove(s));
-		}
-	}
-
 	public static String remove(String string)
 	{
 		char[] chars = string.toCharArray();
