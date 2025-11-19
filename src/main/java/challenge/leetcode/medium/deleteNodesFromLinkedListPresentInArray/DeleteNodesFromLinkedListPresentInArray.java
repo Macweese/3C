@@ -20,25 +20,14 @@ package challenge.leetcode.medium.deleteNodesFromLinkedListPresentInArray;
 
 import data.ListNode;
 import java.util.HashSet;
-import utils.DataUtils;
 
 /**
  * @author Administrator
  * @Created 01/11/2025, 08:11 Sat 01 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class DeleteNodesFromLinkedListPresentInArray
 {
-	static void main(String[] args)
-	{
-		int[] TEST = {1, 1, 2, 2, 1, 3, 2, 4, 1, 3, 5, 4, 5, 6, 7, 7, 1, 3, 1, 7, 5, 1, 8, 9, 9, 1};
-		System.out.println(modifiedList(new int[]{1, 3, 5, 7, 9}, DataUtils.createListNode(TEST)));
-	}
-
 	public static ListNode modifiedList(int[] ints, ListNode head)
 	{
 		HashSet<Integer> forbidden = new HashSet<>();
@@ -51,7 +40,6 @@ public class DeleteNodesFromLinkedListPresentInArray
 		ListNode node = new ListNode();
 		ListNode prev = new ListNode();
 		root.next = node;
-
 
 		while (head != null)
 		{
