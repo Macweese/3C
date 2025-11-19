@@ -19,7 +19,6 @@ package challenge.leetcode.easy.longestCommonPrefix;
 
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -58,14 +57,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class LongestCommonPrefix
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-//		log.info("Common prefix: {}", longestCommonPrefix(new String[]{"test dummy", "test", "tester", "test taker"}));
-//		log.info("Common prefix: {}", longestCommonPrefix(new String[]{"fan", "fire", "friend"}));
-	}
-
 	public static String longestCommonPrefix(String[] strings)
 	{
 		Arrays.sort(strings);

@@ -17,6 +17,7 @@
  */
 package challenge.leetcode.easy.longestCommonPrefix;
 
+import static challenge.leetcode.easy.longestCommonPrefix.LongestCommonPrefix.longestCommonPrefix;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,23 +25,23 @@ import org.junit.jupiter.api.Test;
 @DisplayName("14. Longest Common Prefix")
 class LongestCommonPrefixTest
 {
-	static final String[] STRINGS_1 = {"flower", "flow", "flight"};                         // Should return "fl"
-	static final String[] STRINGS_2 = {"dog", "racecar", "car"};                            // Should return "" empty string
-	static final String[] STRINGS_3 = {"daycare", "daydream", "day"};                       // Should return "day"
-	static final String[] STRINGS_4 = {"firefight", "fire", "fires"};                       // Should return "fire"
-	static final String[] STRINGS_5 = {"firefight", "fire", "friend", "fires"};              // Should return "f"
-	static final String[] STRINGS_6 = {"firefight", "fire", "friend", "fires", "table"};      // Should return "" empty string
-	static final String[] STRINGS_7 = {"automatic", "autozone", "automobile", "autonomous"}; // Should return "auto"
+	static final String[] TEST_CASE_1 = {"flower", "flow", "flight"};                          // Should return "fl"
+	static final String[] TEST_CASE_2 = {"dog", "racecar", "car"};                             // Should return ""
+	static final String[] TEST_CASE_3 = {"daycare", "daydream", "day"};                        // Should return "day"
+	static final String[] TEST_CASE_4 = {"firefight", "fire", "fires"};                        // Should return "fire"
+	static final String[] TEST_CASE_5 = {"firefight", "fire", "friend", "fires"};              // Should return "f"
+	static final String[] TEST_CASE_6 = {"firefight", "fire", "friend", "fires", "table"};     // Should return ""
+	static final String[] TEST_CASE_7 = {"automatic", "autozone", "automobile", "autonomous"}; // Should return "auto"
 
 	@Test
-	void longestCommonPrefix()
+	void longestCommonPrefixTest()
 	{
-		assertEquals("fl", LongestCommonPrefix.longestCommonPrefix(STRINGS_1));
-		assertEquals("", LongestCommonPrefix.longestCommonPrefix(STRINGS_2));
-		assertEquals("day", LongestCommonPrefix.longestCommonPrefix(STRINGS_3));
-		assertEquals("fire", LongestCommonPrefix.longestCommonPrefix(STRINGS_4));
-		assertEquals("f", LongestCommonPrefix.longestCommonPrefix(STRINGS_5));
-		assertEquals("", LongestCommonPrefix.longestCommonPrefix(STRINGS_6));
-		assertEquals("auto", LongestCommonPrefix.longestCommonPrefix(STRINGS_7));
+		assertEquals("fl", longestCommonPrefix(TEST_CASE_1));
+		assertEquals("", longestCommonPrefix(TEST_CASE_2));
+		assertEquals("day", longestCommonPrefix(TEST_CASE_3));
+		assertEquals("fire", longestCommonPrefix(TEST_CASE_4));
+		assertEquals("f", longestCommonPrefix(TEST_CASE_5));
+		assertEquals("", longestCommonPrefix(TEST_CASE_6));
+		assertEquals("auto", longestCommonPrefix(TEST_CASE_7));
 	}
 }
