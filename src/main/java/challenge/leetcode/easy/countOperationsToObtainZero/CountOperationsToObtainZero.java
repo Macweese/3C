@@ -22,40 +22,9 @@ package challenge.leetcode.easy.countOperationsToObtainZero;
  * @author Administrator
  * @Created 09/11/2025, 01:30 Sun 09 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class CountOperationsToObtainZero
 {
-	static void main(String[] args)
-	{
-		System.out.println("Answer       (0): " + countOperations(0, 10000));
-		System.out.println("Answer GCD   (0): " + GCD(0, 10000));
-		System.out.println("Answer       (1): " + countOperations(10, 10));
-		System.out.println("Answer GCD   (1): " + GCD(10, 10));
-		System.out.println("Answer       (3): " + countOperations(3, 2));
-		System.out.println("Answer GCD   (3): " + GCD(3, 2));
-		System.out.println("Answer      (10): " + countOperations(270, 300));
-		System.out.println("Answer GCD  (10): " + GCD(270, 300));
-		System.out.println("Answer      (11): " + countOperations(456, 2356));
-		System.out.println("Answer GCD  (11): " + GCD(456, 2356));
-		System.out.println("Answer      (32): " + countOperations(77772, 6786));
-		System.out.println("Answer GCD  (32): " + GCD(77772, 6786));
-		System.out.println("Answer      (37): " + countOperations(32556, 8899));
-		System.out.println("Answer GCD  (37): " + GCD(32556, 8899));
-		System.out.println("Answer      (43): " + countOperations(10360, 45754));
-		System.out.println("Answer GCD  (43): " + GCD(10360, 45754));
-		System.out.println("Answer      (50): " + countOperations(3451, 56786));
-		System.out.println("Answer GCD  (50): " + GCD(3451, 56786));
-		System.out.println("Answer     (100): " + countOperations(436, 34567));
-		System.out.println("Answer GCD (100): " + GCD(436, 34567));
-		System.out.println("Answer     (234): " + countOperations(234, 1));
-		System.out.println("Answer GCD (234): " + GCD(234, 1));
-//		System.out.println("Answer (): " + countOperations());
-	}
-
 	public static int countOperations(int a, int b)
 	{
 		if (a == b)
@@ -87,6 +56,6 @@ public class CountOperationsToObtainZero
 
 	static int GCD(int a, int b)
 	{
-	    return (b == 0) ? (a) : GCD(b, a % b);
+		return (b == 0) ? (a) : GCD(b, a % b);
 	}
 }
