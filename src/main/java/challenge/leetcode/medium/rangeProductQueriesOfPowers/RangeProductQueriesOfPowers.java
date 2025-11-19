@@ -85,14 +85,8 @@ package challenge.leetcode.medium.rangeProductQueriesOfPowers;
  **/
 public class RangeProductQueriesOfPowers
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int[] prodductQueries(int n, int[][] queries)
 	{
-
 		return null;
 	}
 }
