@@ -64,16 +64,6 @@ import java.util.HashMap;
  **/
 public class FirstUniqueCharacterInAString
 {
-	public static void main(String[] args)
-	{
-		System.out.println(firstUniqChar("leetcode"));        // 0
-		System.out.println(firstUniqChar("loveleetcode"));    // 2
-		System.out.println(firstUniqChar("aabb"));            // -1
-		System.out.println(firstUniqChar("aabbc"));            // 4
-		System.out.println(firstUniqChar("aabbccddeeffg"));    // 12
-		System.out.println(firstUniqChar("aba"));            // 1
-	}
-
 	public static int firstUniqChar(String s)
 	{
 		HashMap<Character, Integer> map = new HashMap<>();
