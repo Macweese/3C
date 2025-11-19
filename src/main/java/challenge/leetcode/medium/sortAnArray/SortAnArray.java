@@ -18,9 +18,6 @@
 package challenge.leetcode.medium.sortAnArray;
 
 import java.util.Arrays;
-import java.util.concurrent.ThreadLocalRandom;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -73,18 +70,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class SortAnArray
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		int[] ints = new int[]{5, 1, 1, 2, 0, 0, -1, 7, 3};
-
-//		log.info("{}", mergeSort(ints, 0, ints.length));
-	}
-
 	// Selection sort
 	// Time limit exceeded
 	public static int[] sort(int[] ints)
@@ -163,22 +150,6 @@ public class SortAnArray
 			i++;
 		}
 
-		return ints;
-	}
-
-	static int[] generateRandomArray()
-	{
-		return generateRandomArray(50_000, -50_000, 50_000);
-	}
-
-	static int[] generateRandomArray(int size, int min, int max)
-	{
-		int[] ints = new int[ThreadLocalRandom.current().nextInt(1, size + 1)];
-
-		for (int i = 0; i < ints.length; i++)
-		{
-			ints[i] = ThreadLocalRandom.current().nextInt(min, max + 1);
-		}
 		return ints;
 	}
 }
