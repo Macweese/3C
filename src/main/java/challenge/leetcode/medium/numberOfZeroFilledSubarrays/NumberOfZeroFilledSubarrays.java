@@ -83,36 +83,6 @@ package challenge.leetcode.medium.numberOfZeroFilledSubarrays;
  **/
 public class NumberOfZeroFilledSubarrays
 {
-	public static void main(String[] args)
-	{
-		int[] INTS_1 = new int[]{1, 3, 0, 0, 2, 0, 0, 4};
-		int[] INTS_2 = new int[]{0, 0, 0, 2, 0, 0};
-		int[] INTS_3 = new int[]{2, 10, 2019};
-
-
-		int[] INTS_4 = new int[]{0, 0, 1, 0, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 4};
-		int[] INTS_5 = new int[]{5, 0, 0, 0, 0, 0, 6, 7, 0, 0, 0, 8, 0, 0};
-		int[] INTS_6 = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		int[] INTS_7 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
-		int[] INTS_8 = new int[]{0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
-		int[] INTS_9 = new int[]{1, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 4, 0, 0, 5, 0};
-		int[] INTS_10 = new int[]{9, 8, 0, 0, 7, 0, 0, 0, 6, 0, 5, 0, 0, 4, 0, 0, 3, 2, 1, 0};
-		int[] INTS_11 = new int[]{0, 0, 1, 0, 0, 2, 0, 0, 0, 3, 0, 4, 0, 0, 5, 0, 0, 0, 0, 6};
-
-		System.out.printf("%-14s %-10s %s %n", "ARRAY", "EXPECTED", "ACTUAL");
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_1", 6, zeroFilledSubarray(INTS_1));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_2", 9, zeroFilledSubarray(INTS_2));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_3", 0, zeroFilledSubarray(INTS_3));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_4", 22, zeroFilledSubarray(INTS_4));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_5", 24, zeroFilledSubarray(INTS_5));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_6", 55, zeroFilledSubarray(INTS_6));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_7", 0, zeroFilledSubarray(INTS_7));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_8", 7, zeroFilledSubarray(INTS_8));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_9", 23, zeroFilledSubarray(INTS_9));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_10", 17, zeroFilledSubarray(INTS_10));
-		System.out.printf("%-14s %-10s %-2s%n", "INTS_11", 26, zeroFilledSubarray(INTS_11));
-	}
-
 	public static long zeroFilledSubarray(int[] ints)
 	{
 		int n = 0;
