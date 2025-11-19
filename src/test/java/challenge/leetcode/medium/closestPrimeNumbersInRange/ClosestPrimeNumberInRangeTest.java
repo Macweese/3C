@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("2523. Closest Prime Numbers in Range\n")
+@DisplayName("2523. Closest Prime Numbers in Range")
 class ClosestPrimeNumberInRangeTest
 {
 	static final Map<Map.Entry<Integer, Integer>, int[]> MAP = new HashMap<>();
@@ -37,19 +37,35 @@ class ClosestPrimeNumberInRangeTest
 		MAP.put(Map.entry(19, 31), new int[]{29, 31});
 		MAP.put(Map.entry(1, 100000), new int[]{2, 3});
 		MAP.put(Map.entry(84084, 407043), new int[]{84179, 84181});
-//		MAP.put(Map.entry(84084, 407043), new int[]{92789, 92791});
 	}
 
 	@Test
-	void closestPrimes()
+	void closestPrimesSolutionTest()
 	{
 		for (Map.Entry<Map.Entry<Integer, Integer>, int[]> entry : MAP.entrySet())
 		{
 			int l = entry.getKey().getKey();
 			int r = entry.getKey().getValue();
 			int[] expected = entry.getValue();
-//			int[] actual = ClosestPrimeNumberInRange.closestPrimes(l, r);
 			int[] actual = Solution.closestPrimes(l, r);
+
+			String message = "Test case failed for LEFT=" + l + ", RIGHT=" + r
+				+ "\nExpected : " + Arrays.toString(expected)
+				+ "\nActual   : " + Arrays.toString(actual);
+
+			assertArrayEquals(expected, actual, message);
+		}
+	}
+
+	@Test
+	void closestPrimesTest()
+	{
+		for (Map.Entry<Map.Entry<Integer, Integer>, int[]> entry : MAP.entrySet())
+		{
+			int l = entry.getKey().getKey();
+			int r = entry.getKey().getValue();
+			int[] expected = entry.getValue();
+			int[] actual = ClosestPrimeNumberInRange.closestPrimes(l, r);
 
 			String message = "Test case failed for LEFT=" + l + ", RIGHT=" + r
 				+ "\nExpected : " + Arrays.toString(expected)

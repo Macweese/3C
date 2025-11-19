@@ -18,7 +18,6 @@
 package challenge.leetcode.medium.closestPrimeNumbersInRange;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.BasicConfigurator;
@@ -75,13 +74,6 @@ public class ClosestPrimeNumberInRange
 	public static void main(String[] args)
 	{
 		BasicConfigurator.configure();
-
-//		System.out.println(Arrays.toString(closestPrimes(10, 19)));
-//		System.out.println(Arrays.toString(closestPrimes(4, 6)));
-//		System.out.println(Arrays.toString(closestPrimes(1, 10000)));
-//		System.out.println(Arrays.toString(closestPrimes(19, 31)));
-		System.out.println(Arrays.toString(closestPrimes(2, 3)));
-		System.out.println(Arrays.toString(closestPrimes(84084, 407043)));
 	}
 
 	// Solution works but TLE
@@ -104,8 +96,6 @@ public class ClosestPrimeNumberInRange
 		left = 0;
 		right = 1;
 
-		System.out.println("is 84179 a prime number = " + isPrime(84179));
-		System.out.println("is 84181 a prime number = " + isPrime(84181));
 		for (int i = 1; i < primes.length; i++)
 		{
 			if (primes[i] < 2)
@@ -113,7 +103,6 @@ public class ClosestPrimeNumberInRange
 				continue;
 			}
 
-			System.out.println("Checking: " + primes[i] + "-" + primes[i] + " < " + primes[right] + "-" + primes[left] + " : " + (primes[i] - primes[i - 1]) + " < " + (primes[right] - primes[left]) + " = " + ((primes[i] - primes[i - 1]) < (primes[right] - primes[left])));
 			if (primes[i] - primes[i - 1] < (primes[right] - primes[left]))
 			{
 				left = i - 1;
