@@ -18,8 +18,6 @@
 
 package challenge.leetcode.medium.numberOfPeopleAwareOfSecret;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 09/09/2025, 12:49 Tue 09 September 2025
@@ -80,29 +78,9 @@ import java.util.Arrays;
  * 		<li><code>1 &le; delay &lt; forget &le; n</code></li>
  * </ul>
  * </p>
- *
- * <br>
- * <hr>
- * @Similar
  **/
 public class NumberOfPeopleAwareOfSecret
 {
-	public static void main(String[] args)
-	{
-		System.out.printf("%-10s %-10s %n", "Actual", "Expected");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(6, 2, 4), "5");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(4, 1, 3), "6");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(742, 220, 247), "742");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(790, 68, 538), "359221251");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(885, 17, 716), "158249376");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(517, 161, 229), "11764");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(566, 313, 316), "3");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(793, 108, 150), "273434899");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(489, 5, 9), "593993123");
-		System.out.printf("%-10s %-10s %n", peopleAwareOfSecret(124, 38, 48), "320");
-
-	}
-
 	public static long peopleAwareOfSecret(int n, int delay, int forget)
 	{
 		long[] people = new long[n + 1];
@@ -111,12 +89,9 @@ public class NumberOfPeopleAwareOfSecret
 		{
 			people[i] = 1;
 		}
-		System.out.println(Arrays.toString(people));
 
 		for (int day = delay; day < n + delay - 1; day++)
 		{
-//			System.out.println(Arrays.toString(people));
-
 			if (day >= forget && people[day - forget] >= 0)
 			{
 				long peopleToForget = people[Math.max(0, day - forget)];
@@ -134,7 +109,6 @@ public class NumberOfPeopleAwareOfSecret
 			people[day] = spread;
 		}
 
-		System.out.println(Arrays.toString(people));
 		return (people[n] - 1) % (1_000_000_000 + 7);
 	}
 }
