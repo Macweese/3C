@@ -20,7 +20,6 @@ package challenge.leetcode.easy.excelSheetColumnTitle;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -100,33 +99,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class ExcelSheetColumnTitle
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		// A
-		System.out.println(convertToTitle(1));
-
-		// B
-		System.out.println(convertToTitle(2));
-
-		// AB
-		System.out.println(convertToTitle(27));
-
-		// AZ
-		System.out.println(convertToTitle(52));
-
-		// ZY
-		System.out.println(convertToTitle(701));
-
-		// FXSHRXW
-		System.out.println(convertToTitle(2147483647));
-
-		// BAF
-		System.out.println(convertToTitle(1384));
-	}
-
-
 	// For visualizing the values
 	private static final Map<Integer, Character> MAP = new HashMap<>();
 
@@ -165,7 +137,6 @@ public class ExcelSheetColumnTitle
 		final int alphabetSize = 26;
 		int size = (int) (Math.log10(columnNumber) / Math.log10(alphabetSize)) + 1;
 		char[] chars = new char[size];
-
 
 		final int charOffset = 64;
 		int r;

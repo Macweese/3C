@@ -23,20 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Administrator
- * @Created 20/07/2025,
- * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
- **/
 @DisplayName("168. Excel Sheet Column Title")
 class ExcelSheetColumnTitleTest
 {
-
 	private static final Map<Integer, String> MAP = new HashMap<>();
 
 	static
