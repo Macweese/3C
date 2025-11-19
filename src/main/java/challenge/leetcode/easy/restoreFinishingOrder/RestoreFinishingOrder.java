@@ -71,11 +71,6 @@ package challenge.leetcode.easy.restoreFinishingOrder;
  **/
 public class RestoreFinishingOrder
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int[] recoverOrder(int[] order, int[] friends)
 	{
 		int index = 0;
