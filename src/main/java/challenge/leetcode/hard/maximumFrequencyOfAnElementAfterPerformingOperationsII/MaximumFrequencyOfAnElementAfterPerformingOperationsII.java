@@ -22,22 +22,11 @@ package challenge.leetcode.hard.maximumFrequencyOfAnElementAfterPerformingOperat
  * @author Administrator
  * @Created 22/10/2025, 05:28 Wed 22 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MaximumFrequencyOfAnElementAfterPerformingOperationsII
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int maxFrequency(int[] nums, int k, int numOperations)
 	{
-
-
 		return 0;
 	}
 }
