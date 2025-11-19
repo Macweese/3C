@@ -82,13 +82,6 @@ package challenge.leetcode.easy.largest3SameDigitNumberInAString;
  **/
 public class Largest3SameDigitNumberInAString
 {
-	public static void main(String[] args)
-	{
-		System.out.println(largestGoodInteger("6777133339"));
-		System.out.println(largestGoodInteger("2300019"));
-		System.out.println(largestGoodInteger("42352338"));
-	}
-
 	public static String largestGoodInteger(String number)
 	{
 		int max = -1;
