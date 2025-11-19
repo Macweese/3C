@@ -25,10 +25,6 @@ package challenge.leetcode.easy.findMinimumOperationsToMakeAllElementsDivisibleB
  **/
 public class FindMinimumOperationsToMakeAllElementsDivisibleByThree
 {
-	static void main()
-	{
-	}
-
 	public static int minimumOperations(int[] ints)
 	{
 		int n = 0;
