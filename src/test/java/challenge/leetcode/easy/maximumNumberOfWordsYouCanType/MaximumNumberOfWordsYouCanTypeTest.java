@@ -38,15 +38,15 @@ class MaximumNumberOfWordsYouCanTypeTest
 	private static List<ImmutableTriple<String, String, Integer>> triples = new ArrayList<>();
 
 	private static final WordProvider wordProvider = WordProvider.builder()
-			.addSource(new CsvWordSource(WordType.ADJECTIVE.source))
-			.addSource(new CsvWordSource(WordType.ADVERB.source))
-			.addSource(new CsvWordSource(WordType.CONJUNCTION.source))
-			.addSource(new CsvWordSource(WordType.INTERJECTION.source))
-			.addSource(new CsvWordSource(WordType.NOUN.source))
-			.addSource(new CsvWordSource(WordType.PREPOSITION.source))
-			.addSource(new CsvWordSource(WordType.PRONOUN.source))
-			.addSource(new CsvWordSource(WordType.VERB.source))
-			.build();
+		.addSource(new CsvWordSource(WordType.ADJECTIVE.source))
+		.addSource(new CsvWordSource(WordType.ADVERB.source))
+		.addSource(new CsvWordSource(WordType.CONJUNCTION.source))
+		.addSource(new CsvWordSource(WordType.INTERJECTION.source))
+		.addSource(new CsvWordSource(WordType.NOUN.source))
+		.addSource(new CsvWordSource(WordType.PREPOSITION.source))
+		.addSource(new CsvWordSource(WordType.PRONOUN.source))
+		.addSource(new CsvWordSource(WordType.VERB.source))
+		.build();
 
 	@Test
 	void canBeTypedWords()
@@ -94,8 +94,6 @@ class MaximumNumberOfWordsYouCanTypeTest
 		);
 
 		int textSize = r.nextInt(1001) + 1;
-//		int wordCount = 0;
-//		System.out.println("Text length: " + textSize);
 		while (wordBuilder.length() < textSize)
 		{
 			// Don't bother,
@@ -112,11 +110,8 @@ class MaximumNumberOfWordsYouCanTypeTest
 				.lengthBetween(1, textSize - wordBuilder.length())
 				.any()
 				.ifPresent(addToText);
-//			System.out.println("Word count: " + ++wordCount);
-//			System.out.println("Remaining text length: " + (textSize - wordBuilder.length()));
 		}
 		wordBuilder.delete(wordBuilder.length() - 1, wordBuilder.length());
-//		System.out.println(wordBuilder);
 
 		int letterCount = r.nextInt(26);
 		for (int i = 0; i < letterCount; ++i)

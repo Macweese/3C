@@ -18,6 +18,8 @@
 
 package challenge.leetcode.easy.maximumNumberOfWordsYouCanType;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Administrator
  * @Created 15/09/2025, 03:04 Mon 15 September 2025
@@ -74,40 +76,24 @@ package challenge.leetcode.easy.maximumNumberOfWordsYouCanType;
  * <hr>
  * @Similar <br>
  **/
+@Slf4j
 public class MaximumNumberOfWordsYouCanType
 {
-
-	public static void main(String[] args)
-	{
-		String TEXT_1 = "hello world";
-		String BR_L_1 = "ad";
-
-		String TEXT_2 = "leet code";
-		String BR_L_2 = "lt";
-
-		String TEXT_3 = "leet code";
-		String BR_L_3 = "e";
-
-		System.out.println(canBeTypedWords(TEXT_1, BR_L_1));
-		System.out.println(canBeTypedWords(TEXT_2, BR_L_2));
-		System.out.println(canBeTypedWords(TEXT_3, BR_L_3));
-	}
-
 	public static int canBeTypedWords(String text, String brokenLetters)
 	{
 		int completeWords = 0;
 		int brokenLettersMask = getMask(brokenLetters);
-//		System.out.printf("%45s %-30s %,13d%n", toBinary(brokenLettersMask), "wordMask", brokenLettersMask);
-//		System.out.printf("%45s %-11s %-24s %,13d%n", toBinary(brokenLettersMask), "lettersMask", brokenLetters, brokenLettersMask);
-//		System.out.printf("%45s %-11s %-26s %,13d%n", toBinary((1 << 31) - 1), "lettersMask", "abcdefghijklmnopqrstuvwxyz", ((1 << 31) - 1));
+		log.debug(String.format("%45s %-30s %,25d", toBinary(brokenLettersMask), "wordMask", brokenLettersMask));
+		log.debug(String.format("%45s %-11s %-24s %,19d", toBinary(brokenLettersMask), "lettersMask", brokenLetters, brokenLettersMask));
+		log.debug(String.format("%45s %-11s %-26s %,17d", toBinary((1 << 31) - 1), "lettersMask", "abcdefghijklmnopqrstuvwxyz", ((1 << 31) - 1)));
 
 		for (String word : text.split(" "))
 		{
 			int wordMask = getMask(word);
-//			System.out.printf("%45s %-11s %-24s %,13d%n", toBinary(wordMask), "wordMask", word, wordMask);
-//			System.out.printf("%45s %-32s %,13d%n", toBinary((wordMask & brokenLettersMask)), "Bitwise-AND (wordMask & lettersMask)", (wordMask & brokenLettersMask));
+			log.debug(String.format("%45s %-11s %-24s %,19d", toBinary(wordMask), "wordMask", word, wordMask));
+			log.debug(String.format("%45s %-32s %,19d", toBinary((wordMask & brokenLettersMask)), "Bitwise-AND (wordMask & lettersMask)", (wordMask & brokenLettersMask)));
 			completeWords = (getMask(word) & brokenLettersMask) == 0 ? completeWords + 1 : completeWords;
-//			System.out.printf("Complete words: %s%n", completeWords);
+			log.debug(String.format("Complete words: %s", completeWords));
 		}
 
 		return completeWords;
@@ -115,7 +101,6 @@ public class MaximumNumberOfWordsYouCanType
 
 	public static int getMask(String word)
 	{
-
 		int mask = 0;
 		for (int i = 0; i < word.length(); ++i)
 		{
@@ -128,9 +113,9 @@ public class MaximumNumberOfWordsYouCanType
 	public static String toBinary(int val)
 	{
 		String s = String.format("%32s", Integer.toBinaryString(val)).replace(' ', '0');
+		StringBuilder sb = new StringBuilder(s);
 
 		int group = 0;
-		StringBuilder sb = new StringBuilder(s);
 		while (group < 9)
 		{
 			sb.insert(group * 4 + ++group - 1, " ");
