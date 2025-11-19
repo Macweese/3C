@@ -30,7 +30,6 @@ class SortVowelsInAStringTest
 	private static final Map<String, String> MAP = new HashMap<>();
 	static
 	{
-
 		MAP.put("j","j");
 		MAP.put("o","o");
 		MAP.put("u","u");
