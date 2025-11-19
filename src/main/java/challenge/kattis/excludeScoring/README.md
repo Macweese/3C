@@ -11,9 +11,9 @@
 
 ## Description
 
-You are participating in a programming contest cup. The cup consists of a series of programming contests, followed by a final at the end of the season for the top $ 15 $ ranked contestants in the cup. With only one contest left to go before the final, you are starting to wonder if your performance in the earlier contests has been good enough to already secure you a spot in the finals. If so, you could succumb to your laziness and skip the last contest.
+You are participating in a programming contest cup. The cup consists of a series of programming contests, followed by a final at the end of the season for the top $15$ ranked contestants in the cup. With only one contest left to go before the final, you are starting to wonder if your performance in the earlier contests has been good enough to already secure you a spot in the finals. If so, you could succumb to your laziness and skip the last contest.
 
-The ranking of the cup works as follows. In each contest, a contestant earns some number of points between $0$ and $ 101 $ (the details of this are described below). Their _aggregate score_ is then defined to be the _sum of the four highest scores_ achieved. For instance if a contestant got $ 45 $, $ 15 $, $ 32 $, $0$, $ 30 $, and $ 20 $ points over $6$ contests, their aggregate score is $ 45 + 32 + 30 + 20 = 127 $. The _rank_ of a contestant X in _the cup_ is defined to be $1$ plus the number of contestants that have a strictly larger aggregate score than X.
+The ranking of the cup works as follows. In each contest, a contestant earns some number of points between $0$ and $101$ (the details of this are described below). Their _aggregate score_ is then defined to be the _sum of the four highest scores_ achieved. For instance if a contestant got $45$, $15$, $32$, $0$, $30$, and $20$ points over $6$ contests, their aggregate score is $45 + 32 + 30 + 20 = 127$. The _rank_ of a contestant $X$ in _the cup_ is defined to be $1$ plus the number of contestants that have a strictly larger aggregate score than $X$.
 
 The score a contestant earns from a contest is based on the rank they achieve _in that contest_, according to the following table.
 
@@ -31,15 +31,15 @@ The score a contestant earns from a contest is based on the rank they achieve _i
 | $9$           | $29$            | $19$          | $12$            | $29$          | $2$             |
 | $10$          | $26$            | $20$          | $11$            | $30$          | $1$             |
 
-If a contestant gets a worse rank than $ 30 $, they get $0$ points. If two or more contestants get the same rank in the contest, they are instead assigned the average points of all the corresponding ranks. This average is always rounded up to the closest integer. For example, if three contestants are tied for second place they all receive $\lceil \frac{75+60+50}{3} \rceil = 62 $ points, and the next contestant will have rank $5$ and receives $ 45 $ points (or less, if there is a tie also for $5$'th place. This applies also at rank $ 30 $ e.g., if $ 4711 $ contestants are tied for $ 30 $'th place, they all receive $1$ point.
+If a contestant gets a worse rank than $30$, they get $0$ points. If two or more contestants get the same rank in the contest, they are instead assigned the average points of all the corresponding ranks. This average is always rounded up to the closest integer. For example, if three contestants are tied for second place they all receive $\lceil \frac{75+60+50}{3} \rceil = 62$ points, and the next contestant will have rank $5$ and receives $45$ points (or less, if there is a tie also for $5$'th place. This applies also at rank $30$ e.g., if $4711$ contestants are tied for $30$'th place, they all receive $1$ point.
 
 Contestants may participate in every contest either on-site or online. If they compete on-site, they get $1$ extra point, no matter their original number of points. If a contestant does not participate in a contest, they get $0$ points.
 
 ## Input
 
-The first line of input contains two integers $n$ and $m$ ($ 2 \le n \le 10 $, $ 1 \le m \le 10^5 $), where $n$ is the number of contests in the cup (excluding the final), and $m$ is the number of people who participated in any of the first $ n - 1 $ contests.
+The first line of input contains two integers $n$ and $m$ ($2 \le n \le 10$, $1 \le m \le 10^5$), where $n$ is the number of contests in the cup (excluding the final), and $m$ is the number of people who participated in any of the first $n - 1$ contests.
 
-Then follow $m$ lines, each describing a contestant. Each such line consists of $ n - 1 $ integers $ 0 \le s_1,...,s_{n-1} \le 101 $, where $ s_i $ is the score that this contestant received in the $i$th contest.
+Then follow $m$ lines, each describing a contestant. Each such line consists of $n - 1$ integers $0 \le s_1,...,s_{n-1} \le 101$, where $s_i$ is the score that this contestant received in the $i^{th}$ contest.
 
 The first contestant listed is you. The point values in the input might not correspond to actual points from a contest.
 
@@ -162,16 +162,6 @@ Output a single integer $r$, the worst possible rank you might end up in after t
                                                             </td>
                         </tr>
                     </tbody></table>
-                </div>
-                <div class="w-full basis-full basis-2/3@md mt-5">
-                    <canvas id="stats-donut" style="max-width: 100%; max-height: 400px; display: block; box-sizing: border-box; height: 400px; width: 700px;" width="1400" height="800"></canvas>
-                    <script nonce="" type="application/json" id="status-donut-data">
-                        {
-                                "data": ["104","1908","151","454","524","6"],
-                                "labels": ["Accepted","Wrong Answer","Time Limit Exceeded","Run-Time Error","Compile Error","Other"],
-                                "backgroundColor": ["#55B369","#E84F67","#F3B74D","#75A9D4","#C45A9C","#000"]
-                        }
-                    </script>
                 </div>
             </div>
 </section>
