@@ -24,23 +24,9 @@ import java.util.Arrays;
  * @author Administrator
  * @Created 02/11/2025, 03:58 Sun 02 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class CountUnguardedCellsInTheGrid
 {
-	static void main(String[] args)
-	{
-		Solution solution = new Solution();
-		System.out.println(countUnguarded(4, 6, new int[][]{{0, 0}, {1, 1}, {2, 3}}, new int[][]{{0, 1}, {2, 2}, {1, 4}}));
-		System.out.println(solution.countUnguarded(4, 6, new int[][]{{0, 0}, {1, 1}, {2, 3}}, new int[][]{{0, 1}, {2, 2}, {1, 4}}));
-
-		System.out.println(countUnguarded(2, 7, new int[][]{{1, 5}, {1, 1}, {1, 6}, {0, 2}}, new int[][]{{0, 6}, {0, 3}, {0, 5}}));
-		System.out.println(solution.countUnguarded(2, 7, new int[][]{{1, 5}, {1, 1}, {1, 6}, {0, 2}}, new int[][]{{0, 6}, {0, 3}, {0, 5}}));
-	}
-
 	private static final int WALL = -1;
 	private static final int GUARD = -2;
 	private static final int VISIBLE = 1;
@@ -120,54 +106,6 @@ public class CountUnguardedCellsInTheGrid
 		return cells;
 	}
 }
-
-
-//class Solution
-//{
-//	public int countUnguarded(int m, int n, int[][] guards, int[][] walls)
-//	{
-//		int unguarded = m * n - guards.length - walls.length;
-//		int[][] grid = new int[m][n];
-//
-//		for (int[] w : walls)
-//		{
-//			grid[w[0]][w[1]] = 1;
-//		}
-//
-//		for (int[] g : guards)
-//		{
-//			grid[g[0]][g[1]] = 1;
-//		}
-//
-//		for (int[] g : guards)
-//		{
-//			int r = g[0];
-//			int c = g[1];
-//			for (int i = r - 1; i >= 0 && grid[i][c] != 1; i--)
-//			{
-//				unguarded -= ((grid[i][c] - 1) >>> 31) & 1;
-//				grid[i][c] = 2;
-//			}
-//			for (int i = r + 1; i < m && grid[i][c] != 1; i++)
-//			{
-//				unguarded -= ((grid[i][c] - 1) >>> 31) & 1;
-//				grid[i][c] = 2;
-//			}
-//			for (int j = c - 1; j >= 0 && grid[r][j] != 1; j--)
-//			{
-//				unguarded -= ((grid[r][j] - 1) >>> 31) & 1;
-//				grid[r][j] = 2;
-//			}
-//			for (int j = c + 1; j < n && grid[r][j] != 1; j++)
-//			{
-//				unguarded -= ((grid[r][j] - 1) >>> 31) & 1;
-//				grid[r][j] = 2;
-//			}
-//		}
-//
-//		return unguarded;
-//	}
-//}
 
 class Solution
 {
