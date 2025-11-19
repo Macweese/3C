@@ -367,11 +367,6 @@ class VowelSpellcheckerTest
 		}
 	}
 
-//	public static void main(String[] args)
-//	{
-//		generateTests(50);
-//	}
-
 	private static void generateTests(int quantity)
 	{
 		for (int i = 0; i < quantity; ++i)
