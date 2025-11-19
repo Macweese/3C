@@ -90,11 +90,6 @@ package challenge.leetcode.medium.soupServings;
  **/
 public class SoupServings
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public double soupServings(int n)
 	{
 		return 0;
