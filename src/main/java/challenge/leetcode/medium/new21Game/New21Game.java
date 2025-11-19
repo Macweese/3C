@@ -79,14 +79,8 @@ package challenge.leetcode.medium.new21Game;
  **/
 public class New21Game
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static double new21Game(int n, int k, int maxPoints)
 	{
-
 		return 0;
 	}
 }
