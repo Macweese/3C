@@ -25,14 +25,6 @@ package challenge.leetcode.medium.compareVersionNumbers;
  **/
 public class CompareVersionNumbers
 {
-	static void main(String[] args)
-	{
-		String TEST_1_VER1 = "1.2";
-		String TEST_1_VER2 = "1.10";
-
-		System.out.println(compareVersion(TEST_1_VER1, TEST_1_VER2));
-	}
-
 	private static final int MAX_REVISIONS = 500;
 	public static int compareVersion(String version1, String version2)
 	{
