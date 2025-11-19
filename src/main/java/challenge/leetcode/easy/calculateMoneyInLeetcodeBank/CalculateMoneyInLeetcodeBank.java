@@ -22,20 +22,9 @@ package challenge.leetcode.easy.calculateMoneyInLeetcodeBank;
  * @author Administrator
  * @Created 25/10/2025, 02:04 Sat 25 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class CalculateMoneyInLeetcodeBank
 {
-	static void main(String[] args)
-	{
-		System.out.println(totalMoney(4));
-		System.out.println(totalMoney(10));
-		System.out.println(totalMoney(20));
-	}
-
 	public static int totalMoney(int n)
 	{
 		int balance = 0;
