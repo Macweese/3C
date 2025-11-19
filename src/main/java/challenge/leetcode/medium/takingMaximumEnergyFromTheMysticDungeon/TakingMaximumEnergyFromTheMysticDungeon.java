@@ -18,52 +18,29 @@
 
 package challenge.leetcode.medium.takingMaximumEnergyFromTheMysticDungeon;
 
-import java.util.Arrays;
-
 /**
  * @author Administrator
  * @Created 10/10/2025, 23:28 Fri 10 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class TakingMaximumEnergyFromTheMysticDungeon
 {
-	static void main(String[] args)
-	{
-		final int[] TEST_1 = {5,2,-10,-5,1};
-		final int[] TEST_2 = {-2,-3,-1};
-
-		System.out.println(maximumEnergy(TEST_1, 3));
-//		System.out.println(maximumEnergy(TEST_2, 2));
-
-	}
-
 	public static int maximumEnergy(int[] energy, int k)
 	{
 		int[] sum = new int[k];
-		int[] pos = new int[k];
-		System.out.println((energy.length / k) * k);
-		System.out.println(k);
 
-		System.out.println(Arrays.toString(energy));
 		int max = Integer.MIN_VALUE;
 		for (int i = energy.length - 1 - k; i > energy.length - (energy.length % k); i--)
 		{
 			max = Math.max(max, energy[i]);
-			System.out.println(Arrays.toString(energy));
 			energy[i] = 0;
 		}
-		System.out.println(Arrays.toString(energy));
 
 		for (int i = 0; i < energy.length; i++)
 		{
 			sum[i % k] += energy[i];
-
 		}
 
-		System.out.println(Arrays.toString(sum));
 		for (int i : sum)
 		{
 			max = Math.max(max, i);
