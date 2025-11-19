@@ -59,17 +59,11 @@ package challenge.leetcode.easy.jewelsAndStones;
  **/
 public class JewelsAndStones
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int numJewelsInStones(String jewels, String stones)
 	{
 		int count = 0;
 
-		outer:
-		for (int i = 0; i < stones.length(); i++)
+		outer: for (int i = 0; i < stones.length(); i++)
 		{
 			for (int j = 0; j < jewels.length(); j++)
 			{
