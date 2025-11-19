@@ -33,10 +33,9 @@ import org.junit.jupiter.api.Test;
 @DisplayName("1437. Check If All 1's Are at Least Length K Places Away")
 class CheckIfAll1sAreAtLeastLengthKPlacesAwayTest
 {
-	private static final Triple<int[], Integer, Boolean>[] TRIPLES = new Triple[]
-	{
-		new ImmutableTriple(new int[]{1,0,0,0,1,0,0,1}, 2, true),
-		new ImmutableTriple(new int[]{1,0,0,1,0,1}, 2, false),
+	private static final Triple<int[], Integer, Boolean>[] TRIPLES = new Triple[]{
+		new ImmutableTriple(new int[]{1, 0, 0, 0, 1, 0, 0, 1}, 2, true),
+		new ImmutableTriple(new int[]{1, 0, 0, 1, 0, 1}, 2, false),
 	};
 
 	@Test
