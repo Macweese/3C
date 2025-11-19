@@ -24,14 +24,14 @@ import challenge.leetcode.medium.minimumNumberOfOperationsToMoveAllBallsToEachBo
  * @author Administrator
  * @Created 18/08/2025, 05:01 Mon 18 August 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem 1769
- * @Name Minimum Number of Operations to Move All Balls to Each Box
- * @Difficulty Medium
+ * @Problem 1217
+ * @Name Minimum Cost to Move Chips to The Same Position
+ * @Difficulty Easy
  * @Tags array
  * string
  * prefix sum
  * weekly contest 229
- * @link <a href="https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/">www.leetcode.com/1769</a>
+ * @link <a href="https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/">www.leetcode.com/1217</a>
  * @Description We have n chips, where the position of the ith chip is position[i].<br>
  * <br>
  * We need to move all the chips to the same position. In one step, we can change the position of the ith chip from position[i] to:<br>
