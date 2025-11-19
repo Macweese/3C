@@ -29,7 +29,7 @@ import challenge.leetcode.easy.powerOfTwo.PowerOfTwo;
  * @Difficulty Easy
  * @Tags math
  * recursion
- * @link <a href="https://leetcode.com/problems/power-of-two/">www.leetcode.com/231</a>
+ * @link <a href="https://leetcode.com/problems/power-of-three/">www.leetcode.com/326</a>
  * @Description Given an integer <code>n</code>, return <i><code>true</code> if it is a power of two. Otherwise, return <code>false</code></i>.<br>
  * <br>
  * An integer <code>n</code> is a power of two, if there exists an integer <code>x</code> such that <code>n == 3<sup>x</sup></code>.
@@ -77,20 +77,6 @@ import challenge.leetcode.easy.powerOfTwo.PowerOfTwo;
  **/
 public class PowerOfThree
 {
-	public static void main(String[] args)
-	{
-
-		System.out.printf("%-14s %-10s %s %n", "NUMBER", "EXPECTED", "ACTUAL");
-		System.out.printf("%-14s %-10s %-2s%n", 0, false, powerOfThree(0));
-		System.out.printf("%-14s %-10s %-2s%n", 1, true, powerOfThree(1));
-		System.out.printf("%-14s %-10s %-2s%n", -1, false, powerOfThree(-1));
-		System.out.printf("%-14s %-10s %-2s%n", 54, false, powerOfThree(54));
-		System.out.printf("%-14s %-10s %-2s%n", 81, true, powerOfThree(81));
-		System.out.printf("%-14s %-10s %-2s%n", 99, false, powerOfThree(99));
-		System.out.printf("%-14s %-10s %-2s%n", 243, true, powerOfThree(243));
-		System.out.printf("%-14s %-10s %-2s%n", 2187, true, powerOfThree(2187));
-	}
-
 	public static boolean powerOfThree(int n)
 	{
 		return 0 < n && Math.pow(3, 19) % n == 0;
