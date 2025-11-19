@@ -85,17 +85,8 @@ package challenge.leetcode.medium.countSquareSubmatricesWithAllOnes;
  **/
 public class CountSquareSubmatricesWithAllOnes
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int countSquares(int[][] matrix)
 	{
-
 		return -1;
 	}
 }
-
-
-
