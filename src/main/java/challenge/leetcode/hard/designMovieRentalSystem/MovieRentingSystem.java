@@ -28,6 +28,11 @@ import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
 
+/**
+ * @author Administrator
+ * @Created
+ * @Project 3C: Competitive Coding Challenges
+ **/
 public class MovieRentingSystem
 {
 	private final Map<Long, Integer> shopMap = new HashMap<>();
