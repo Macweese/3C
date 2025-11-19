@@ -25,10 +25,8 @@ package challenge.leetcode.medium.simpleBankSystem;
  **/
 public class SimpleBankSystem
 {
-	static void main(String[] args)
-	{
-	}
 }
+
 class Bank
 {
 	volatile long[] accounts;
