@@ -69,17 +69,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MaximumNumberOfWordsFoundInSentences
 {
-	public static void main(String[] args)
-	{
-		String[] CASE_1 = new String[]{"alice and bob love leetcode", "i think so too", "this is great thanks very much"};
-		String[] CASE_2 = new String[]{"please wait", "continue to fight", "continue to win"};
-		String[] CASE_3 = new String[]{"one two three", "one", "one two", "one two three four", "one two", "one two three four five"};
-
-		System.out.println(mostWordsFound(CASE_1));
-		System.out.println(mostWordsFound(CASE_2));
-		System.out.println(mostWordsFound(CASE_3));
-	}
-
 	/**
 	 * <h1>Solutions</h1>
 	 * <hr>
