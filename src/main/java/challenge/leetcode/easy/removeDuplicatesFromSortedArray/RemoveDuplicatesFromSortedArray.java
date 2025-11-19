@@ -17,9 +17,6 @@
  */
 package challenge.leetcode.easy.removeDuplicatesFromSortedArray;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 23/03/2019,
@@ -89,26 +86,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class RemoveDuplicatesFromSortedArray
 {
-	static final int[] ARRAY_0 = new int[]{7};
-	static final int[] ARRAY_1 = new int[]{1, 1, 2};
-	static final int[] ARRAY_2 = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-	static final int[] ARRAY_3 = new int[]{-10, 0, 1, 1, 1, 2, 2, 3, 3, 4, 19};
-	static final int[] ARRAY_4 = new int[]{-10, 0, 1, 1, 29};
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-//		log.info("unique elements k={},  expected={}, ARRAY_0={}", removeDuplicates(ARRAY_0), 1, ARRAY_0);
-//		log.info("unique elements k={},  expected={}, ARRAY_1={}", removeDuplicates(ARRAY_1), 2, ARRAY_1);
-//		log.info("unique elements k={}, expected={}, ARRAY_2={}", removeDuplicates(ARRAY_2), 5, ARRAY_2);
-//		log.info("unique elements k={}, expected={}, ARRAY_3={}", removeDuplicates(ARRAY_3), 7, ARRAY_3);
-//		log.info("unique elements k={}, expected={}, ARRAY_4={}", removeDuplicates(ARRAY_4), 4, ARRAY_4);
-	}
-
 	public static int removeDuplicates(int[] a)
 	{
 		int k = 1;

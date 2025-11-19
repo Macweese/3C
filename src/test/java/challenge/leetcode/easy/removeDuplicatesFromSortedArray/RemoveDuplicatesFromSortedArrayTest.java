@@ -27,14 +27,13 @@ import static utils.DataUtils.generateRandomArray;
 @DisplayName("26. Remove Duplicates from Sorted Array")
 class RemoveDuplicatesFromSortedArrayTest
 {
-
 	@Test
 	void testRemoveDuplicates()
 	{
-		final int[] nums = generateRandomSortedArray(); // Input array
-		final int[] expectedNums = Arrays.stream(nums).distinct().toArray(); // The expected answer with correct length
+		final int[] nums = generateRandomSortedArray();
+		final int[] expectedNums = Arrays.stream(nums).distinct().toArray();
 
-		final int k = removeDuplicates(nums); // Calls your implementation
+		final int k = removeDuplicates(nums);
 
 		assertEquals(k, expectedNums.length);
 		for (int i = 0; i < k; i++)
