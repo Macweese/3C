@@ -22,18 +22,9 @@ package challenge.leetcode.hard.maximizeTheMinimumPoweredCity;
  * @author Administrator
  * @Created 07/11/2025, 02:22 Fri 07 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class MaximizeTheMinimumPoweredCity
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	long maxPower(int[] stations, int r, int k)
 	{
 		return 0;
