@@ -77,11 +77,6 @@ import challenge.leetcode.easy.powerOfThree.PowerOfThree;
  **/
 public class PowerOfTwo
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static boolean isPowerOfTwo(int n)
 	{
 		return 0 < n && Integer.bitCount(n) == 1;
