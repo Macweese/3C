@@ -18,7 +18,6 @@
 package challenge.leetcode.easy.searchInsertPosition;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -68,14 +67,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class SearchInsertPosition
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		final int[] arr = new int[]{1, 3, 5, 6};
-		System.out.println(binarySearch(arr, 7)); // 4
-	}
-
 	public static int binarySearch(int[] arr, int value)
 	{
 		int lower = 0;
