@@ -36,12 +36,24 @@ class LengthOfLastWordTest
 	);
 
 	@Test
-	void lengthOfLastWord()
+	void lengthOfLastWordTest()
 	{
 		for (Map.Entry<String, Integer> entry : MAP.entrySet())
 		{
 			int expected = entry.getValue();
 			int value = LengthOfLastWord.lengthOfLastWord(entry.getKey());
+			String message = "Test case failed. Expected = " + expected + ", actual = " + value + "\nString: " + entry.getKey();
+			assertEquals(expected, value, message);
+		}
+	}
+
+	@Test
+	void lengthOfLastWordBuiltInFunctionsTest()
+	{
+		for (Map.Entry<String, Integer> entry : MAP.entrySet())
+		{
+			int expected = entry.getValue();
+			int value = LengthOfLastWord.lengthOfLastWordBuiltInFunctions(entry.getKey());
 			String message = "Test case failed. Expected = " + expected + ", actual = " + value + "\nString: " + entry.getKey();
 			assertEquals(expected, value, message);
 		}

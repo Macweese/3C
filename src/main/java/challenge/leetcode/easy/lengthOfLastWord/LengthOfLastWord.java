@@ -18,7 +18,6 @@
 package challenge.leetcode.easy.lengthOfLastWord;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -29,7 +28,8 @@ import org.apache.log4j.BasicConfigurator;
  * @Difficulty Easy
  * @Tags string
  * @link <a href="https://leetcode.com/problems/length-of-last-word/">www.leetcode.com/58</a>
- * @Description Given a string <code>s</code> consisting of words and spaces,
+ * @Description
+ * Given a string <code>s</code> consisting of words and spaces,
  * return the <i>length of the <b>last</b> word in the string</i>.<br>
  *
  * <br>A <b>word</b> is a maximal <a href="reference_id">substring<sup>[1]</sup></a>
@@ -73,14 +73,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class LengthOfLastWord
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		System.out.println(lengthOfLastWord("Hello World"));
-		System.out.println(lengthOfLastWordBuiltInFunctions("Hello World"));
-	}
-
 	// Option 1
 	// The easiest solution to this is using the built-in functions which Java offers
 	// For example, string.lastIndexOf(' ') would give where the last space is in the string,
