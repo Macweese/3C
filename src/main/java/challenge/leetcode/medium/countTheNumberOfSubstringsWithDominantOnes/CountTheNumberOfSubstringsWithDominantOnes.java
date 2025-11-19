@@ -22,19 +22,9 @@ package challenge.leetcode.medium.countTheNumberOfSubstringsWithDominantOnes;
  * @author Administrator
  * @Created 15/11/2025, 02:16 Sat 15 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class CountTheNumberOfSubstringsWithDominantOnes
 {
-	static void main(String[] args)
-	{
-		numberOfSubstrings("00011");
-		numberOfSubstrings("101101");
-	}
-
 	public static int numberOfSubstrings(String s)
 	{
 		return 0;
