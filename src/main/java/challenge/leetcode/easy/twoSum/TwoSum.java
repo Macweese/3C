@@ -22,6 +22,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author Administrator
+ * @Created
+ * @Project 3C: Competitive Coding Challenges
+ **/
+// TODO: Clean up
 public class TwoSum
 {
 	private static final int ARRAY_SIZE_MIN = 3;
@@ -102,8 +108,7 @@ public class TwoSum
 		int b = 0;
 		int c = 0;
 
-		outer:
-		for (int i = 0; i < ints.length; i++)
+		outer: for (int i = 0; i < ints.length; i++)
 		{
 			a = ints[i];
 
@@ -183,29 +188,7 @@ public class TwoSum
 	private static boolean answerExists(Combination combination, List<int[]> addends, int... addend)
 	{
 		return addends.stream().anyMatch(array -> identicalArrayElements(combination, array, addend));
-		//return addends.stream().anyMatch(array -> array[0] == a && array[1] == b && array[2] == c);
 	}
-
-/*    public static boolean identicalArrayElements(int[] a, int[] b)
-    {
-        if (a.length != b.length)
-        {
-            return false;
-        }
-
-        Arrays.sort(a);
-        Arrays.sort(b);
-
-        for (int i = 0; i < a.length; i++)
-        {
-            if (a[i] != b[i])
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }*/
 
 	public static boolean identicalArrayElements(Combination combination, int[] a, int... b)
 	{
