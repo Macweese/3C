@@ -64,11 +64,6 @@ package challenge.leetcode.easy.scoreOfAString;
  **/
 public class ScoreOfAString
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int scoreOfString(String s)
 	{
 		int sum = 0;
