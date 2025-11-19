@@ -75,21 +75,6 @@ import java.util.List;
  **/
 public class FindWordsContainingCharacter
 {
-	public static void main(String[] args)
-	{
-		String[] CASE_1 = new String[]{"leet", "code"};
-		String[] CASE_2 = new String[]{"abc", "bcd", "aaaa", "cbc"};
-		String[] CASE_3 = new String[]{"abc", "bcd", "aaaa", "cbc"};
-
-		char LETTER_1 = 'e';
-		char LETTER_2 = 'a';
-		char LETTER_3 = 'z';
-
-		System.out.println(findWordsContaining(CASE_1, LETTER_1));
-		System.out.println(findWordsContaining(CASE_2, LETTER_2));
-		System.out.println(findWordsContaining(CASE_3, LETTER_3));
-	}
-
 	public static List<Integer> findWordsContaining(String[] words, char x)
 	{
 		List<Integer> list = new ArrayList<>();

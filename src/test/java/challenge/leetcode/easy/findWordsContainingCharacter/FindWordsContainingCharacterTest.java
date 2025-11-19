@@ -20,7 +20,6 @@ package challenge.leetcode.easy.findWordsContainingCharacter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,11 +30,6 @@ import org.junit.jupiter.api.Test;
  * @author Administrator
  * @Created 24/07/2025,
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Difficulty
- * @Tags
- * @link
- * @Description
  **/
 @DisplayName("2942. Find Words Containing Character")
 class FindWordsContainingCharacterTest
@@ -148,59 +142,6 @@ class FindWordsContainingCharacterTest
 		T.add(new ImmutableTriple<>(new String[]{"statement", "sun", "machine", "crabby", "toothpaste", "guide", "float", "pretend", "acidic", "walk", "humdrum", "eager", "functional", "afraid", "mailbox", "farm", "grumpy", "dapper", "cherry", "impress", "acquiescence", "fix", "mitten", "pretend", "tiresome", "file", "cherry", "string", "trick", "tremendous", "vague", "cute", "reply", "wiry", "cough", "scintillating", "big", "summer", "glove", "stem", "pull", "miss", "jumbled", "steady", "heartbreaking", "expert", "event", "wealthy"}, 'e', List.of(0, 2, 4, 5, 7, 11, 17, 18, 19, 20, 22, 23, 24, 25, 26, 29, 30, 31, 32, 37, 38, 39, 42, 43, 44, 45, 46, 47)));
 		T.add(new ImmutableTriple<>(new String[]{"innocent", "chew", "wilderness", "leather", "grumpy", "lunchroom", "icy", "functional", "fasten", "vivacious", "good", "dynamic", "ground", "instrument", "fowl", "gather", "adorable", "relieved", "one", "horse", "lewd", "avoid", "two", "butter", "squash", "precious", "male", "fetch", "guitar", "aloof", "squeal", "cynical", "help", "tin", "canvas", "flap", "delightful", "verdant", "witty", "pushy", "waves", "glamorous", "flap", "accidental", "trot", "frighten", "exultant", "shallow", "sticky", "soup"}, 'e', List.of(0, 1, 2, 3, 8, 13, 15, 16, 17, 18, 19, 20, 23, 25, 26, 27, 30, 32, 36, 37, 40, 43, 45, 46)));
 		T.add(new ImmutableTriple<>(new String[]{"direction", "delirious", "flesh", "gather", "cry", "jolly", "fall", "gullible", "deceive", "opposite", "hollow", "kneel", "size", "hum", "scientific", "rhyme", "detect", "march", "alleged", "part", "frame", "dead", "curl", "fearless", "invention", "numberless", "cow", "apparatus", "limit", "vacation", "squeamish", "plantation", "regret", "sign", "car", "thunder", "toothpaste", "afford", "lopsided", "selective", "squeamish", "distribution", "word", "parcel", "ear", "relation", "cold", "cloudy", "frame", "thunder"}, 'e', List.of(0, 1, 2, 3, 7, 8, 9, 11, 12, 14, 15, 16, 18, 20, 21, 23, 24, 25, 30, 32, 35, 36, 38, 39, 40, 43, 44, 45, 48, 49)));
-
-	}
-
-	private static final String[] DICTIONARY = new String[]{
-
-		"reproduce", "amusement", "uneven", "metal", "curvy", "bore", "guide", "wax", "ancient", "nut", "one", "mountainous", "prevent", "cagey", "men", "thirsty", "statuesque", "shut", "reading", "riddle", "rhyme", "tremendous", "pour", "bucket", "cloudy",
-		"correct", "bath", "addition", "film", "instrument", "uncovered", "bouncy", "marble", "abnormal", "attend", "foot", "impress", "supply", "kaput", "gun", "bleach", "butter", "ubiquitous", "tacky", "tremble", "radiate", "badge", "freezing", "precious", "diligent",
-		"contain", "crack", "wiry", "troubled", "size", "face", "pull", "welcome", "sink", "flavor", "horses", "stimulating", "abusive", "icy", "existence", "teeth", "battle", "scintillating", "loud", "spicy", "alleged", "disgusting", "pointless", "lighten", "poised",
-		"guiltless", "illustrious", "ritzy", "scared", "arithmetic", "tree", "rough", "murky", "afford", "luxuriant", "disagreeable", "dusty", "obscene", "muddled", "mailbox", "smile", "snore", "tranquil", "fit", "moldy", "pie", "boundary", "curved", "wretched", "charge",
-		"grandfather", "next", "cactus", "observation", "perpetual", "bag", "knife", "highfalutin", "toothbrush", "elbow", "ablaze", "automatic", "ink", "cough", "dead", "close", "taste", "lethal", "ahead", "check", "giants", "children", "canvas", "heavy", "ugly",
-		"faint", "lewd", "cheer", "crow", "testy", "talk", "jog", "gaudy", "elated", "clover", "null", "nutty", "grate", "glass", "judicious", "word", "home", "haunt", "nervous", "wound", "imperfect", "mouth", "hammer", "guess", "cruel",
-		"communicate", "hose", "fasten", "grateful", "loss", "chunky", "responsible", "strange", "cub", "cold", "sticky", "damage", "statement", "rare", "wealth", "avoid", "leather", "hobbies", "animated", "entertain", "mitten", "possess", "sophisticated", "beds", "parallel",
-		"sneaky", "number", "authority", "ladybug", "tense", "touch", "apparatus", "limit", "repulsive", "edge", "adorable", "stay", "fang", "gaze", "march", "holiday", "fireman", "calendar", "necessary", "milk", "shivering", "rabid", "suspect", "ludicrous", "average",
-		"stain", "hum", "exercise", "opposite", "outstanding", "quill", "uppity", "toothpaste", "sound", "help", "chickens", "voracious", "complex", "machine", "rainstorm", "blue", "foolish", "hollow", "protect", "colour", "guard", "crowded", "helpless", "humorous", "aquatic",
-		"invincible", "cook", "wanting", "lowly", "sail", "fearless", "jittery", "flood", "bent", "regret", "somber", "page", "chop", "hall", "nation", "walk", "thing", "male", "brake", "shrill", "momentous", "direful", "harm", "summer", "fantastic",
-		"snow", "creature", "miss", "spark", "assorted", "heap", "tail", "depend", "stream", "spurious", "cut", "omniscient", "horrible", "uttermost", "town", "appliance", "point", "tin", "hot", "launch", "suppose", "interrupt", "mixed", "picture", "carry",
-		"holistic", "parcel", "spiteful", "car", "accidental", "lick", "trick", "exultant", "itchy", "month", "jolly", "jazzy", "actually", "birth", "squash", "digestion", "file", "tickle", "yoke", "broad", "throne", "enthusiastic", "physical", "shelter", "breakable",
-		"building", "enter", "vengeful", "improve", "serious", "didactic", "wonder", "vacation", "crime", "bite", "heal", "bead", "jobless", "exclusive", "analyze", "current", "lazy", "furtive", "brown", "rainy", "imported", "wise", "meat", "sigh", "heavenly",
-		"switch", "spectacular", "scientific", "babies", "rob", "scare", "development", "invite", "resolute", "relation", "stove", "steel", "compete", "plantation", "cable", "dynamic", "delirious", "toad", "berry", "teaching", "pies", "fax", "jar", "place", "paper",
-		"quicksand", "tidy", "hurried", "knot", "trade", "fallacious", "defective", "adjustment", "grade", "flock", "road", "tip", "rambunctious", "rejoice", "thundering", "knit", "funny", "need", "decorate", "disapprove", "flat", "ultra", "preserve", "add", "tame",
-		"spiders", "play", "embarrassed", "aboard", "enchanting", "innocent", "willing", "conscious", "amusing", "arm", "unusual", "harbor", "creator", "fine", "fetch", "dizzy", "wipe", "jumpy", "sleet", "tangible", "invention", "weigh", "maddening", "park", "license",
-		"lush", "gather", "apparel", "shock", "long", "amount", "train", "enchanted", "oafish", "save", "squeamish", "faithful", "thread", "half", "hook", "damp", "subtract", "macabre", "support", "mate", "steady", "whispering", "self", "answer", "pushy",
-		"stuff", "hop", "handsome", "mute", "bad", "enormous", "plot", "whine", "growth", "driving", "wacky", "few", "different", "questionable", "whirl", "dime", "unsightly", "agreeable", "sable", "ear", "selective", "market", "humdrum", "tomatoes", "downtown",
-		"mushy", "toy", "sisters", "vessel", "nice", "egg", "basin", "question", "part", "afraid", "psychedelic", "thought", "servant", "acidic", "pick", "carriage", "sore", "farm", "profit", "exciting", "silly", "wealthy", "telephone", "rich", "nine",
-		"juice", "frog", "history", "inconclusive", "giddy", "useless", "righteous", "lamentable", "hateful", "basket", "merciful", "rice", "remember", "dream", "glove", "common", "cowardly", "aloof", "bomb", "request", "ski", "labored", "little", "tow", "concerned",
-		"string", "honorable", "wave", "sense", "hands", "kneel", "nifty", "fowl", "thank", "juvenile", "tiresome", "frighten", "annoying", "stew", "flag", "thunder", "abandoned", "oceanic", "ring", "weak", "deceive", "boiling", "war", "tie", "substance",
-		"treatment", "reflect", "thankful", "tramp", "tender", "scream", "ground", "dirty", "flowers", "big", "tricky", "elfin", "accessible", "pricey", "trot", "closed", "relieved", "awful", "steer", "wriggle", "account", "try", "press", "unique", "frightening",
-		"nimble", "daughter", "zoom", "lock", "cry", "cover", "unpack", "ban", "sweet", "courageous", "hanging", "reply", "giant", "functional", "cow", "jagged", "peep", "heat", "vivacious", "found", "glib", "longing", "dry", "occur", "snotty",
-		"sparkle", "fix", "waves", "grease", "sign", "gruesome", "company", "chief", "angle", "madly", "famous", "scatter", "gullible", "songs", "coherent", "juggle", "guitar", "terrify", "real", "learned", "fire", "front", "plants", "piquant", "feigned",
-		"pot", "comparison", "abhorrent", "slap", "lopsided", "rural", "nest", "committee", "moan", "frame", "prefer", "tall", "crazy", "shake", "curl", "dazzling", "rush", "cap", "ambiguous", "lettuce", "glow", "icicle", "ignore", "cherry", "can",
-		"fear", "manage", "governor", "meeting", "political", "ticket", "look", "flowery", "cracker", "utter", "steadfast", "range", "collect", "skinny", "seashore", "visitor", "bikes", "fascinated", "wilderness", "sick", "day", "loving", "pet", "friendly", "railway",
-		"knowing", "smiling", "event", "wire", "superb", "stare", "various", "tire", "peaceful", "influence", "clam", "scattered", "young", "prickly", "increase", "boat", "dad", "tray", "want", "stem", "settle", "cynical", "view", "selection", "awake",
-		"unwieldy", "honey", "stingy", "north", "yell", "true", "humor", "billowy", "mom", "dirt", "reduce", "waggish", "promise", "tenuous", "unlock", "immense", "obtainable", "yak", "float", "search", "hulking", "waste", "unit", "discreet", "disappear",
-		"dashing", "slim", "pipe", "vacuous", "grain", "wing", "writer", "squeal", "racial", "tart", "action", "obsequious", "tacit", "sparkling", "good", "proud", "desk", "picayune", "protective", "shoes", "pets", "basketball", "earthy", "applaud", "godly",
-		"guttural", "caring", "value", "behavior", "admire", "chew", "offer", "two", "island", "pastoral", "deranged", "sky", "annoy", "worried", "hallowed", "haircut", "wandering", "effect", "tank", "education", "experience", "jaded", "bless", "sun", "ten",
-		"tired", "verdant", "ask", "heartbreaking", "eyes", "dance", "jelly", "nerve", "majestic", "unwritten", "eggs", "lying", "stupendous", "glamorous", "fuzzy", "stitch", "cooing", "modern", "naughty", "acceptable", "judge", "confess", "violet", "start", "lunchroom",
-		"trouble", "attack", "petite", "red", "trucks", "eatable", "object", "cemetery", "flower", "afternoon", "wrong", "wide", "royal", "domineering", "winter", "lie", "unequal", "grumpy", "squirrel", "concern", "abstracted", "sidewalk", "bait", "night", "crook",
-		"wind", "deeply", "aunt", "skillful", "work", "kill", "mean", "geese", "flesh", "reaction", "colorful", "creepy", "belief", "slave", "vast", "imaginary", "moon", "top", "rain", "chivalrous", "excuse", "sea", "aback", "deserve", "direction",
-		"flap", "oven", "pretend", "practice", "glossy", "snakes", "rabbits", "note", "discussion", "underwear", "lumber", "office", "stiff", "fruit", "numberless", "soup", "peel", "gabby", "temporary", "dark", "dapper", "return", "boil", "wash", "jumbled",
-		"sweater", "aromatic", "rightful", "hug", "fertile", "wary", "axiomatic", "breathe", "flash", "continue", "fall", "disgusted", "witty", "sturdy", "business", "living", "strong", "cute", "attractive", "explain", "pest", "alarm", "chase", "theory", "prose",
-		"cobweb", "quixotic", "adaptable", "gray", "delight", "rest", "potato", "push", "stop", "respect", "playground", "bizarre", "example", "quilt", "talented", "measure", "cast", "zoo", "aberrant", "sofa", "caption", "upset", "hospitable", "spoon", "spotted",
-		"stroke", "notebook", "salt", "parsimonious", "soft", "woozy", "spade", "horse", "determined", "mysterious", "blood", "behave", "adhoc", "queue", "pleasure", "lonely", "quack", "womanly", "fluffy", "kitty", "tiny", "excellent", "detect", "forgetful", "vague", "acquiescence",
-		"kiss", "delightful", "marked", "rifle", "harass", "price", "possible", "exist", "flashy", "resonant", "female", "distribution", "eager", "laborer", "allow", "discover", "acoustics", "drag", "motionless", "sordid", "bottle", "better", "trees", "live", "protest",
-		"roof", "second", "expert", "oranges", "death", "hysterical", "careful", "crabby", "meddle", "sad", "shame", "rake", "substantial", "grandmother", "harsh", "follow", "bells", "plastic", "land", "chubby", "count", "wrench", "curtain", "economic", "ugliest",
-		"button", "tease", "fact", "group", "connect", "whip", "illegal", "obtain", "risk", "handsomely", "week", "past", "tug", "health", "flight", "consist", "thaw", "overrated", "mice", "first", "worthless", "industry", "profuse", "wheel", "shallow",
-
-	};
-
-	private static final List<Integer> test = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
-
-	public static void main(String[] args)
-	{
-		generateTests(1);
 	}
 
 	@Test
@@ -218,45 +159,6 @@ class FindWordsContainingCharacterTest
 				+ "\nActual   : " + actual;
 
 			assertEquals(expected, actual, message);
-		}
-	}
-
-	private static void generateTest()
-	{
-		generateTests(1);
-	}
-
-	private static void generateTests(int quantity)
-	{
-		for (int i = 0; i < quantity; i++)
-		{
-			int size = ThreadLocalRandom.current().nextInt(50) + 1;
-			String[] words = new String[size];
-
-			for (int j = 0; j < words.length; j++)
-			{
-				words[j] = DICTIONARY[ThreadLocalRandom.current().nextInt(1001)];
-			}
-
-			char c = (char) (ThreadLocalRandom.current().nextInt('z' - 'a' - 1) + 'a');
-
-			List<Integer> expected = new ArrayList<>();
-			for (int j = 0; j < words.length; j++)
-			{
-				if (words[j].contains(String.valueOf(c)))
-				{
-					expected.add(j);
-				}
-			}
-
-			final String w = Arrays.toString(words)
-				.replaceAll("[\\[\\] ]", "")
-				.replaceAll("(\\w+)\\s*(?=,|$)", "\"$1\"");
-			final String e = expected.toString()
-				.replaceAll("[\\[\\] ]", "");
-			final String s = "TRIPLES.add(new ImmutableTriple<>(new String[]{" + w + "},'" + c + "',List.of(" + e + ")));";
-
-			System.out.println(s);
 		}
 	}
 }
