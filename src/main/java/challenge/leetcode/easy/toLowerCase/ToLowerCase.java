@@ -25,11 +25,6 @@ package challenge.leetcode.easy.toLowerCase;
  **/
 public class ToLowerCase
 {
-	static void main()
-	{
-
-	}
-
 	public static String toLowerCase(String s)
 	{
 		return s.toLowerCase();
