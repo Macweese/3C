@@ -27,69 +27,9 @@ import java.util.TreeSet;
  * @author Administrator
  * @Created 17/09/2025, 10:07 Wed 17 September 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
- * @link <a href="">www.leetcode.com/999999999999999999999</a>
- * @Description Description
- *
- * <ul>
- * 		<li><b>Example 1:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 				<br>&emsp;
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 2:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- * <ul>
- * 		<li><b>Example 3:</b>
- * 			<br><b>Input:</b> <code>INPUT_INPUT_INPUT</code>
- * 			<br><b>Output:</b> {@code OUTPUT_OUTPUT_OUTPUT}
- * 			<br><b>Explanation:</b>
- * 		</li>
- * </ul>
- *
- * <p>
- * <b>Constraints:</b>
- * <ul>
- * 		<li></li>
- * </ul>
- * </p>
- *
- * <br>
- * <hr>
- * @Similar <a href=""/>1000. NAME (Leetcode)</a><br>
- * <br>
- * {@link challenge. 10000. NAME (local)}<br>
  **/
 public class DesignAFoodRatingSystem
 {
-	public static void main(String[] args)
-	{
-		String[] foods = new String[]{"kimchi", "miso", "sushi", "moussaka", "ramen", "bulgogi"};
-		String[] origins = new String[]{"korean", "japanese", "japanese", "greek", "japanese", "korean"};
-		int[] ratings = new int[]{9, 12, 8, 15, 14, 7};
-
-		FoodRatings foodRatings = new FoodRatings(foods, origins, ratings);
-
-		System.out.println(foodRatings.highestRated("korean"));
-
-		System.out.println(foodRatings.highestRated("japanese"));
-
-		foodRatings.changeRating("sushi", 16);
-		System.out.println(foodRatings.highestRated("japanese"));
-
-		foodRatings.changeRating("ramen", 16);
-		System.out.println(foodRatings.highestRated("japanese"));
-	}
 }
 
 class FoodRatings
