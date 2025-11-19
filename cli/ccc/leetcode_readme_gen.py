@@ -8,8 +8,10 @@ import sys
 import time
 import random
 import subprocess
+import threading
 from pathlib import Path
 from typing import Dict, Optional, Any, List, Tuple, Iterable, Set
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from .config import CACHE_DIR, DEFAULT_OUT_DIR
 from .output_layout import compute_output_dir, DEFAULT_LAYOUT, DEFAULT_NAMEFMT
@@ -30,12 +32,21 @@ except Exception:
 	Console = None  # type: ignore
 	Text = None  # type: ignore
 
-
 	def rich_traceback_install(*args, **kwargs):  # type: ignore
 		return None
 
 console: Optional["Console"] = None
 err_console: Optional["Console"] = None
+
+# Thread-local for HTTP sessions (reduces handshake overhead per thread)
+_THREAD_LOCAL = threading.local()
+
+def _get_thread_session(cookies: Dict[str, str]) -> requests.Session:
+	s = getattr(_THREAD_LOCAL, "session", None)
+	if s is None:
+		s = _ensure_session(cookies)
+		_THREAD_LOCAL.session = s
+	return s
 
 
 def init_consoles(no_color: bool = False, force_color: bool = False) -> None:
@@ -50,15 +61,12 @@ def init_consoles(no_color: bool = False, force_color: bool = False) -> None:
 		err_console = None
 		return
 
-	# Honor environment overrides too
 	force = bool(force_color or os.environ.get("FORCE_COLOR"))
 	no_col = bool(no_color or os.environ.get("NO_COLOR"))
 
-	# Create consoles; highlight is off (we control colors explicitly)
 	console = Console(no_color=no_col, force_terminal=force, highlight=False, soft_wrap=False, color_system="windows")
 	err_console = Console(stderr=True, no_color=no_col, force_terminal=force, highlight=False, soft_wrap=False)
 
-	# Pretty tracebacks on stderr
 	rich_traceback_install(show_locals=False, extra_lines=1, console=err_console)
 
 
@@ -77,7 +85,7 @@ def color_diag() -> None:
 	no_color_env = os.environ.get("NO_COLOR")
 	force_color_env = os.environ.get("FORCE_COLOR")
 	term = os.environ.get("TERM")
-	psreadline = os.environ.get("PSModulePath")  # heuristic presence
+	psreadline = os.environ.get("PSModulePath")
 	stdout_tty = getattr(sys.stdout, "isatty", lambda: False)()
 	stderr_tty = getattr(sys.stderr, "isatty", lambda: False)()
 
@@ -97,7 +105,6 @@ def color_diag() -> None:
 	err_console.print(Text.assemble(Text("[color-diag] TERM=", style="yellow"), Text(str(get(term, "<unset>")))))
 	err_console.print(Text.assemble(Text("[color-diag] stdout.isatty=", style="yellow"), Text(str(stdout_tty))))
 	err_console.print(Text.assemble(Text("[color-diag] stderr.isatty=", style="yellow"), Text(str(stderr_tty))))
-	# Console attributes
 	try:
 		err_console.print(Text.assemble(Text("[color-diag] console.is_terminal=", style="yellow"),
 										Text(str(console.is_terminal))))  # type: ignore
@@ -143,23 +150,19 @@ def _git_repo_root(start_in: Path) -> Optional[Path]:
 
 
 def _detect_anchor_base(out_file: Path, out_root: Path) -> Path:
-	# 1) User override
 	env_project = os.environ.get("3C_PROJECT_ROOT", "").strip()
 	if env_project:
 		project_root = Path(env_project).resolve()
 		if _is_subpath(out_file, project_root):
 			return project_root.parent.resolve()
-	# 2) Git repo root
 	repo_root = _git_repo_root(out_file.parent)
 	if repo_root and _is_subpath(out_file, repo_root):
 		return repo_root.parent.resolve()
-	# 3) Use out_root if path is inside it
 	try:
 		if _is_subpath(out_file, out_root):
 			return out_root.resolve()
 	except Exception:
 		pass
-	# 4) Fallback: anchor is the entire directory of the file
 	return out_file.parent.resolve()
 
 
@@ -178,7 +181,6 @@ def style_anchored_path(out_file: Path, out_root: Path):
 	if not _have_console():
 		return f"{base_str}{tail_str}{os.sep if tail_str and not tail_str.endswith(os.sep) else ''}{f.name}"
 	t = Text()
-	# Anchor: dark grey; Tail: grey; File: default
 	t.append(base_str, style="#808080")
 	if tail_str:
 		if not tail_str.endswith(os.sep):
@@ -217,7 +219,6 @@ def print_success_wrote(path: Path, problem_id: str, title: str, difficulty: str
 		return
 	head = Text("Saved", style="green")
 	path_text = style_anchored_path(path, out_root)
-	# details = Text(f" — {problem_id}. {title} [{difficulty}]", style="deep_sky_blue3")
 	details = Text(f" — {problem_id}. {title} [{difficulty}]", style="purple")
 	console.print(Text.assemble(head, Text(" "), path_text, details))  # type: ignore[arg-type]
 
@@ -273,7 +274,6 @@ DIFFICULTY_COLOR = {
 CONTEST_MAP_CACHE = CACHE_DIR / "contest_map.json"
 PROBLEM_MAP_CACHE = CACHE_DIR / "problems_all.json"
 
-# GraphQL for Problem of the Day
 POTD_QUERY = """
 query questionOfToday {
   activeDailyCodingChallengeQuestion {
@@ -287,6 +287,9 @@ query questionOfToday {
 }
 """
 
+# ------------------------- Locks for thread safety --------------------------
+
+_CONTEST_CACHE_LOCK = threading.Lock()
 
 # -------------------------------- Utilities --------------------------------
 
@@ -403,22 +406,13 @@ def query_graphql(slug: str, cookies: Dict[str, str], debug: bool = False) -> Di
 	}
 	"""
 	payload = {"operationName": "questionData", "variables": {"titleSlug": slug}, "query": query}
-	s = _ensure_session(cookies)
+	s = _get_thread_session(cookies)
 	data = _post_graphql_with_retries(s, slug, payload, debug=debug)
 	return data["data"]["question"]
 
 
 def fetch_potd_slug(cookies: Dict[str, str], debug: bool = False) -> Tuple[str, Dict[str, str]]:
-	"""
-	Fetch the current LeetCode Problem of the Day (POTD).
-
-	Returns:
-		(slug, potd_date_dict)
-
-	potd_date_dict layout matches format_today_utc() keys.
-	"""
-	s = _ensure_session(cookies)
-	# For POTD, we don't have a specific problem slug yet; pass None to _ensure_csrf
+	s = _get_thread_session(cookies)
 	cs = _ensure_csrf(s, slug=None)
 	headers = headers_for_graphql(cs, referer=LEETCODE_BASE)
 	payload = {
@@ -441,11 +435,9 @@ def fetch_potd_slug(cookies: Dict[str, str], debug: bool = False) -> Tuple[str, 
 	if not slug:
 		raise RuntimeError("LeetCode POTD missing titleSlug in response.")
 
-	# Build a date dict similar to format_today_utc but based on POTD's date
 	try:
 		dt_obj = dt.datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=dt.timezone.utc)
 	except Exception:
-		# Fallback: use current UTC date if parsing fails
 		dt_obj = dt.datetime.now(dt.timezone.utc)
 
 	potd_date = {
@@ -566,17 +558,19 @@ def ensure_dir(p: Path) -> None:
 def _load_contest_map_cache() -> Dict[str, Any]:
 	if CONTEST_MAP_CACHE.exists():
 		try:
-			return json.loads(CONTEST_MAP_CACHE.read_text(encoding="utf-8"))
+			with _CONTEST_CACHE_LOCK:
+				return json.loads(CONTEST_MAP_CACHE.read_text(encoding="utf-8"))
 		except Exception:
 			return {}
 	return {}
 
 
 def _save_contest_map_cache(data: Dict[str, Any]) -> None:
-	try:
-		CONTEST_MAP_CACHE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-	except Exception:
-		pass
+	with _CONTEST_CACHE_LOCK:
+		try:
+			CONTEST_MAP_CACHE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+		except Exception:
+			pass
 
 
 def _contest_label_from_title(title: str) -> Optional[str]:
@@ -907,7 +901,6 @@ def generate_one(slug: str, args, cookies: Dict[str, str],
 	title = q.get("title", "")
 	difficulty = q.get("difficulty", "Easy")
 	title_slug = q.get("titleSlug", slug)
-	# POTD context: only set when this run is explicitly for POTD
 	potd_ctx = potd_date if getattr(args, "potd", False) and potd_date else None
 
 	context = {
@@ -976,22 +969,17 @@ def generate_one(slug: str, args, cookies: Dict[str, str],
 
 
 def run_with_args(args) -> int:
-	# Initialize consoles
 	init_consoles(
 		no_color=getattr(args, "no_color", False) or bool(os.environ.get("NO_COLOR")),
 		force_color=getattr(args, "force_color", False) or bool(os.environ.get("FORCE_COLOR")),
 	)
 
-	# Print color diagnostics if requested
 	if getattr(args, "color_diag", False):
 		color_diag()
 
-	# Counters for summary
 	success_count = skip_count = fail_count = 0
-
 	cookies = load_env_cookie()
 
-	# If --potd is set, ignore explicit problem and resolve today's POTD slug
 	potd_date: Optional[Dict[str, str]] = None
 	if getattr(args, "potd", False):
 		try:
@@ -1020,12 +1008,47 @@ def run_with_args(args) -> int:
 			print_skip(f"Input '{it}' ignored: {e}")
 
 	last_written: Optional[Path] = None
-	to_add_similar: List[str] = []
+	to_add_similar: Set[str] = set()
 
-	while queue:
-		slug = queue.pop(0)
+	# Helper for processing one slug (used by threads)
+	def _process_slug(slug: str, potd_ctx: Optional[Dict[str, str]]):
 		try:
-			pid, title, similar_slugs, written = generate_one(slug, args, cookies, potd_date=potd_date)
+			pid, title, similar_slugs, written = generate_one(slug, args, cookies, potd_date=potd_ctx)
+			return (slug, pid, title, similar_slugs, written, None)
+		except Exception as ex:
+			return (slug, None, None, [], None, ex)
+
+	jobs = getattr(args, "jobs", 1)
+	if jobs > 1 and len(queue) > 1:
+		# Parallel execution
+		with ThreadPoolExecutor(max_workers=jobs) as pool:
+			futures = [pool.submit(_process_slug, slug, potd_date) for slug in queue]
+			for fut in as_completed(futures):
+				slug, pid, title, similar_slugs, written, exc = fut.result()
+				if exc:
+					fail_count += 1
+					print_error(f"Failed to generate for '{slug}': {exc}")
+					continue
+				if written:
+					last_written = written
+					success_count += 1
+				else:
+					skip_count += 1
+				if getattr(args, "also_similar", False):
+					for s in similar_slugs:
+						if s and s not in seen:
+							seen.add(s)
+							to_add_similar.add(s)
+	else:
+		# Sequential execution
+		while queue:
+			slug = queue.pop(0)
+			slug_result = _process_slug(slug, potd_date)
+			_, pid, title, similar_slugs, written, exc = slug_result
+			if exc:
+				fail_count += 1
+				print_error(f"Failed to generate for '{slug}': {exc}")
+				continue
 			if written:
 				last_written = written
 				success_count += 1
@@ -1035,25 +1058,38 @@ def run_with_args(args) -> int:
 				for s in similar_slugs:
 					if s and s not in seen:
 						seen.add(s)
-						to_add_similar.append(s)
-		except Exception as e:
-			fail_count += 1
-			print_error(f"Failed to generate for '{slug}': {e}")
+						to_add_similar.add(s)
 
+	# Process similar problems if requested
 	if getattr(args, "also_similar", False) and to_add_similar:
-		for s in to_add_similar:
-			try:
-				pid, title, similar_slugs, written = generate_one(s, args, cookies, potd_date=None)
+		sims = list(to_add_similar)
+		if jobs > 1 and len(sims) > 1:
+			with ThreadPoolExecutor(max_workers=jobs) as pool:
+				futures = [pool.submit(_process_slug, slug, None) for slug in sims]
+				for fut in as_completed(futures):
+					slug, pid, title, similar_slugs, written, exc = fut.result()
+					if exc:
+						fail_count += 1
+						print_error(f"Failed to generate for similar '{slug}': {exc}")
+						continue
+					if written:
+						last_written = written
+						success_count += 1
+					else:
+						skip_count += 1
+		else:
+			for s in sims:
+				slug, pid, title, similar_slugs, written, exc = _process_slug(s, None)
+				if exc:
+					fail_count += 1
+					print_error(f"Failed to generate for similar '{s}': {exc}")
+					continue
 				if written:
 					last_written = written
 					success_count += 1
 				else:
 					skip_count += 1
-			except Exception as e:
-				fail_count += 1
-				print_error(f"Failed to generate for similar '{s}': {e}")
 
-	# macOS auto-open
 	if getattr(args, "open", False) and last_written and sys.platform == "darwin":
 		os.system(f'open "{last_written}"')
 		print_opened(last_written, Path(args.out_dir or DEFAULT_OUT_DIR).expanduser().resolve())
@@ -1111,7 +1147,13 @@ def register_subparser(subparsers, parents: Optional[List[argparse.ArgumentParse
 				   help="Also generate READMEs for all 'Similar' problems of each specified problem (one level)")
 	p.add_argument("--open", action="store_true", help="Open the last output file after generation (macOS only)")
 
-	# Hook the runner for dispatch
+	# Concurrency option
+	default_jobs = int(os.environ.get("3C_JOBS", "1"))
+	p.add_argument("-j", "--jobs", type=int, default=default_jobs,
+				   help=f"Parallel jobs (threads) for fetching/rendering (default: {default_jobs}; set 3C_JOBS). "
+						f"Use 1 for sequential. Keep modest (e.g. 4-8) to avoid rate limits.")
+
+	# Hook the runner
 	p.set_defaults(func=run_with_args)
 	return p
 
@@ -1160,6 +1202,11 @@ def build_standalone_parser() -> argparse.ArgumentParser:
 	p.add_argument("--force-color", action="store_true",
 				   help="Force colored output even if terminal detection fails (or set FORCE_COLOR=1)")
 	p.add_argument("--color-diag", action="store_true", help="Print color diagnostics at start")
+
+	default_jobs = int(os.environ.get("3C_JOBS", "1"))
+	p.add_argument("-j", "--jobs", type=int, default=default_jobs,
+				   help=f"Parallel jobs (threads) for fetching/rendering (default: {default_jobs}; set 3C_JOBS). "
+						f"Use 1 for sequential. Keep modest (e.g. 4-8) to avoid rate limits.")
 	return p
 
 

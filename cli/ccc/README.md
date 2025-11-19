@@ -54,6 +54,7 @@ The output structure is designed to scale to multiple sources without collisions
 - Optional: generate “Similar” problems as a batch
 - Robust HTTP behavior (session, CSRF bootstrap, Referer/Origin, retries)
 - Debug mode for path and HTTP diagnostics
+- Parallel batch generation with `-j/--jobs` (I/O-bound speedup; safe modest thread counts)
 
 ---
 
@@ -121,6 +122,22 @@ Basic:
 3c lc --potd
 ```
 
+Parallel batch:
+
+```bash
+# 6 parallel threads (I/O-bound; reduces wall time for large ranges)
+3c lc 100-150 -j 6
+
+# Or via environment variable:
+export 3C_JOBS=6
+3c lc 100-150
+```
+
+Guidelines:
+- Default jobs: `1` (sequential).
+- Use `4–8` for big batches; watch for API rate limiting.
+- Reduce if many retries or 429/499 statuses appear.
+
 Common flags:
 
 ```bash
@@ -147,6 +164,7 @@ Common flags:
 --template /path/to/template.j2  # custom Jinja2 template
 --also-similar                   # include similar problems
 --debug                          # print HTTP and output path diagnostics
+-j / --jobs N                    # parallel threads (default from $3C_JOBS or 1)
 ```
 
 Examples:
@@ -224,6 +242,7 @@ Environment variables:
 - `3C_CACHE_DIR` — cache directory (default: `~/.3c/cache` or `%USERPROFILE%\.3c\cache`)
 - `3C_LAYOUT` — default layout (default: `source-difficulty-id`)
 - `3C_NAMEFMT` — default leaf directory format (default: `{id}`)
+- `3C_JOBS` — default parallel jobs for `lc` generation (`1` if unset)
 
 Authentication (optional but recommended for reliability and paid-only metadata):
 - `LEETCODE_SESSION` — your browser’s LeetCode session cookie
@@ -269,6 +288,15 @@ Override with `3C_CACHE_DIR`.
 
 ---
 
+## Parallelism Notes
+
+- Uses Python threads (`ThreadPoolExecutor`).
+- Workload is I/O-bound (network + disk); GIL release during I/O enables concurrency.
+- Contest cache writes are protected by a lock to avoid race conditions.
+- Sessions are reused per thread via thread-local storage to reduce connection overhead.
+
+---
+
 ## Troubleshooting
 
 - Command not found:
@@ -287,20 +315,9 @@ Override with `3C_CACHE_DIR`.
 
 ## Roadmap
 
-- Additional sources
-	- ProjectEuler
-	- Codeforces
-	- AtCoder
-	- Kattis
-	- TopCoder
-	- CodeWars
-	- HackerRank
-	- CodinGame
-	- Cracked.io
-	- NeetCode
-	- CSES
-	- IOI
-- Shared metadata (`meta.json`) per problem for indexing
-- Batch workflows and repository integrations
+- Additional sources (ProjectEuler, Codeforces, etc.)
+- Shared metadata per problem
+- Extended batch workflows
+- Smarter rate limit adaptation (dynamic throttle)
 
 ---

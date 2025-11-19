@@ -8,6 +8,7 @@ A small tool to generate formatted README.md files for LeetCode problems in your
 - Fetches Title, ID, Difficulty, Content (HTML), Tags, Hints, Similar problems
 - Renders to README.md using your preferred format
 - Places the file by difficulty (default) or flat into a directory you choose
+- Parallel batch generation (`-j/--jobs`) for faster processing of large ranges (I/O-bound speedup)
 
 ## Install
 
@@ -50,6 +51,20 @@ python scripts/leetcode_readme_gen.py 3408 --mode flat --out-dir ./problems --fi
 python scripts/leetcode_readme_gen.py 3408 --fail-on-paid
 ```
 
+Parallel generation (I/O-bound, HTTP + disk):
+```bash
+# Generate a range with 6 parallel threads
+python scripts/leetcode_readme_gen.py 100-130 -j 6
+# Or via environment variable
+export 3C_JOBS=6
+python scripts/leetcode_readme_gen.py 100-130
+```
+
+Guidance:
+- Use 1 (default) for sequential, safest vs rate limits.
+- 4–8 threads typically speeds up large batches significantly.
+- If you see many 429/499 responses, reduce `--jobs`.
+
 Generated structure (default):
 
 ```
@@ -63,3 +78,4 @@ Generated structure (default):
 - You can refine or extend the template in `scripts/templates/leetcode_readme.md.j2` to match your exact house style.
 - If LeetCode changes their API or if mapping number -> slug fails, pass the slug or full problem URL directly.
 - Respect LeetCode’s Terms of Service. Use authenticated requests only with your own account.
+- Parallelization uses Python threads; the workload is I/O-bound so the GIL does not prevent speedup.
