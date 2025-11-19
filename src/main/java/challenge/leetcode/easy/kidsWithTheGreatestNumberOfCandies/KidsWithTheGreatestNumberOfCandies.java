@@ -18,10 +18,8 @@
 package challenge.leetcode.easy.kidsWithTheGreatestNumberOfCandies;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -84,18 +82,6 @@ import org.apache.log4j.BasicConfigurator;
 @Slf4j
 public class KidsWithTheGreatestNumberOfCandies
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		int extra = 3;
-		int[] candies = new int[]{2, 3, 1, 1, 5, 3, 4, 7, 4, 2, 5, 7, 6};
-		System.out.println(
-			" Extra : " + extra +
-				"\n Input : " + Arrays.toString(candies) +
-				"\nOutput : " + kidsWithCandies(candies, extra));
-	}
-
 	public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies)
 	{
 		int max = 0;
