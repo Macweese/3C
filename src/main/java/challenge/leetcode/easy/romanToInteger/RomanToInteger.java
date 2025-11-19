@@ -17,7 +17,6 @@
  */
 package challenge.leetcode.easy.romanToInteger;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -71,18 +70,8 @@ import java.util.Map;
 	s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 	It is guaranteed that s is a valid roman numeral in the range [1, 3999].
  */
-public class RomanToInteger implements Runnable
+public class RomanToInteger
 {
-	public static final String ROMAN_2_918_741 = "_M_M_C_M_X_VMMMDCCXLI";
-	public static final String ROMAN_999_999 = "_C_M_X_C_I_XCMXCIX";
-	public static final String ROMAN_5000 = "_V";
-	public static final String ROMAN_1994 = "MCMXCIV";
-	public static final String ROMAN_999 = "CMXCIX";
-	public static final String ROMAN_58 = "LVIII";
-	public static final String ROMAN_49 = "XLIX";
-	public static final String ROMAN_3 = "III";
-	public static final String ROMAN_INVALID = "IIIDDMIIII";
-
 	static final Map<String, String> valueMap = new LinkedHashMap<>();
 
 	static
@@ -125,7 +114,6 @@ public class RomanToInteger implements Runnable
 
 	public static int convert(String string)
 	{
-		String original = string;
 		string = string.toUpperCase();
 
 		if (invalidNumber(string))
@@ -133,39 +121,17 @@ public class RomanToInteger implements Runnable
 			throw new NumberFormatException("'" + string + "' is not a valid roman numeral.");
 		}
 
-		int value = 0;
-
 		for (Map.Entry<String, String> entry : valueMap.entrySet())
 		{
 			string = string.replaceAll(entry.getKey(), entry.getValue());
 		}
 
-
+		int value = 0;
 		for (String s : string.split(" "))
 		{
 			value += Integer.parseInt(s);
 		}
 
-		System.out.println(value + ", " + original + ", " + Arrays.toString(string.split(" ")));
 		return value;
-	}
-
-	@Override
-	public void run()
-	{
-		convert(ROMAN_3);
-		convert(ROMAN_49);
-		convert(ROMAN_58);
-		convert(ROMAN_999);
-		convert(ROMAN_1994);
-		convert(ROMAN_5000);
-		convert(ROMAN_999_999);
-		convert(ROMAN_2_918_741);
-	}
-
-	public static void main(String[] args)
-	{
-		RomanToInteger r = new RomanToInteger();
-		r.run();
 	}
 }
