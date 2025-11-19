@@ -110,11 +110,6 @@ package challenge.leetcode.hard.maximumFruitsHarvestedAfterAtMostKSteps;
  **/
 public class MaximumFruitsHarvestedAfterAtMostKSteps
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static int maxTotalFruits(int[][] fruits, int startPos, int k)
 	{
 		return 0;
