@@ -17,8 +17,6 @@
  */
 package challenge.leetcode.easy.searchInsertPosition;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author Administrator
  * @Created 04/06/2025,
@@ -64,7 +62,6 @@ import lombok.extern.slf4j.Slf4j;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class SearchInsertPosition
 {
 	public static int binarySearch(int[] arr, int value)
