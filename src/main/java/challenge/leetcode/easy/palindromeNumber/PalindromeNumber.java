@@ -18,8 +18,6 @@
 package challenge.leetcode.easy.palindromeNumber;
 
 import com.google.common.annotations.VisibleForTesting;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -65,29 +63,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class PalindromeNumber
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		int a = 121;
-		int b = -121;
-		int c = 10;
-		int d = 1001;
-		int e = 1001001;
-		int f = 999;
-		int g = 123454321;
-		int h = 0;
-
-		int[] ints = {a, b, c, d, e, f, g, h};
-		for (int i : ints)
-		{
-//			log.info("Palindrome check: {} \t{}", isPalindrome(i), i);
-		}
-	}
-
 	@VisibleForTesting
 	public static boolean isPalindrome(int x)
 	{
