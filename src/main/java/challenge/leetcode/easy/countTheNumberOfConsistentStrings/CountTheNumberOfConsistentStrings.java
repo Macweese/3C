@@ -25,11 +25,6 @@ package challenge.leetcode.easy.countTheNumberOfConsistentStrings;
  **/
 public class CountTheNumberOfConsistentStrings
 {
-	static void main()
-	{
-
-	}
-
 	public static int countConsistentStrings(String allowed, String[] words)
 	{
 		int acceptableWords = 0;
