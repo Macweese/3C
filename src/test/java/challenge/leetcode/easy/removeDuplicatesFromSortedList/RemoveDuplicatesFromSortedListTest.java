@@ -17,56 +17,59 @@
  */
 package challenge.leetcode.easy.removeDuplicatesFromSortedList;
 
+import static challenge.leetcode.easy.removeDuplicatesFromSortedList.RemoveDuplicatesFromSortedList.createListNode;
+import static challenge.leetcode.easy.removeDuplicatesFromSortedList.RemoveDuplicatesFromSortedList.deleteDuplicates;
+import static challenge.leetcode.easy.removeDuplicatesFromSortedList.RemoveDuplicatesFromSortedList.listNodeToArray;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import static utils.DataUtils.generateRandomArray;
 
 @DisplayName("83. Remove Duplicates From Sorted List")
 class RemoveDuplicatesFromSortedListTest
 {
-	static final int[] DUPLICATE_VALUES_1 = new int[]{1, 1, 2};
-	static final int[] DUPLICATE_VALUES_2 = new int[]{1, 1, 2, 3, 3};
-	static final int[] DUPLICATE_VALUES_3 = new int[]{1, 1, 2, 3, 3, 3, 3, 5, 9, 9, 10};
-	static final int[] DUPLICATE_VALUES_4 = new int[]{1};
-	static final int[] DUPLICATE_VALUES_5 = new int[]{};
+	static final int[] CASE_1 = new int[]{1, 1, 2};
+	static final int[] CASE_2 = new int[]{1, 1, 2, 3, 3};
+	static final int[] CASE_3 = new int[]{1, 1, 2, 3, 3, 3, 3, 5, 9, 9, 10};
+	static final int[] CASE_4 = new int[]{1};
+	static final int[] CASE_5 = new int[]{};
 
-	static final int[] ANSWER_VALUES_1 = new int[]{1, 2};
-	static final int[] ANSWER_VALUES_2 = new int[]{1, 2, 3};
-	static final int[] ANSWER_VALUES_3 = new int[]{1, 2, 3, 5, 9, 10};
-	static final int[] ANSWER_VALUES_4 = new int[]{1};
-	static final int[] ANSWER_VALUES_5 = new int[]{};
+	static final int[] EXPECTED_1 = new int[]{1, 2};
+	static final int[] EXPECTED_2 = new int[]{1, 2, 3};
+	static final int[] EXPECTED_3 = new int[]{1, 2, 3, 5, 9, 10};
+	static final int[] EXPECTED_4 = new int[]{1};
+	static final int[] EXPECTED_5 = new int[]{};
 
 	@Test
+	@DisplayName("Test: Delete Duplicates (Predetermined values)")
 	void deleteDuplicatesTest()
 	{
-		randomTest(100);
+		validate(EXPECTED_1, listNodeToArray(deleteDuplicates(createListNode(CASE_1))));
+		validate(EXPECTED_2, listNodeToArray(deleteDuplicates(createListNode(CASE_2))));
+		validate(EXPECTED_3, listNodeToArray(deleteDuplicates(createListNode(CASE_3))));
+		validate(EXPECTED_4, listNodeToArray(deleteDuplicates(createListNode(CASE_4))));
+		validate(EXPECTED_5, listNodeToArray(deleteDuplicates(createListNode(CASE_5))));
 	}
 
-	void deleteDuplicatesTest(int[] expected, int[] result)
+	void validate(int[] expected, int[] actual)
 	{
-		String message = "Test failed.\nExpected: " + Arrays.toString(expected) + "\nActual: " + Arrays.toString(result);
-		assertArrayEquals(expected, result, message);
+		String message = "Test failed.\nExpected: " + Arrays.toString(expected) + "\nActual: " + Arrays.toString(actual);
+		assertArrayEquals(expected, actual, message);
 	}
 
-	private void randomTest()
+	@RepeatedTest(value = 100)
+	@DisplayName("Test: Delete Duplicates (Random-generated values)")
+	public void deleteDuplicatesRandomTest()
 	{
-		randomTest(1);
-	}
+		int[] array = Arrays.stream(generateRandomArray(300, 100))
+			.sorted()
+			.distinct()
+			.toArray();
+		ListNode listNode = deleteDuplicates(createListNode(array));
+		int[] result = listNodeToArray(listNode);
 
-	private void randomTest(int testCount)
-	{
-		for (int i = 0; i < testCount; i++)
-		{
-			int[] array = Arrays.stream(generateRandomArray(300, 100))
-				.sorted()
-				.distinct()
-				.toArray();
-			ListNode listNode = RemoveDuplicatesFromSortedList.deleteDuplicates(RemoveDuplicatesFromSortedList.createListNode(array));
-			int[] result = RemoveDuplicatesFromSortedList.listNodeToArray(listNode);
-
-			deleteDuplicatesTest(array, result);
-		}
+		validate(array, result);
 	}
 }

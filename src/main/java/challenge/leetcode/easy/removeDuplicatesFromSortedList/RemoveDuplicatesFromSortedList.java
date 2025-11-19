@@ -18,8 +18,6 @@
 package challenge.leetcode.easy.removeDuplicatesFromSortedList;
 
 import java.util.ArrayList;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 
 /**
  * @author Administrator
@@ -58,18 +56,8 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class RemoveDuplicatesFromSortedList
 {
-	static final int[] EXAMPLE_1 = new int[]{1, 1, 2};
-	static final int[] EXAMPLE_2 = new int[]{1, 1, 2, 3, 3};
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-	}
-
 	public static ListNode deleteDuplicates(ListNode head)
 	{
 		if (head == null)
