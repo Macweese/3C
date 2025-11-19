@@ -24,10 +24,6 @@ import java.util.Arrays;
  * @author Administrator
  * @Created 28/09/2025, 07:40 Sun 28 September 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class LargestPerimeterTriangle
 {
