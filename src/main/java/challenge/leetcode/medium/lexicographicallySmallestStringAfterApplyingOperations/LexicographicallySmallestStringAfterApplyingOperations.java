@@ -22,22 +22,11 @@ package challenge.leetcode.medium.lexicographicallySmallestStringAfterApplyingOp
  * @author Administrator
  * @Created 19/10/2025, 18:20 Sun 19 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class LexicographicallySmallestStringAfterApplyingOperations
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static String findLexSmallestString(String s, int a, int b)
 	{
-
-
 		return "";
 	}
 }
