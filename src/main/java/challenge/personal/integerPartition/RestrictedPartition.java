@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package challenge.leetcode.hard.integerPartition;
+package challenge.personal.integerPartition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -201,7 +201,6 @@ public class RestrictedPartition
 		}
 	}
 
-
 	public static void partition(int n)
 	{
 		partition(n, n, "");
@@ -211,7 +210,6 @@ public class RestrictedPartition
 	{
 		if (n == 0)
 		{
-			System.out.println(prefix);
 			return;
 		}
 
@@ -297,5 +295,4 @@ public class RestrictedPartition
 		}
 		return dp[amount] = minCoins;
 	}
-
 }
