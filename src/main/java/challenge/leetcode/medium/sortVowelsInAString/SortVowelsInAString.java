@@ -80,26 +80,6 @@ import java.util.PriorityQueue;
  **/
 public class SortVowelsInAString
 {
-	public static void main(String[] args)
-	{
-		final String CASE_1 = "LEeTCODe";
-		final String CASE_2 = "lYmpH";
-		final String CASE_3 = "aAaAZZZuUuUZZZoOoO";
-
-		final String EXPECTED_1 = "LEOTCeDe";
-		final String EXPECTED_2 = "lYmpH";
-		final String EXPECTED_3 = "AAOOZZZUUaaZZZoouu";
-
-		final String ACTUAL_1 = sortVowels(CASE_1);
-		final String ACTUAL_2 = sortVowels(CASE_2);
-		final String ACTUAL_3 = sortVowels(CASE_3);
-
-		System.out.printf("%-21s%-21s%-21s%5s%n", "Input", "Expected", "Actual", "Result");
-		System.out.printf("%-21s%-21s%-21s%6s%n", CASE_1, EXPECTED_1, ACTUAL_1, EXPECTED_1.equals(ACTUAL_1) ? "OK" : "FAIL");
-		System.out.printf("%-21s%-21s%-21s%6s%n", CASE_2, EXPECTED_2, ACTUAL_2, EXPECTED_2.equals(ACTUAL_2) ? "OK" : "FAIL");
-		System.out.printf("%-21s%-21s%-21s%6s%n", CASE_3, EXPECTED_3, ACTUAL_3, EXPECTED_3.equals(ACTUAL_3) ? "OK" : "FAIL");
-	}
-
 	public static String sortVowels(String s)
 	{
 		final char[] vowels = new char[]{'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'};
@@ -133,11 +113,10 @@ public class SortVowelsInAString
 		return sb.toString();
 	}
 
-
 	public static String sortVowelsAlternativeSolution(String s)
 	{
 		int[] vowels = new int[128];
-		;
+
 		for (int i = 0; i < s.length(); ++i)
 		{
 			char c = s.charAt(i);
