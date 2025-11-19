@@ -19,10 +19,6 @@ package challenge.leetcode.easy.mergeTwoSortedLists;
 
 import data.ListNode;
 import java.util.ArrayList;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import utils.DataUtils;
 
 /**
@@ -68,28 +64,8 @@ import utils.DataUtils;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class MergeTwoSortedLists
 {
-	private static final Logger log = LoggerFactory.getLogger(MergeTwoSortedLists.class);
-
-	static
-	{
-		BasicConfigurator.configure();
-	}
-
-	public static void main(String[] args)
-	{
-		ListNode a = DataUtils.createListNode(new int[]{1, 2, 4});
-		ListNode b = DataUtils.createListNode(new int[]{1, 3, 4});
-		ListNode c = DataUtils.createListNode(new int[]{});
-
-		log.info("\n     List 1 : {}\n     List 2 : {}\nMerged list : {}\n", a, b, mergeTwoLists(a, b));
-		log.info("\n     List 1 : {}\n     List 2 : {}\nMerged list : {}\n", a, b, basicMerge(a, b));
-		log.info("\n     List 1 : {}\n     List 2 : {}\nMerged list : {}\n", c, a, mergeTwoLists(c, a));
-		log.info("\n     List 1 : {}\n     List 2 : {}\nMerged list : {}\n", c, a, merge(c, a));
-	}
-
 	public static ListNode merge(ListNode a, ListNode b)
 	{
 		return mergeTwoLists(a, b);
