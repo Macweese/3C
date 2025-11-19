@@ -17,9 +17,6 @@
  */
 package challenge.leetcode.hard.kThSmallestLexicographicalOrder;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 09/06/2025,
@@ -56,20 +53,9 @@ import org.apache.log4j.BasicConfigurator;
  * </ul>
  * </p>
  **/
-@Slf4j
+// TODO: create tests
 public class KthSmallestLexicographicalOrder
 {
-	// TODO: create tests
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-//		System.out.println(findKthNumber(13, 2));
-//		System.out.println(findKthNumber(2265, 1718));
-//		System.out.println(findKthNumber(681_692_778, 351_251_360)); // expected : 416_126_219
-//		System.out.println(findKthNumber(1860, 70)); // expected : 161
-	}
-
 	public static int findKthNumber(int n, int index)
 	{
 		int val = 1;
