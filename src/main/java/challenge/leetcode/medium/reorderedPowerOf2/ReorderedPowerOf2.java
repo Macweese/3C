@@ -69,11 +69,6 @@ import java.util.Map;
  **/
 public class ReorderedPowerOf2
 {
-	public static void main(String[] args)
-	{
-
-	}
-
 	public static boolean reorderedPowerOf2(int n)
 	{
 		Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
