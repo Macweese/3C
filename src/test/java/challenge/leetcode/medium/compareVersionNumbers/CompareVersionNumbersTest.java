@@ -270,19 +270,9 @@ class RandomVersionGenerator
 	static void main(String[] args)
 	{
 		RandomVersionGenerator generator = new RandomVersionGenerator();
-
-		// Generate and print 10 example version strings.
-//		System.out.println("Generating 10 random version strings:");
 		for (int i = 0; i < 100; i++)
 		{
-			String version = generator.generateRandomVersionString();
-			int dotCount = version.length() - version.replace(".", "").length();
-
-//			System.out.println("------------------------------------");
-			System.out.println("Version String: " + version);
-//			System.out.println("Length: " + version.length());
-//			System.out.println("Dot Count: " + dotCount);
-//			System.out.println("Dot Count <= (Length / 2)?: " + (dotCount <= (version.length() / 2)));
+			System.out.println("Version String: " + generator.generateRandomVersionString());
 		}
 	}
 }
