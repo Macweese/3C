@@ -22,22 +22,11 @@ package challenge.leetcode.medium.powerGridMaintenance;
  * @author Administrator
  * @Created 06/11/2025, 01:03 Thu 06 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class PowerGridMaintenance
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	public static int[] processQuery(int c, int[][] connections, int[][] queries)
 	{
-
-
 		return null;
 	}
 }
