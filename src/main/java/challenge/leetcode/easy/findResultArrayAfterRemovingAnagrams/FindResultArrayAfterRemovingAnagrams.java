@@ -26,31 +26,9 @@ import java.util.List;
  * @author Administrator
  * @Created 13/10/2025, 23:27 Mon 13 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class FindResultArrayAfterRemovingAnagrams
 {
-	static void main(String[] args)
-	{
-
-		String[] TEST_1 = {"abba","baba","bbaa","cd","cd"};
-		String[] TEST_2 = {"a","b","c","d","e"};
-		String[] TEST_3 = {"a", "b", "a"};
-		String[] TEST_4 = {"z","z","z","gsw","wsg","gsw","krptu"};
-		String[] TEST_5 = {"ab","bc","cb","ab","bc"};
-		String[] TEST_6 = {"abbb","aaab"};
-		String[] TEST_7 = {"az","azz"};
-		System.out.println(removeAnagrams(TEST_1));
-		System.out.println(removeAnagrams(TEST_2));
-		System.out.println(removeAnagrams(TEST_3));
-		System.out.println(removeAnagrams(TEST_4));
-		System.out.println(removeAnagrams(TEST_5));
-		System.out.println(removeAnagrams(TEST_6));
-		System.out.println(removeAnagrams(TEST_7));
-	}
-
 	public static List<String> removeAnagrams(String[] words)
 	{
 		List<String> result = new ArrayList<>();
