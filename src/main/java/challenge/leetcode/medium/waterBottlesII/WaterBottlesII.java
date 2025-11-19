@@ -22,25 +22,15 @@ package challenge.leetcode.medium.waterBottlesII;
  * @author Administrator
  * @Created 02/10/2025, 06:46 Thu 02 October 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
  **/
 public class WaterBottlesII
 {
-	static void main(String[] args)
-	{
-		System.out.println(maxBottlesDrunk(13, 6));
-		System.out.println(maxBottlesDrunk(10, 3));
-	}
-
 	public static int maxBottlesDrunk(int numBottles, int numExchange)
 	{
 		int full = 0;
 		int empty = numBottles;
 		int rate = numExchange;
 		int consumed = numBottles;
-
 
 		while ((empty + full) >= rate)
 		{
@@ -57,8 +47,6 @@ public class WaterBottlesII
 		}
 
 		return consumed + full;
-
-//		return consumed(numBottles, numExchange, 0);
 	}
 
 	public static int consumed(int bottles, int exchangeRate, int consumed)
