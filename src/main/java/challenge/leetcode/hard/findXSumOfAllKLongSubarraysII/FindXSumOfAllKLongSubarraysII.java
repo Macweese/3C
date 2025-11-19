@@ -30,18 +30,9 @@ import java.util.Set;
  * @author Administrator
  * @Created 05/11/2025, 01:01 Wed 05 November 2025
  * @Project 3C: Competitive Coding Challenges
- * @Problem
- * @Name
- * @Difficulty
- * @Tags
  **/
 public class FindXSumOfAllKLongSubarraysII
 {
-	static void main(String[] args)
-	{
-
-	}
-
 	private static final Comparator<Map.Entry<Integer, Integer>> FREQ_THEN_KEY_DESC =
 		Map.Entry.<Integer, Integer>comparingByValue()
 			.reversed()
