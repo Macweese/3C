@@ -17,10 +17,6 @@
  */
 package challenge.leetcode.easy.nthTribonacciNumber;
 
-import java.util.Arrays;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 06/06/2025,
@@ -82,16 +78,8 @@ import org.apache.log4j.BasicConfigurator;
  * 		</li>
  * </ul>
  **/
-@Slf4j
 public class NthTribonacciNumber
 {
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		System.out.println(climbStairs(2));
-	}
-
 	public static int climbStairs(int n)
 	{
 		if (n < 2)
@@ -101,7 +89,6 @@ public class NthTribonacciNumber
 
 		if (n > 37)
 		{
-//			log.info("Value for n: T_{}, exceeds INTEGER.MAX_VALUE - Problem constraints n <= 37", n);
 			return -1;
 		}
 
@@ -114,7 +101,6 @@ public class NthTribonacciNumber
 		{
 			ints[i] = ints[i - 1] + ints[i - 2] + ints[i - 3];
 		}
-		System.out.println(Arrays.toString(ints));
 
 		return ints[n - 1];
 	}
