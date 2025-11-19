@@ -19,7 +19,6 @@ package challenge.leetcode.easy.validParentheses;
 
 import java.util.Map;
 import java.util.Stack;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Administrator
@@ -73,7 +72,6 @@ import lombok.extern.slf4j.Slf4j;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class ValidParentheses
 {
 	static final Map<Character, Character> CODEPOINT = Map.ofEntries(
