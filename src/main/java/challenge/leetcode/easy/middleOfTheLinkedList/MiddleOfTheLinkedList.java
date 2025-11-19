@@ -18,9 +18,6 @@
 package challenge.leetcode.easy.middleOfTheLinkedList;
 
 import data.ListNode;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-import static utils.DataUtils.createListNode;
 
 /**
  * @author Administrator
@@ -59,20 +56,8 @@ import static utils.DataUtils.createListNode;
  * </ul>
  * </p>
  **/
-@Slf4j
 public class MiddleOfTheLinkedList
 {
-	private static final ListNode LISTNODE_1 = createListNode(new int[]{1, 2, 3, 4, 5});
-	private static final ListNode LISTNODE_2 = createListNode(new int[]{1, 2, 3, 4, 5, 6});
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-//		log.info("Middle node: {}", middleNode(LISTNODE_1).val);
-//		log.info("Middle node: {}", middleNode(LISTNODE_2).val);
-	}
-
 	public static ListNode middleNode(ListNode head)
 	{
 		ListNode a = head;
