@@ -17,12 +17,6 @@
  */
 package challenge.leetcode.easy.sqrt;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
-
 /**
  * @author Administrator
  * @Created 21/04/2019,
@@ -56,7 +50,6 @@ import org.apache.log4j.BasicConfigurator;
  * <br>{@code 0 <= x <= 2}<sup>31</sup>{@code - 1}
  * </p>
  **/
-@Slf4j
 public class Sqrt
 {
 	public static int sqrt(int x)
@@ -96,7 +89,6 @@ public class Sqrt
 			if (Integer.numberOfLeadingZeros(c) == 0 || c > x)
 			{
 				upper = middle;
-//				log.debug("Leading zeros: {}, c < x: {}", Integer.numberOfLeadingZeros(c), (c < x));
 			}
 			else if (c == x)
 			{
@@ -104,12 +96,10 @@ public class Sqrt
 			}
 			else if (x / middle > middle)
 			{
-//				log.debug("Too high, search lower bound");
 				upper = middle - 1;
 			}
 			else
 			{
-//				log.debug("Too low, search upper bound");
 				upper = (lower + upper + 1) / 2;
 				lower = middle;
 			}
@@ -119,8 +109,7 @@ public class Sqrt
 
 	private static String intToBinary(int i)
 	{
-		String bin = "0".repeat(Integer.numberOfLeadingZeros(i)) +
-			Integer.toBinaryString(i);
+		String bin = "0".repeat(Integer.numberOfLeadingZeros(i)) + Integer.toBinaryString(i);
 		StringBuilder s = new StringBuilder();
 		for (int j = 0; j < bin.length(); j++)
 		{
@@ -131,54 +120,6 @@ public class Sqrt
 			}
 		}
 		return s.toString();
-	}
-
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		int a = 1_000_000_000;
-		int b = -1 * 1_000_000_000;
-
-		Map<Integer, Integer> map = new HashMap<>();
-
-		int[] ints = {0, -1, -2, 3, 1000, b, Integer.MIN_VALUE + 1, Integer.MAX_VALUE};
-		int target = 0;
-
-		for (int i = 0; i < ints.length; i++)
-		{
-			map.put(ints[i], i);
-		}
-
-		for (int i = 0; i < ints.length; i++)
-		{
-			int j = target - ints[i];
-//			log.info("j : {}", j);
-			if (map.containsKey(j) && map.get(j) != i)
-			{
-//				log.debug("found match: index={}, index={}", i, map.get(j));
-//				log.debug("[{}, {}]", ints[i], ints[map.get(j)]);
-				return;
-			}
-		}
-
-		System.out.println("No solution found.");
-	}
-
-	public static int readInput()
-	{
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a positive integer to find the square root for:");
-		if (sc.hasNextInt())
-		{
-			return sc.nextInt();
-		}
-		else
-		{
-			System.out.println("Please try again, enter a number greater than zero.");
-			readInput();
-		}
-		return -1;
 	}
 
 	public static int findRoot(int i)
