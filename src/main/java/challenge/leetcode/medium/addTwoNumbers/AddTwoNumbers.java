@@ -73,11 +73,6 @@ public class AddTwoNumbers
 	public static void main(String[] args)
 	{
 		BasicConfigurator.configure();
-
-		//ListNode a = new ListNode();
-		//ListNode b = new ListNode();
-		//ListNode c = add(a, b);
-		//ListNode d = basicSolution(a, b);
 	}
 
 	public static ListNode add(ListNode a, ListNode b)
