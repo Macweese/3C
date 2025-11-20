@@ -22,6 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import utils.DataUtils;
+import utils.IntArraySpec;
+import utils.SortingMode;
 
 @DisplayName("912. Sort an Array")
 class SortAnArrayTest
@@ -41,7 +44,11 @@ class SortAnArrayTest
 	)
 	void testMergeSorting()
 	{
-		final int[] ints = SortAnArray.generateRandomArray(1000, -1000, 1000);
+		final int[] ints = DataUtils.generateArray(IntArraySpec.builder(1000)
+			.randomSizeUpTo()
+			.bounds(-1000, 1000)
+			.sorting(SortingMode.SHUFFLED)
+			.build());
 		testMergeSort(ints);
 	}
 
@@ -49,7 +56,11 @@ class SortAnArrayTest
 	{
 		for (int i = 0; i < times; i++)
 		{
-			final int[] ints = SortAnArray.generateRandomArray(1000, -1000, 1000);
+			final int[] ints = DataUtils.generateArray(IntArraySpec.builder(1000)
+				.randomSizeUpTo()
+				.bounds(-1000, 1000)
+				.sorting(SortingMode.SHUFFLED)
+				.build());
 			testMergeSort(ints);
 		}
 	}
@@ -68,7 +79,11 @@ class SortAnArrayTest
 	)
 	void testSelectionSorting()
 	{
-		final int[] ints = SortAnArray.generateRandomArray(1000, -1000, 1000);
+		final int[] ints = DataUtils.generateArray(IntArraySpec.builder(1000)
+			.randomSizeUpTo()
+			.bounds(-1000, 1000)
+			.sorting(SortingMode.SHUFFLED)
+			.build());
 		testSelectionSort(ints);
 	}
 
@@ -76,7 +91,11 @@ class SortAnArrayTest
 	{
 		for (int i = 0; i < times; i++)
 		{
-			final int[] ints = SortAnArray.generateRandomArray(1000, -1000, 1000);
+			final int[] ints = DataUtils.generateArray(IntArraySpec.builder(1000)
+				.randomSizeUpTo()
+				.bounds(-1000, 1000)
+				.sorting(SortingMode.SHUFFLED)
+				.build());
 			testSelectionSort(ints);
 		}
 	}
