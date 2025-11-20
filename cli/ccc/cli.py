@@ -19,8 +19,23 @@
 # 	lc (LeetCode)
 #
 
+from __future__ import annotations
+
 import argparse
 import sys
+from importlib.metadata import version as _pkg_version, PackageNotFoundError
+
+
+def _get_pkg_version() -> str:
+	"""
+	Return the installed version of the 'ccc' package, or 'unknown'
+	if metadata is not available (e.g. running from source only).
+	"""
+	try:
+		return _pkg_version("ccc")
+	except PackageNotFoundError:
+		return "unknown"
+
 
 def main() -> int:
 	# Common/global flags shared by all providers
@@ -31,22 +46,32 @@ def main() -> int:
 	common.add_argument("--color-diag", action="store_true", help="Print color diagnostics at start (provider-specific).")
 
 	parser = argparse.ArgumentParser(prog="3c", description="3C — Competitive Coding Challenge CLI")
-	subparsers = parser.add_subparsers(dest="cmd", required=True, metavar="{lc}")
+	parser.add_argument("--version", action="store_true", help="Print version and exit.")
+
+	subparsers = parser.add_subparsers(dest="cmd", required=False, metavar="{lc,doctor}")
 
 	# Register providers
 	# LeetCode (lc)
 	from . import leetcode_readme_gen as lc_mod
 	lc_mod.register_subparser(subparsers, parents=[common])
 
+	# Doctor (doctor)
+	from . import doctor as doctor_mod
+	doctor_mod.register_subparser(subparsers, parents=[common])
+
 	# Parse and dispatch
 	args = parser.parse_args()
+
+	if getattr(args, "version", False):
+		print(f"3c (ccc) version {_get_pkg_version()}")
+		return 0
 
 	# Each provider sets a callable at args.func
 	if hasattr(args, "func") and callable(args.func):
 		rc = args.func(args)
 		return int(rc) if rc is not None else 0
 
-	# Fallback (shouldn't happen with required=True)
+	# No subcommand and no --version: show help
 	parser.print_help()
 	return 2
 

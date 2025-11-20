@@ -4,6 +4,7 @@ pyproject.toml
 cli/ccc/__init__.py
 cli/ccc/cli.py
 cli/ccc/config.py
+cli/ccc/doctor.py
 cli/ccc/donut.py
 cli/ccc/leetcode_readme_gen.py
 cli/ccc/output_layout.py
@@ -14,6 +15,3 @@ cli/ccc.egg-info/entry_points.txt
 cli/ccc.egg-info/requires.txt
 cli/ccc.egg-info/top_level.txt
 cli/ccc/templates/leetcode_readme.md.j2
-cli/ccc/templates/v1_leetcode_readme.md.j2
-cli/ccc/templates/v2_leetcode_readme.md.j2
-cli/ccc/templates/v3_leetcode_readme.md.j2
