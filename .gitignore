@@ -30,9 +30,13 @@
 /.idea/vcs.xml
 /.idea/workspace.xml
 /cli/ccc/.env.example
+/cli/**/*.pyc
 /cli/ccc/ver/
 /cli/ccc/leetcode_graphql_query.graphlq
 /cli/ccc/templates/v**
+/cli/ccc/cli/templates/v**
+/cli/ccc.egg-info/
+/cli/ccc/__pycache__/
 /.venv
 /target/classes
 target/classes/logback.xml

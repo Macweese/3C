@@ -13,12 +13,8 @@
 #
 #      You should have received a copy of the GNU Affero General Public License
 #      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+CLI subpackage for 3C.
 
-__all__ = ["__version__"]
-
-try:
-	from importlib.metadata import version as _pkg_version
-
-	__version__ = _pkg_version("ccc")
-except Exception:
-	__version__ = "unknown"
+Entry point for the `3c` console script is :func:`ccc.cli.app.main`.
+"""

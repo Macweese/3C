@@ -30,6 +30,7 @@ from typing import Optional
 DEFAULT_LAYOUT = (os.environ.get("3C_LAYOUT") or "source-difficulty-id").strip()
 DEFAULT_NAMEFMT = (os.environ.get("3C_NAMEFMT") or "{id}").strip()
 
+
 def safe_segment(s: str) -> str:
 	"""
 	Sanitize a filesystem segment: keep alnum, dot, underscore, dash; collapse repeats; trim.
@@ -38,6 +39,7 @@ def safe_segment(s: str) -> str:
 	s = re.sub(r"[^a-zA-Z0-9._\-]+", "-", s)
 	s = re.sub(r"-{2,}", "-", s).strip("-")
 	return s or "x"
+
 
 def build_dir_name(namefmt: str, source: str, difficulty: Optional[str], pid: str, slug: Optional[str]) -> str:
 	"""
@@ -57,6 +59,7 @@ def build_dir_name(namefmt: str, source: str, difficulty: Optional[str], pid: st
 		return safe_segment(namefmt.format(**vals))
 	except Exception:
 		return safe_segment(pid or slug or "x")
+
 
 def compute_output_dir(
 		out_root: Path,

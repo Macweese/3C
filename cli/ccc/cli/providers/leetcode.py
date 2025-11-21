@@ -1,4 +1,21 @@
-#!/usr/bin/env python3
+# 
+#      Copyright (C) 2025 Macweese <https://www.github.com/Macweese>
+# 
+#      This program is free software: you can redistribute it and/or modify
+#      it under the terms of the GNU Affero General Public License as
+#      published by the Free Software Foundation, either version 3 of the
+#      License, or (at your option) any later version.
+# 
+#      This program is distributed in the hope that it will be useful,
+#      but WITHOUT ANY WARRANTY; without even the implied warranty of
+#      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#      GNU Affero General Public License for more details.
+# 
+#      You should have received a copy of the GNU Affero General Public License
+#      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+from __future__ import annotations
+
 import argparse
 import datetime as dt
 import json
@@ -13,222 +30,50 @@ from pathlib import Path
 from typing import Dict, Optional, Any, List, Tuple, Iterable, Set
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from .config import CACHE_DIR, DEFAULT_OUT_DIR
-from .output_layout import compute_output_dir, DEFAULT_LAYOUT, DEFAULT_NAMEFMT
-
 import requests
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from bs4 import BeautifulSoup, Tag, NavigableString
 
-# ----------------------------- Rich console (optional) ----------------------
+from ccc.config import CACHE_DIR, DEFAULT_OUT_DIR
+from ccc.output_layout import compute_output_dir, DEFAULT_LAYOUT, DEFAULT_NAMEFMT
 
-_RICH_AVAILABLE = True
+from ccc.cli.core.provider import Provider, ProviderContext
+from ccc.cli.core.logging import (
+	console,
+	err_console,
+	print_debug,
+	print_error,
+	print_skip,
+	print_success,
+)
+from ccc.cli.core.utils import get_thread_session, style_path
+from ccc.cli.core.filecheck import decide as decide_file, FileDecision, add_overwrite_arguments
+
+# ----------------------------- Rich traceback (optional) ----------------------
+
 try:
-	from rich.console import Console
-	from rich.text import Text
 	from rich.traceback import install as rich_traceback_install
+
+	rich_traceback_install(show_locals=False, extra_lines=1, width=None)
 except Exception:
-	_RICH_AVAILABLE = False
-	Console = None  # type: ignore
-	Text = None  # type: ignore
-
-	def rich_traceback_install(*args, **kwargs):  # type: ignore
-		return None
-
-console: Optional["Console"] = None
-err_console: Optional["Console"] = None
-
-# Thread-local for HTTP sessions (reduces handshake overhead per thread)
-_THREAD_LOCAL = threading.local()
-
-def _get_thread_session(cookies: Dict[str, str]) -> requests.Session:
-	s = getattr(_THREAD_LOCAL, "session", None)
-	if s is None:
-		s = _ensure_session(cookies)
-		_THREAD_LOCAL.session = s
-	return s
-
-
-def init_consoles(no_color: bool = False, force_color: bool = False) -> None:
-	"""
-	Initialize rich consoles for stdout and stderr when Rich is available.
-	If Rich is missing, printing will gracefully fall back to plain I/O.
-	force_color forces terminal coloring even if detection says “not a TTY”.
-	"""
-	global console, err_console
-	if not _RICH_AVAILABLE:
-		console = None
-		err_console = None
-		return
-
-	force = bool(force_color or os.environ.get("FORCE_COLOR"))
-	no_col = bool(no_color or os.environ.get("NO_COLOR"))
-
-	console = Console(no_color=no_col, force_terminal=force, highlight=False, soft_wrap=False, color_system="windows")
-	err_console = Console(stderr=True, no_color=no_col, force_terminal=force, highlight=False, soft_wrap=False)
-
-	rich_traceback_install(show_locals=False, extra_lines=1, console=err_console)
-
-
-def _have_console() -> bool:
-	return _RICH_AVAILABLE and console is not None and err_console is not None
-
-
-def color_diag() -> None:
-	"""
-	Print diagnostic information about color configuration to help debug.
-	"""
-
-	def get(val, default=""):
-		return val if val is not None else default
-
-	no_color_env = os.environ.get("NO_COLOR")
-	force_color_env = os.environ.get("FORCE_COLOR")
-	term = os.environ.get("TERM")
-	psreadline = os.environ.get("PSModulePath")
-	stdout_tty = getattr(sys.stdout, "isatty", lambda: False)()
-	stderr_tty = getattr(sys.stderr, "isatty", lambda: False)()
-
-	if not _have_console():
-		print("[color-diag] rich: not available; using plain output", file=sys.stderr)
-		print(f"[color-diag] NO_COLOR={get(no_color_env, '<unset>')} FORCE_COLOR={get(force_color_env, '<unset>')}",
-			  file=sys.stderr)
-		print(f"[color-diag] TERM={get(term, '<unset>')} stdout.isatty={stdout_tty} stderr.isatty={stderr_tty}",
-			  file=sys.stderr)
-		return
-
-	err_console.print(Text("[color-diag] rich: available", style="green"))
-	err_console.print(
-		Text.assemble(Text("[color-diag] NO_COLOR=", style="yellow"), Text(str(get(no_color_env, "<unset>")))))
-	err_console.print(
-		Text.assemble(Text("[color-diag] FORCE_COLOR=", style="yellow"), Text(str(get(force_color_env, "<unset>")))))
-	err_console.print(Text.assemble(Text("[color-diag] TERM=", style="yellow"), Text(str(get(term, "<unset>")))))
-	err_console.print(Text.assemble(Text("[color-diag] stdout.isatty=", style="yellow"), Text(str(stdout_tty))))
-	err_console.print(Text.assemble(Text("[color-diag] stderr.isatty=", style="yellow"), Text(str(stderr_tty))))
-	try:
-		err_console.print(Text.assemble(Text("[color-diag] console.is_terminal=", style="yellow"),
-										Text(str(console.is_terminal))))  # type: ignore
-		err_console.print(Text.assemble(Text("[color-diag] console.color_system=", style="yellow"),
-										Text(str(console.color_system))))  # type: ignore
-	except Exception:
-		pass
-
-
-# ----------------------------- Smart help formatting ------------------------
-
-class SmartFormatter(argparse.HelpFormatter):
-	def _split_lines(self, text, width):
-		if text.startswith('R|'):
-			return text[2:].splitlines()
-		return argparse.HelpFormatter._split_lines(self, text, width)
+	pass
 
 
 # ----------------------------- Styled printing ------------------------------
 
-def _is_subpath(child: Path, parent: Path) -> bool:
-	try:
-		child.resolve().relative_to(parent.resolve())
-		return True
-	except Exception:
-		return False
 
-
-def _git_repo_root(start_in: Path) -> Optional[Path]:
-	try:
-		cp = subprocess.run(
-			["git", "rev-parse", "--show-toplevel"],
-			cwd=str(start_in),
-			capture_output=True,
-			text=True,
-			timeout=2,
-		)
-		if cp.returncode == 0:
-			return Path(cp.stdout.strip()).resolve()
-	except Exception:
-		pass
-	return None
-
-
-def _detect_anchor_base(out_file: Path, out_root: Path) -> Path:
-	env_project = os.environ.get("3C_PROJECT_ROOT", "").strip()
-	if env_project:
-		project_root = Path(env_project).resolve()
-		if _is_subpath(out_file, project_root):
-			return project_root.parent.resolve()
-	repo_root = _git_repo_root(out_file.parent)
-	if repo_root and _is_subpath(out_file, repo_root):
-		return repo_root.parent.resolve()
-	try:
-		if _is_subpath(out_file, out_root):
-			return out_root.resolve()
-	except Exception:
-		pass
-	return out_file.parent.resolve()
-
-
-def style_anchored_path(out_file: Path, out_root: Path):
-	f = out_file.resolve()
-	base = _detect_anchor_base(f, out_root)
-	base_str = str(base)
-	dir_str = str(f.parent)
-	if not base_str.endswith(os.sep):
-		base_str += os.sep
-	if dir_str.startswith(base_str):
-		tail_str = dir_str[len(base_str):]
-	else:
-		base_str = dir_str + (os.sep if not dir_str.endswith(os.sep) else "")
-		tail_str = ""
-	if not _have_console():
-		return f"{base_str}{tail_str}{os.sep if tail_str and not tail_str.endswith(os.sep) else ''}{f.name}"
-	t = Text()
-	t.append(base_str, style="#808080")
-	if tail_str:
-		if not tail_str.endswith(os.sep):
-			tail_str += os.sep
-		t.append(tail_str, style="deep_sky_blue3")
-	t.append(f.name, style="#808080")
-	return t
-
-
-def print_debug(msg: str) -> None:
-	if not _have_console():
-		print(f"[DEBUG] {msg}", file=sys.stderr)
-		return
-	lbl = Text("[DEBUG] ", style="yellow")
-	err_console.print(Text.assemble(lbl, Text(msg)))  # type: ignore[arg-type]
-
-
-def print_error(msg: str) -> None:
-	if not _have_console():
-		print(msg, file=sys.stderr)
-		return
-	err_console.print(Text(msg, style="red"))  # type: ignore[arg-type]
-
-
-def print_skip(msg: str) -> None:
-	if not _have_console():
-		print(f"[SKIP] {msg}", file=sys.stderr)
-		return
-	lbl = Text("[SKIP] ", style="yellow")
-	err_console.print(Text.assemble(lbl, Text(msg)))  # type: ignore[arg-type]
+def _have_console() -> bool:
+	return console is not None and err_console is not None
 
 
 def print_success_wrote(path: Path, problem_id: str, title: str, difficulty: str, out_root: Path) -> None:
-	if not _have_console():
-		print(f"Saved {path} — {problem_id}. {title} [{difficulty}]")
-		return
-	head = Text("Saved", style="green")
-	path_text = style_anchored_path(path, out_root)
-	details = Text(f" — {problem_id}. {title} [{difficulty}]", style="purple")
-	console.print(Text.assemble(head, Text(" "), path_text, details))  # type: ignore[arg-type]
+	msg = f"Saved {style_path(path, base=out_root)} — {problem_id}. {title} [{difficulty}]"
+	print_success(msg)
 
 
 def print_opened(path: Path, out_root: Path) -> None:
-	if not _have_console():
-		print(f"Opened {path}")
-		return
-	console.print(Text.assemble(Text("Opened", style="green"), Text(" "),
-								style_anchored_path(path, out_root)))  # type: ignore[arg-type]
+	msg = f"Opened {style_path(path, base=out_root)}"
+	print_success(msg)
 
 
 def print_summary(success: int, skipped: int, failed: int) -> None:
@@ -240,17 +85,12 @@ def print_summary(success: int, skipped: int, failed: int) -> None:
 			parts.append(f"{failed} failed")
 		print("Summary: " + ", ".join(parts))
 		return
-	parts: List["Text"] = [Text(f"{success} generated", style="green")]  # type: ignore[type-arg]
+	parts: List[str] = [f"[ok]{success} generated[/ok]"]
 	if skipped:
-		parts.append(Text(f"{skipped} skipped", style="yellow"))  # type: ignore[arg-type]
+		parts.append(f"[warn]{skipped} skipped[/warn]")
 	if failed:
-		parts.append(Text(f"{failed} failed", style="red"))  # type: ignore[arg-type]
-	txt = Text("Summary: ")
-	for i, part in enumerate(parts):
-		if i:
-			txt.append(", ")
-		txt.append(part)
-	console.print(txt)  # type: ignore[arg-type]
+		parts.append(f"[err]{failed} failed[/err]")
+	console.print("Summary: " + ", ".join(parts))  # type: ignore[arg-type]
 
 
 # ----------------------------- LeetCode config ------------------------------
@@ -291,7 +131,9 @@ query questionOfToday {
 
 _CONTEST_CACHE_LOCK = threading.Lock()
 
+
 # -------------------------------- Utilities --------------------------------
+
 
 def load_env_cookie() -> Dict[str, str]:
 	session_cookie = os.environ.get("LEETCODE_SESSION", "")
@@ -321,14 +163,12 @@ def _problem_url(slug: str) -> str:
 
 
 def _ensure_session(cookies: Dict[str, str]) -> requests.Session:
-	s = requests.Session()
+	s = get_thread_session(cookies)
 	s.headers.update({
 		"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) 3C/ccc (+https://github.com/Macweese/3C)",
 		"Accept": "application/json, text/plain, */*",
 		"Accept-Language": "en-US,en;q=0.9",
 	})
-	for k, v in (cookies or {}).items():
-		s.cookies.set(k, v, domain="leetcode.com")
 	return s
 
 
@@ -406,13 +246,13 @@ def query_graphql(slug: str, cookies: Dict[str, str], debug: bool = False) -> Di
 	}
 	"""
 	payload = {"operationName": "questionData", "variables": {"titleSlug": slug}, "query": query}
-	s = _get_thread_session(cookies)
+	s = _ensure_session(cookies)
 	data = _post_graphql_with_retries(s, slug, payload, debug=debug)
 	return data["data"]["question"]
 
 
 def fetch_potd_slug(cookies: Dict[str, str], debug: bool = False) -> Tuple[str, Dict[str, str]]:
-	s = _get_thread_session(cookies)
+	s = _ensure_session(cookies)
 	cs = _ensure_csrf(s, slug=None)
 	headers = headers_for_graphql(cs, referer=LEETCODE_BASE)
 	payload = {
@@ -954,6 +794,23 @@ def generate_one(slug: str, args, cookies: Dict[str, str],
 		print_debug(f"computed out_dir: {out_dir}")
 		print_debug(f"output file: {out_file}")
 
+	# Overwrite / dry-run logic
+	decision: FileDecision = decide_file(
+		out_file,
+		force=getattr(args, "force", False),
+		no_overwrite=getattr(args, "no_overwrite", False),
+		dry_run=getattr(args, "dry_run", False),
+	)
+	if not decision.should_write:
+		reason = decision.reason
+		if reason == "dry-run":
+			print_skip(f"[dry-run] Would write {style_path(out_file, base=out_root)} — {problem_id}. {title} [{difficulty}]")
+		elif reason == "exists-no-overwrite":
+			print_skip(f"Exists, skipping (no-overwrite): {style_path(out_file, base=out_root)}")
+		else:
+			print_skip(f"Skipped writing {style_path(out_file, base=out_root)} (reason={reason})")
+		return str(problem_id) if problem_id else None, title, [s for s in similar_slugs if s], None
+
 	template_path = Path(args.template)
 	env = Environment(
 		loader=FileSystemLoader(str(template_path.parent)),
@@ -969,14 +826,6 @@ def generate_one(slug: str, args, cookies: Dict[str, str],
 
 
 def run_with_args(args) -> int:
-	init_consoles(
-		no_color=getattr(args, "no_color", False) or bool(os.environ.get("NO_COLOR")),
-		force_color=getattr(args, "force_color", False) or bool(os.environ.get("FORCE_COLOR")),
-	)
-
-	if getattr(args, "color_diag", False):
-		color_diag()
-
 	success_count = skip_count = fail_count = 0
 	cookies = load_env_cookie()
 
@@ -1010,7 +859,6 @@ def run_with_args(args) -> int:
 	last_written: Optional[Path] = None
 	to_add_similar: Set[str] = set()
 
-	# Helper for processing one slug (used by threads)
 	def _process_slug(slug: str, potd_ctx: Optional[Dict[str, str]]):
 		try:
 			pid, title, similar_slugs, written = generate_one(slug, args, cookies, potd_date=potd_ctx)
@@ -1020,7 +868,6 @@ def run_with_args(args) -> int:
 
 	jobs = getattr(args, "jobs", 1)
 	if jobs > 1 and len(queue) > 1:
-		# Parallel execution
 		with ThreadPoolExecutor(max_workers=jobs) as pool:
 			futures = [pool.submit(_process_slug, slug, potd_date) for slug in queue]
 			for fut in as_completed(futures):
@@ -1040,7 +887,6 @@ def run_with_args(args) -> int:
 							seen.add(s)
 							to_add_similar.add(s)
 	else:
-		# Sequential execution
 		while queue:
 			slug = queue.pop(0)
 			slug_result = _process_slug(slug, potd_date)
@@ -1060,7 +906,6 @@ def run_with_args(args) -> int:
 						seen.add(s)
 						to_add_similar.add(s)
 
-	# Process similar problems if requested
 	if getattr(args, "also_similar", False) and to_add_similar:
 		sims = list(to_add_similar)
 		if jobs > 1 and len(sims) > 1:
@@ -1098,123 +943,71 @@ def run_with_args(args) -> int:
 	return 0
 
 
-# ------------------------- Subcommand registration --------------------------
+class LeetCodeProvider(Provider):
+	name = "lc"
 
-def register_subparser(subparsers, parents: Optional[List[argparse.ArgumentParser]] = None) -> argparse.ArgumentParser:
-	"""
-	Register the 'lc' subcommand on the 3c CLI.
-	Parents may include a common parser with flags like --debug / --no-color / --force-color / --color-diag.
-	"""
-	p = subparsers.add_parser(
-		"lc",
-		help="LeetCode README generator",
-		description="Generate LeetCode README.md files.",
-		formatter_class=SmartFormatter,
-		parents=parents or [],
-	)
+	@classmethod
+	def register(cls, subparsers, parents=None):
+		if parents is None:
+			parents = []
 
-	p.add_argument(
-		"problems",
-		nargs="*",
-		help="One or more problems (URL, slug, number, or numeric range like 40-50)",
-	)
-	p.add_argument(
-		"--potd",
-		action="store_true",
-		help="Generate README for today's LeetCode Problem of the Day",
-	)
-	p.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
-				   help="R|Base output directory\nDefault: current directory or $3C_OUT_DIR if set")
-	p.add_argument("--mode", choices=["flat", "by-difficulty"], default="by-difficulty",
-				   help="R|Legacy layout\nflat: write under source without difficulty\nby-difficulty: include difficulty tier")
-	p.add_argument("--layout",
-				   choices=["source-difficulty-id", "difficulty-source-id", "source-id", "flat"],
-				   default=DEFAULT_LAYOUT,
-				   help="R|Folder layout\nDefault: source-difficulty-id or $3C_LAYOUT")
-	p.add_argument("--namefmt",
-				   default=DEFAULT_NAMEFMT,
-				   help="R|Leaf directory name format\nDefault: {id}\nExamples: {id}-{slug}, {source}-{id}")
+		p = subparsers.add_parser(
+			"lc",
+			help="LeetCode README generator",
+			description="Generate LeetCode README.md files.",
+			parents=parents,
+		)
 
-	p.add_argument("--filename", default="README.md", help="R|Output filename\nDefault: README.md")
-	p.add_argument("--template", default=str(Path(__file__).parent / "templates" / "leetcode_readme.md.j2"),
-				   help="Path to Jinja2 template file")
-	p.add_argument("--fail-on-paid", action="store_true", help="Fail/skip if the question is paid-only")
-	p.add_argument("--no-normalize-examples", action="store_true", help="Do not reformat examples; embed raw content")
-	p.add_argument("--no-contest-tag", action="store_true", help="Disable contest tag lookup")
-	p.add_argument("--no-id-subdir", action="store_true",
-				   help="Do not create a per-problem-id directory; write directly into the difficulty or base directory")
-	p.add_argument("--also-similar", action="store_true",
-				   help="Also generate READMEs for all 'Similar' problems of each specified problem (one level)")
-	p.add_argument("--open", action="store_true", help="Open the last output file after generation (macOS only)")
+		p.add_argument(
+			"problems",
+			nargs="*",
+			help="One or more problems (URL, slug, number, or numeric range like 40-50)",
+		)
+		p.add_argument(
+			"--potd",
+			action="store_true",
+			help="Generate README for today's LeetCode Problem of the Day",
+		)
+		p.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
+					   help="Base output directory (default: current directory or $3C_OUT_DIR if set)")
+		p.add_argument("--mode", choices=["flat", "by-difficulty"], default="by-difficulty",
+					   help="Legacy layout: flat (by source) or by-difficulty (tiered).")
+		p.add_argument("--layout",
+					   choices=["source-difficulty-id", "difficulty-source-id", "source-id", "flat"],
+					   default=DEFAULT_LAYOUT,
+					   help="Folder layout (default: source-difficulty-id or $3C_LAYOUT)")
+		p.add_argument("--namefmt",
+					   default=DEFAULT_NAMEFMT,
+					   help="Leaf directory name format (default: {id}; examples: {id}-{slug}, {source}-{id})")
 
-	# Concurrency option
-	default_jobs = int(os.environ.get("3C_JOBS", "1"))
-	p.add_argument("-j", "--jobs", type=int, default=default_jobs,
-				   help=f"Parallel jobs (threads) for fetching/rendering (default: {default_jobs}; set 3C_JOBS). "
-						f"Use 1 for sequential. Keep modest (e.g. 4-8) to avoid rate limits.")
+		p.add_argument("--filename", default="README.md", help="Output filename (default: README.md)")
 
-	# Hook the runner
-	p.set_defaults(func=run_with_args)
-	return p
+		default_template = Path(__file__).resolve().parents[1] / "templates" / "leetcode_readme.md.j2"
+		p.add_argument("--template", default=str(default_template),
+					   help="Path to Jinja2 template file")
 
+		p.add_argument("--fail-on-paid", action="store_true", help="Fail/skip if the question is paid-only")
+		p.add_argument("--no-normalize-examples", action="store_true",
+					   help="Do not reformat examples; embed raw content")
+		p.add_argument("--no-contest-tag", action="store_true", help="Disable contest tag lookup")
+		p.add_argument("--no-id-subdir", action="store_true",
+					   help="Do not create a per-problem-id directory; write directly into the difficulty or base directory")
+		p.add_argument("--also-similar", action="store_true",
+					   help="Also generate READMEs for all 'Similar' problems of each specified problem (one level)")
+		p.add_argument("--open", action="store_true", help="Open the last output file after generation (macOS only)")
 
-# ------------------------- Standalone entrypoint ----------------------------
+		default_jobs = int(os.environ.get("3C_JOBS", "1"))
+		p.add_argument("-j", "--jobs", type=int, default=default_jobs,
+					   help=f"Parallel jobs (threads) for fetching/rendering (default: {default_jobs}; set 3C_JOBS). "
+							f"Use 1 for sequential. Keep modest (e.g. 4-8) to avoid rate limits.")
 
-def build_standalone_parser() -> argparse.ArgumentParser:
-	p = argparse.ArgumentParser(prog="leetcode_readme_gen.py",
-								description="Fetch & generate README.md files for LeetCode challenges",
-								formatter_class=SmartFormatter)
-	p.add_argument(
-		"problems",
-		nargs="*",
-		help="One or more problems (URL, slug, number, or numeric range like 40-50)",
-	)
-	p.add_argument(
-		"--potd",
-		action="store_true",
-		help="Generate README for today's LeetCode Problem of the Day",
-	)
-	p.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
-				   help="R|Base output directory\nDefault: current directory or $3C_OUT_DIR if set")
-	p.add_argument("--mode", choices=["flat", "by-difficulty"], default="by-difficulty",
-				   help="R|Legacy layout\nflat: write under source without difficulty\nby-difficulty: include difficulty tier")
-	p.add_argument("--layout",
-				   choices=["source-difficulty-id", "difficulty-source-id", "source-id", "flat"],
-				   default=DEFAULT_LAYOUT,
-				   help="R|The folder layout\nDefault: source-difficulty-id or $3C_LAYOUT")
-	p.add_argument("--namefmt",
-				   default=DEFAULT_NAMEFMT,
-				   help="R|Leaf directory name format\nDefault: {id}\nExamples: {id}-{slug}, {source}-{id}")
+		# Overwrite / dry-run flags
+		add_overwrite_arguments(p)
 
-	p.add_argument("--filename", default="README.md", help="R|Output filename\nDefault: README.md")
-	p.add_argument("--template", default=str(Path(__file__).parent / "templates" / "leetcode_readme.md.j2"),
-				   help="Path to Jinja2 template file")
-	p.add_argument("--fail-on-paid", action="store_true", help="Fail/skip if the question is paid-only")
-	p.add_argument("--no-normalize-examples", action="store_true", help="Do not reformat examples; embed raw content")
-	p.add_argument("--no-contest-tag", action="store_true", help="Disable contest tag lookup")
-	p.add_argument("--no-id-subdir", action="store_true",
-				   help="Do not create a per-problem-id directory; write directly into the difficulty or base directory")
-	p.add_argument("--also-similar", action="store_true",
-				   help="Also generate READMEs for all 'Similar' problems of each specified problem (one level)")
-	p.add_argument("--open", action="store_true", help="Open the last output file after generation (macOS only)")
-	p.add_argument("--debug", action="store_true", help="Print debug information about HTTP attempts and output paths")
-	p.add_argument("--no-color", action="store_true", help="Disable colored output (or set NO_COLOR=1)")
-	p.add_argument("--force-color", action="store_true",
-				   help="Force colored output even if terminal detection fails (or set FORCE_COLOR=1)")
-	p.add_argument("--color-diag", action="store_true", help="Print color diagnostics at start")
+		p.set_defaults(provider_name=cls.name, provider_cls=cls)
 
-	default_jobs = int(os.environ.get("3C_JOBS", "1"))
-	p.add_argument("-j", "--jobs", type=int, default=default_jobs,
-				   help=f"Parallel jobs (threads) for fetching/rendering (default: {default_jobs}; set 3C_JOBS). "
-						f"Use 1 for sequential. Keep modest (e.g. 4-8) to avoid rate limits.")
-	return p
-
-
-def main():
-	parser = build_standalone_parser()
-	args = parser.parse_args()
-	return run_with_args(args)
-
-
-if __name__ == "__main__":
-	sys.exit(main())
+	def run(self, args, ctx: ProviderContext) -> int:
+		# args.debug comes from global flags; ensure it's set
+		if not hasattr(args, "debug"):
+			setattr(args, "debug", ctx.debug)
+		return run_with_args(args)

@@ -96,6 +96,13 @@ Verify:
 3c lc --help
 ```
 
+### Requirements
+
+- Python version 3.9 or later.
+- Internet connection.
+
+<br>
+
 ---
 
 ## Usage (Source: LeetCode)
@@ -201,15 +208,12 @@ The CLI supports four layouts; all keep sources separate to prevent overwriting 
 - `source-difficulty-id` (default)
 	- `<out>/<source>/<difficulty>/<leaf>/README.md`
 	- Example: `./leetcode/medium/3508/README.md`
-
 - `difficulty-source-id`
 	- `<out>/<difficulty>/<source>/<leaf>/README.md`
 	- Example: `./medium/leetcode/3508/README.md`
-
 - `source-id`
 	- `<out>/<source>/<leaf>/README.md`
 	- Example: `./leetcode/3508/README.md`
-
 - `flat`
 	- `<out>/<leaf>/README.md`
 	- Example: `./3508/README.md`
@@ -218,12 +222,6 @@ Leaf directory name (`<leaf>`) defaults to `{id}`; customize with `--namefmt`:
 - `{id}-{slug}` → `998-maximum-binary-tree-ii`
 - `{source}-{id}` → `leetcode-998`
 
-Environment defaults:
-- `3C_LAYOUT=source-difficulty-id`
-- `3C_NAMEFMT={id}`
-
----
-
 ## Configuration
 
 Environment variables:
@@ -231,14 +229,13 @@ Environment variables:
 - `3C_OUT_DIR` — default base output directory if `--out-dir` is not provided.
 	- Windows (PowerShell):
 	  ```powershell
-	  [Environment]::SetEnvironmentVariable("3C_OUT_DIR", "E:\Library\Programs\Git\Github\3C", "User")
+	  [Environment]::SetEnvironmentVariable("3C_OUT_DIR", "<output-path>", "User")
 	  ```
 	- macOS/Linux:
 	  ```bash
 	  echo 'export 3C_OUT_DIR="$HOME/path/to/3C"' >> ~/.bashrc
 	  source ~/.bashrc
 	  ```
-
 - `3C_CACHE_DIR` — cache directory (default: `~/.3c/cache` or `%USERPROFILE%\.3c\cache`)
 - `3C_LAYOUT` — default layout (default: `source-difficulty-id`)
 - `3C_NAMEFMT` — default leaf directory format (default: `{id}`)
@@ -268,7 +265,7 @@ export LEETCODE_CSRF="<your-csrf-token>"
 
 The default Jinja2 template lives at:
 
-- `cli/ccc/templates/leetcode_readme.md.j2`
+- `cli/ccc/cli/templates/source_template.md.j2`
 
 Pass `--template /path/to/template.j2` to use your own.
 
@@ -301,6 +298,9 @@ Override with `3C_CACHE_DIR`.
 
 - Command not found:
 	- Run `pipx ensurepath` then restart your shell; reinstall via `pipx install .`
+- Run `doctor` for health check
+	- Use `--show-env` to inspect env vars
+	- Use `--check-network` to perform check api connection
 - 400/403/429/499 from GraphQL:
 	- Set `LEETCODE_SESSION` and `LEETCODE_CSRF` from your browser session
 	- Re-run with `--debug` to see HTTP statuses and retries

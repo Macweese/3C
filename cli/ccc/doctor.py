@@ -14,7 +14,7 @@
 #      You should have received a copy of the GNU Affero General Public License
 #      along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 #
 # 3C CLI — doctor command
 # Prints environment diagnostics to help troubleshoot setup, coloring, caches, and basic network checks.
@@ -47,11 +47,13 @@ except Exception:
 	Text = None     # type: ignore
 	Panel = None    # type: ignore
 
+
 def _get_pkg_version() -> str:
 	try:
 		return _pkg_version("ccc")
 	except PackageNotFoundError:
 		return "unknown"
+
 
 def _console(no_color: bool, force_color: bool) -> Console | None:
 	if not _RICH_AVAILABLE:
@@ -71,9 +73,11 @@ def _console(no_color: bool, force_color: bool) -> Console | None:
 		theme=theme,
 	)
 
+
 def _print_plain(lines: List[str]) -> None:
 	for ln in lines:
 		print(ln)
+
 
 def _writable_dir(p: Path) -> bool:
 	try:
@@ -84,12 +88,14 @@ def _writable_dir(p: Path) -> bool:
 	except Exception:
 		return False
 
+
 def _masked(s: Optional[str], keep_last: int = 4) -> str:
 	if not s:
 		return ""
 	if len(s) <= keep_last:
 		return "*" * len(s)
 	return "*" * (len(s) - keep_last) + s[-keep_last:]
+
 
 def run(args) -> int:
 	no_color = bool(getattr(args, "no_color", False) or os.environ.get("NO_COLOR"))
@@ -143,17 +149,20 @@ def run(args) -> int:
 		c.print(Panel(Text("3C Doctor", style="bold"), border_style="label"))
 		# System table
 		sys_tab = Table(title="System", title_justify="left", show_lines=False, box=None)
-		sys_tab.add_column("Key", style="label"); sys_tab.add_column("Value", overflow="fold")
+		sys_tab.add_column("Key", style="label")
+		sys_tab.add_column("Value", overflow="fold")
 		sys_tab.add_row("Python", python_line)
 		sys_tab.add_row("Platform", plat)
 		sys_tab.add_row("Executable", exe)
-		sys_tab.add_row("CLI Version", versions["ccc"])
+		sys_tab.add_row("3C CLI Version", versions["ccc"])
 		c.print(sys_tab)
 		c.print()
 
 		# Packages
-		pkg_tab = Table(title="Python Packages", show_lines=False, title_justify="left", box=None, highlight=True, style="bold")
-		pkg_tab.add_column("Package", style="label"); pkg_tab.add_column("Version", overflow="fold")
+		pkg_tab = Table(title="Python Packages", show_lines=False, title_justify="left", box=None, highlight=True,
+						style="bold")
+		pkg_tab.add_column("Package", style="label")
+		pkg_tab.add_column("Version", overflow="fold")
 		for k in ("rich", "requests", "jinja2", "beautifulsoup4"):
 			val = versions[k]
 			style = "ok" if val not in ("not-installed", "") else "err"
@@ -164,7 +173,8 @@ def run(args) -> int:
 		# Env
 		if getattr(args, "show_env", False):
 			env_tab = Table(title="Environment", title_justify="left", show_lines=False, box=None, highlight=True)
-			env_tab.add_column("Variable", style="label"); env_tab.add_column("Value", overflow="fold", style="muted")
+			env_tab.add_column("Variable", style="label")
+			env_tab.add_column("Value", overflow="fold", style="muted")
 			for k, v in env.items():
 				env_tab.add_row(k, v or "-")
 			c.print(env_tab)
@@ -172,9 +182,13 @@ def run(args) -> int:
 
 		# Paths
 		path_tab = Table(title="Paths", title_justify="left", show_lines=False, box=None, highlight=True)
-		path_tab.add_column("Path", style="label"); path_tab.add_column("Location", overflow="fold"); path_tab.add_column("Writable")
-		path_tab.add_row("CACHE_DIR", str(cache_dir), Text("yes" if cache_ok else "no", style="ok" if cache_ok else "err"))
-		path_tab.add_row("OUT_DIR (base)", str(out_dir), Text("yes" if out_ok else "no", style="ok" if out_ok else "err"))
+		path_tab.add_column("Path", style="label")
+		path_tab.add_column("Location", overflow="fold")
+		path_tab.add_column("Writable")
+		path_tab.add_row("CACHE_DIR", str(cache_dir),
+						 Text("yes" if cache_ok else "no", style="ok" if cache_ok else "err"))
+		path_tab.add_row("OUT_DIR (base)", str(out_dir),
+						 Text("yes" if out_ok else "no", style="ok" if out_ok else "err"))
 		c.print(path_tab)
 		c.print()
 
@@ -182,23 +196,17 @@ def run(args) -> int:
 		if getattr(args, "check_network", False):
 			try:
 				import requests  # local import
-				from .leetcode_readme_gen import LEETCODE_BASE, MAP_ALL_URL
-				net_tab = Table(title="Network (LeetCode)", title_justify="left", show_lines=False, box=None)
-				net_tab.add_column("Endpoint", style="label"); net_tab.add_column("Status")
+				from .cli.providers.leetcode import LEETCODE_BASE, MAP_ALL_URL
+				net_tab = Table(title="Network", title_justify="left", show_lines=False, box=None)
+				net_tab.add_column("Endpoint", style="label")
+				net_tab.add_column("Status")
 				ok = True
 				try:
-					r = requests.get(LEETCODE_BASE, timeout=10)
-					net_tab.add_row("Base", Text(str(r.status_code), style="ok" if r.ok else "err"))
-					ok = ok and r.ok
-				except Exception as e:
-					net_tab.add_row("Base", Text(f"Error: {e}", style="err"))
-					ok = False
-				try:
 					r = requests.get(MAP_ALL_URL, timeout=15)
-					net_tab.add_row("/api/problems/all/", Text(str(r.status_code), style="ok" if r.ok else "warn"))
+					net_tab.add_row("LeetCode API", Text(str(r.status_code), style="ok" if r.ok else "warn"))
 					ok = ok and (r.status_code < 500)
 				except Exception as e:
-					net_tab.add_row("/api/problems/all/", Text(f"Error: {e}", style="err"))
+					net_tab.add_row("LeetCode API", Text(f"Error: {e}", style="err"))
 					ok = False
 				c.print(net_tab)
 				c.print(Text("Network: OK" if ok else "Network: issues detected", style="ok" if ok else "warn"))
@@ -232,7 +240,7 @@ def run(args) -> int:
 	if getattr(args, "check_network", False):
 		try:
 			import requests
-			from .leetcode_readme_gen import LEETCODE_BASE, MAP_ALL_URL
+			from .cli.providers.leetcode import LEETCODE_BASE, MAP_ALL_URL
 			lines.append("")
 			lines.append("Network (LeetCode):")
 			try:
@@ -250,6 +258,7 @@ def run(args) -> int:
 
 	_print_plain(lines)
 	return 0
+
 
 def register_subparser(subparsers, parents: Optional[List[argparse.ArgumentParser]] = None) -> argparse.ArgumentParser:
 	p = subparsers.add_parser(

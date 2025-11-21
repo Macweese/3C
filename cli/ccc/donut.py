@@ -32,6 +32,7 @@ else:
 	except ImportError:
 		print("Warning: Windows console module not available")
 
+
 def check_for_escape():
 	"""Check if ESC key was pressed (non-blocking)"""
 	if os.name == "posix":
@@ -54,6 +55,7 @@ def check_for_escape():
 			return False
 	return False
 
+
 def setup_terminal():
 	"""Setup terminal for non-blocking input on Unix systems"""
 	if os.name == "posix":
@@ -66,6 +68,7 @@ def setup_terminal():
 			return None
 	return None
 
+
 def restore_terminal(old_settings):
 	"""Restore original terminal settings on Unix systems"""
 	if os.name == "posix" and old_settings:
@@ -73,6 +76,7 @@ def restore_terminal(old_settings):
 			termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 		except:
 			pass
+
 
 def main():
 	a = 0
@@ -129,9 +133,9 @@ def main():
 					# multiplying by 8 to bring in range 0-11 as 8 * (sqrt(2)) = 11
 					# because we have 11 luminance characters
 					n = int(8 * ((sin_outer_torus * sinA - sin_inner_torus * cos_outer_torus * cosA) * cosB
-							   - sin_inner_torus * cos_outer_torus * sinA
-							   - sin_outer_torus * cosA
-							   - cos_inner_torus * cos_outer_torus * sinB))
+								 - sin_inner_torus * cos_outer_torus * sinA
+								 - sin_outer_torus * cosA
+								 - cos_inner_torus * cos_outer_torus * sinB))
 					# if [x, y] inside screen and previous z-buffer is < mess
 					# i.e. when z[p] is 0 or the prev point is behind the new point
 					# change it to the point nearer to the eye / above prev point
@@ -145,7 +149,7 @@ def main():
 				if index % width == 0:
 					print()
 				else:
-					print(char, end = '')
+					print(char, end='')
 
 			# Add "Press ESC to exit" message in the bottom-left corner
 			exit_hint = "\nPress ESC or CTRL+C to exit"
@@ -163,6 +167,7 @@ def main():
 		restore_terminal(old_settings)
 		print("\nExiting...")
 		exit(1)
+
 
 if __name__ == "__main__":
 	main()
