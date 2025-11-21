@@ -1,0 +1,160 @@
+/*
+ *
+ *     Copyright (C) 2025 Macweese <https://www.github.com/Macweese>
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as
+ *     published by the Free Software Foundation, either version 3 of the
+ *     License, or (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package challenge.leetcode.medium.uniqueLength3PalindromicSequences;
+
+import java.util.HashMap;
+import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+/**
+ * @author Administrator
+ * @Created 01:23 Fri 21 November 2025
+ * @Project 3C: Competitive Coding Challenges
+ **/
+@DisplayName("1930. Unique Length-3 Palindromic Subsequences")
+class UniqueLength3PalindromicSequencesTest
+{
+	private static final Map<String, Integer> MAP = new HashMap<>();
+
+	static
+	{
+		MAP.put("qbb", 0);
+		MAP.put("bbb", 1);
+		MAP.put("cnk", 0);
+		MAP.put("zjz", 1);
+		MAP.put("fftccbv", 0);
+		MAP.put("jnfntnnw", 3);
+		MAP.put("tfckrkuew", 1);
+		MAP.put("kwzqitbpjmi", 5);
+		MAP.put("vpphjwhjopz", 9);
+		MAP.put("fidkolwjhlh", 4);
+		MAP.put("tyqvkhrcywde", 6);
+		MAP.put("vobffrqisoldtz", 6);
+		MAP.put("nhdrmzyeyximsak", 6);
+		MAP.put("bvdvbkfarthmgvr", 18);
+		MAP.put("lrynzqnhkodeeuy", 11);
+		MAP.put("lyqwejkpncaklac", 19);
+		MAP.put("ojwzfvaywbcbhvcjb", 28);
+		MAP.put("inwudjqgtrsduqqqqih", 30);
+		MAP.put("yarejgapleeolzvrqunx", 21);
+		MAP.put("injlkvzrmkoizykjtwaqf", 31);
+		MAP.put("btetvoaghqjtnqqjssvrr", 25);
+		MAP.put("kviqnzetsqfjzgmghobwp", 12);
+		MAP.put("ntvaimztitbwxtskepyne", 29);
+		MAP.put("dcypvvchzozajoxysbatzodv", 62);
+		MAP.put("hkplbllmvmppuljrbpnhynam", 45);
+		MAP.put("ivhgqqlnwjrzutqvmbfcqhjzhwc", 79);
+		MAP.put("xkdpobhxcwiovtnwrrjvynwtdkk", 67);
+		MAP.put("xfamsiblqinjfzkuwvdaeadjmdfp", 67);
+		MAP.put("xaalxpgqfbvziqynjvnhhbquvexxl", 62);
+		MAP.put("jdujtkmjumzvnjonjkcrdzghdhhod", 58);
+		MAP.put("fkconwzqadqzzcpgumpmfgqyizxbfiz", 61);
+		MAP.put("ttbenuforyuglpjytozsneunjnqvbaebbc", 98);
+		MAP.put("qxkeesevcdrwqkbwvsoxkejxjdedlizhyje", 92);
+		MAP.put("nnrrixfskwicqzezmelweeatybjjlvtmidgd", 53);
+		MAP.put("splbsiomwfwgzbqwlljhymeawlcwnkbjbnogu", 107);
+		MAP.put("ztwbuijbqmdvdmfuhzfruenxijxfhvbmwavscs", 135);
+		MAP.put("pjxwuvgyssuqbpqxkywuuknvkyllglnwgqgrbaodc", 115);
+		MAP.put("ghzfhyqwbnhphtqypbacczyogaaweyrannmkambrn", 122);
+		MAP.put("wagmzthfozrsqpdmyumjcpsykxorybdjfclcfezdoc", 147);
+		MAP.put("bvbrvilkalppatmwjppxvkclkclutwzpgipmqnniwe", 111);
+		MAP.put("ryuisvdbszeboayeqhlotbuyiiijrgigrzjuttjlbhs", 165);
+		MAP.put("uyrliandczzenozhvchnllofpzoydazvjcfdpbyxnbocg", 148);
+		MAP.put("nzyhirnhikrwcyzkglwifvjdeucmmyqwkbsmknfmsymgbg", 168);
+		MAP.put("fxidwwggsylghilnnuyosaxyvbcwutxuzpnymmnupzesgw", 144);
+		MAP.put("ucgbofvavdbvmtotmiazodzgvfikmvncnugcywzcdsiczxj", 152);
+		MAP.put("vihimexprbnaxxhmgntrhzmfpxcegkyldzsntrstcuughzfuv", 216);
+		MAP.put("elrtljoexdspopxvxmnyvupdzloconmythgvotzzbhtalmcpld", 182);
+		MAP.put("igoqbiojilsgfhcyxasmuyptkkvuhapaciqgvhhpmqjsnlbgvijw", 224);
+		MAP.put("mifeatezjlkypaoprxtslyemufcmhliwrnkbmguglskmszrzphcnon", 292);
+		MAP.put("brepfghquxayghtazzliejqmrbgaquhikmauvbvjotpucpxidhwkpwy", 277);
+		MAP.put("selinsogsbhdkjnsmsitfmbomrjnxuchwzctnwncdfemkjmykzsfrkvp", 252);
+		MAP.put("ttzprpzsqqxdsrxfspkgjhqwflukljxfezqcghjeiplyvsugkghlmehnr", 235);
+		MAP.put("yvzoddztqupgpjvfjomhgvbnkxtvyaizccftgieswfcpsvcyjhdlkgtmxhh", 311);
+		MAP.put("ybgrnaykaevetcvojweqwmorbcnzunjupiudjreclvzkroephujsvcuflsk", 239);
+		MAP.put("vdcxzmyvyygcgzormmfkksoahxgszddnbadhqqsabglitybsnbktnjgrnjku", 216);
+		MAP.put("xeentqwlbkquhbtbjfyvucgyfvnzcontchkziwnlzvyyouycrywuhasrmkupc", 225);
+		MAP.put("dwydbiwjbaztjkncwdfcbloyihyslkounmmhkkynorsxacdwiadzjnhzbblpzc", 279);
+		MAP.put("qmprbxcjlmnqjgfrmehphbuzphihkwcpyomxahspuepncsxnftyeajdrtojoafhxw", 336);
+		MAP.put("btaprvrtamjornsuloefloktxwvkubvqjqezksqigrryngvwqfsqiauygfwhaaoyp", 331);
+		MAP.put("ecgxandmeyiwzuozbplfqmolgkxqtaykuzimhaulrzjpybempagafyvomnoxlfleft", 347);
+		MAP.put("bpspmmtqkpeaffapdextoybjgcygvmvnxqsfgvxzhthxffcijhbpefetvtgwigkczr", 304);
+		MAP.put("tbufgofilxvkqiyrmctnqomglprxvjutgeoosjhitrjpzkdlhuvzevzbnkxtcgjlbtp", 369);
+		MAP.put("wgfnfbjcazfvxzwlycooyndydrsfitxwgxrrrueabhucinatazxqksmzizkizbsimtt", 268);
+		MAP.put("aiamajsldsuphhhfyuoxyuvnpvrshnlvljjpouteysdapsllwlvxxsfrezufcpjhnezb", 289);
+		MAP.put("jmusszouaumoqxxhezldygdextbkxbfoaiwmhbekdxwjhujbouqgxjffebepivtaaequ", 309);
+		MAP.put("bscyqpongwvdhekvgmeovuccrhueshrhrhcernbrehlukcummjzyhfikkeibfqamawzabq", 275);
+		MAP.put("dzbpwpbuexleffgxyxezkekfipsxzsgghyegkmzlutjypdhnfqxrrqkhsfzgnflzezwsak", 280);
+		MAP.put("xexdxjtanjmbtdjznfqtcqoqbymiysfklcbwsnuhyujgmluoiryofisukwpsrlphcwopfkzd", 340);
+		MAP.put("xqkdzmrvcumucfmyhtqoahpnehwlxosaexbrdyrpvmdlhvzxqhhyfszspxsnlhhotezouzrl", 377);
+		MAP.put("ootgjohbrcrlrwvpuyxfctyggbkepobnnrmyprptfbuxdhzjmzkqzxcvgoxjugrrurpuufbll", 351);
+		MAP.put("rgbhkljcjsejijuygnpgvbzwnurqbsbbhznfdvtsxwdwydqjxxpflesjaybkqtglbdoykwfll", 372);
+		MAP.put("zzelbdpzkgegxcfhciufxthoalvqaufosupivhglpwfnmgxuozaogtrbndykzujqojopinvuyw", 421);
+		MAP.put("rluzzrlaxqfjcgrhcedqyzljoehrdktbqgptfeflavmowoqfuvmwptihfqchuwuyancwuhavenc", 358);
+		MAP.put("zptapwabcudgcwnpzdwvfqpxsrpihpoojdnnsktrohxfukwhtogemaxdkglkcnnmgpaafdandkk", 331);
+		MAP.put("tvtjmasfczaceutgqdgmpjmvfngddfjqfcvvldusfoaqkoholkmzfpucbmuvctqbcprudnshunvj", 338);
+		MAP.put("migmaorffjepkkjdufplfyseuueevoibjqckcccdhrdnnxgmymnkaamiuwincetnkzjhjlndctdlg", 366);
+		MAP.put("ssvfluiguzdinyofweqsyntojujsxvbqcycfermgrxetnptpvvemszzkgzvmnhcqyypatnrmsldme", 382);
+		MAP.put("zssbjxxvbkckqpyfvdhryrbmfmejfaarzlffubyjfxahcoqxqmbdsthbcihrbkbqgjgzyudhfsgsxs", 358);
+		MAP.put("tedaavenyhmwjpjitcofawbovfmfzjcafxpechxpcijavrhweabrcfjnhumasrofgtfufzwqngpmfof", 346);
+		MAP.put("iywwzfdifcjkcmyqzjtnjqylxymlxsuqsvikyvfmkhefvkhhyqrzdmuidmyhylfynjeylflorzrxrty", 319);
+		MAP.put("auwynhibccjxftaynuruhctnbpbwnlrpsuunwaqlbmjepztywvklwycohgqzlvwustpoxcyhubpwisjixd", 404);
+		MAP.put("svgfizdsvqbimiemwkctpwhgxqnnrlkoykrcpcrbjnqtogkuutmqnfarvvssxzwjzpstrsjgkherodslzg", 492);
+		MAP.put("mdfgnncqluwnuzyqjvouincpukvmzjuhugsyqylhgvkgbaoqctfqlikkljmaumkgwlmuxtssdhhidgzjtgy", 429);
+		MAP.put("edfphebovwaxedzmspwnovjgiydlirzbmwtszzcfrscosnohfbnwobnlliqkopfpulgmfydupgbsmkffvea", 436);
+		MAP.put("yrmzdhaixfrrhjjlguemnfxmosvixznlkdtkrtwjxhmeolteqfekjhvppzdejwzsvwqdgzhenvwonnoqtnsht", 401);
+		MAP.put("iqgmakgfmxpkaqzxvqgjrkklplrdzcfdpzthkqlprpoteuwuqrijdfvnyxafhejzihgmdekfatczqfvmghlrc", 439);
+		MAP.put("lbnqfnufkieznujwowuerjwbrwalziqkmouarxknjaejukuizgwgzyxygqfnedwlyeaujfyfzcxmmvdlunkhb", 359);
+		MAP.put("nayrmfqthiyvripvcyleurpxtldzmaqinnuqxgqpgukeyvhjlkbqgqittjdpszfqszxjzcorzgzbfeifijhqmc", 483);
+		MAP.put("esamciklwhsotvsjpwpytabxqreboclnfczyzhifxzdklwkaljstjledmzodjfvnefpysrrrgqteszwynmrzeflf", 526);
+		MAP.put("nhzdlkobxnvbzfnbxzgjslhbauydcporhxqdstbkyjbhwuhwytrnoactsvhyingzmlhlsjmzakdodjtuidoaqrlur", 475);
+		MAP.put("kljozjszxzhttvdtiyonotbvxtilyyamemyhwvwrvyxzeidnobxekskfgqnwyfdrxvtjnjwejqfhywarypvagxwbv", 440);
+		MAP.put("npdshegsivsjlityzhhzbkqmbuoxrmqxmrzianupkvlmkvtfumrrwozuylwcodxddnxxkjwtlrbmdaxcttlpornztaax", 441);
+		MAP.put("nxntetzrpkvfqlerinwnbdytnukwgjonpczztfmodoniwvyqmvifmvonzeutgebpljwkrsfgtavohppwetqdzocebnna", 505);
+		MAP.put("bypuadcigylcmicmpociodstkmrhhkddcyzttgcrxxvyvgmyvgpiupfwizetfyffvkqepfcympcrvwpmiuvphlzkmtsyw", 357);
+		MAP.put("ugwedoxxmsuyxdbroxsgqinrbqclnqdozhzeeqwukgproxqpweyqjixcvofeougfimlxkbbggordojgaokpnmeziedvtnc", 484);
+		MAP.put("gsfmadapgikcfxyvxiknbblhyzwassekszxhfpwdyihmdhvciyegsodvybpqqppyqaihdiqgrpnryyknleucrxvsnozwnnf", 488);
+		MAP.put("fyzxraslnzbuoevbxmudkpxtnljzcnluyrtrcmspdoqwutwtukomooiznwhhiujtdioqeknxnveyuxtnqmtukdrpnjamhptrbwa", 497);
+		MAP.put("ciopcaibqwtnuetanxnforctupmrszjixpjikuuiyojgndmahmuqkwgpykwvkbihkzgyjlroazwgdptjjgnmqgediuuxlbrdqdycwdbgevfyjpmljaazpwrfjeuqkikfsbbgmuflwnlnrrzrhlzkeabtqszxxrdtibbhvawvydcxiquukavaihmfugnanjubpxfqcmmpwtuahbnrfnphtylllxhsepundlcqbfzeswiwbqeipjukykloqpdvrbesmaffzjomrgrnadkwjrvvmjgfdzccobmnrrrmigyaozlwojkbwfcmmqwdnmvbdmiuxencbprxxortgkubdpiuhqguwvrntipdypxlsxuhwmqkdhwhxevepxamjojulguafvxemgswcbacrrxneoowsclomaqtsrnaouefmikyrjjzmxambvsrvxtughosotjjxietqnthwoujmidklwilbopgsxmtwybupxmmemewmhvzoxabnwmgiizjrdzfvmpolfnkewoxynqscuxuddhinnyxyddmzpcwrzelphkmknnkxoedjhozdigsjwhyzhjdlmdtcmewbeielncivlkrzlninsmmgededqfwwxyqbjtqjzlimwlrcmgblxwrgsjyoxujrkkpcyeszmmalsrpeaufrmuxlltathyrketjunhjijbophjmxlkklmkbhcqdqiihpajsauqvmljdkbkatndqkfldrvcvesovesgrpdqdthcujnsvcwgahzimidfuswbzwabochulldctkwylgzldvzistnpxpaobjichdjwizzwtncqcfaclihirexlwzgneabuesdxourputhewenreymjwyvhezbhrsdknvlxvaqlyogoisuoemaztbhrvxbxnzrvznebdcqvrdizgxseerhepcombauqikarwvafwosiefltiacajdsfrbhwnfcnifxvqlymwmpmcwjtqysmdcbjhucghfkjvdxyzcngvuezlbjszoegxefxjqcvxxomoqglurvfyvghutcbssqrnhyjkexynxrrvdvpmjizwpreswmxnvxutdzggeraujjckugwtwgquqrukefdtsuzzmrrncqshfgvufmrlgcowpdssndcwlwredhmdosauinkcsmfmwexxbrqffifeqbieydpxembpfzrpshpmizreepvsyybsazvfynjxofxywfwwedgfbeqrcdhwoolpebundjqjsmmywbbhsxolxddkizvgiwzgkjpnznpmppaoogsmnaugdvhblcnhnmzjfkdysydawttxzlmdwgddlrmaaxnzzwctpbjhksmlzakxkhnesahwkyvkshwigtwowemsojubnvqznboboxvdfejmxjvlouarszbwaqjutqeevdvjoijxnycifdfpnejokzrgveaqmukkgcprxnnppxirosguuxpdfgoqnyixywhcxxonnsittbngfijhzzqzjlwwvislkvjxdibyuuzyzcbykcmrxbdxuqmthzldkvavdorvvvrxwnmnwvmxagdlpfcmjmtsvegldidzucpvtfaqvuvwhcccktlxqsoswljorynbnkqzfaawfjrayadhfounldgvhtaaiukxlmsrnecechwguxoyifsfpjslbsrqhdphosuivzelipodutlhrkfqneogfccovwbnaddtzwannswkpzvqgcutgmsntdfxivxtpqmwhrsjgmulqmtswudnkxhedxdnbhtcsnwqyduhkbkmilwbfewsngpkrypxxmmnjdkxaqktzlknlbeuzzjojmhjngktouxhqvmenfnfaotzaoynqciwfufjoikitsbkjjcwyxwhssqfdpyquxbxfcwyxskjbkjswdqjwbqdvwrngvzrmvkkgmtnirrakkmqecpbwhwcoqijqqrcjhowdildayjipoyxkquvqlprhhrrciifdtowneimxalpdejsixtnjsxoxzirwkfjjcrawkddqqsjlpuagckxolkcchrqbccomdeuynidlffjbrkdhmyttmuzfbhhwfxxzrkwvldtsatvhxeqnaxguoabalockguwaiyomgflferbbodgtxoofkdocexwsqgezdgoxvkhicbgafsmixtrvfbjbbrywitpszkagjvisgynxfiyhanrujxxlwscptjkrnbsrjdjxxbgayfhwpkyorgumggdwrvlhjroopaermkqgsolunuvliybjdmpyrrjzgeihreoaupkakzpnonmgrytsfdmmouayurqundzbuaatdveejwdcvnffursglffngihrjthpplvgdlkwdqhqpqhpqeinoxqrqwrowquglxvxaxnncmhmatisqehhrheqgxmmmyovgtejerbovsnxqorexxjkulebxuutzmuueyogmameazbnhifxwrjcralgdphaobugrsfniyzonqmtfeizhumnffvofmqmuwvsmgtkphqrnweaewacigcypxvehzmlclnugzslkdobyrimesjukcovyeugibdejohkzswxnjtxjkbxypdesvlkadsyrxbtusfueihjpltoudtxersxleahluechigobnzpsnamautzyaseqtcixwxlzkpwfdzsrndbnzzesvavywykvlpziczpyusvvcuuujtpfsuyotikqajxoeeghtnjigdedvwzrzzuulhkmlzbzrdbdsngdfsjpmodmaghjcjebryfpkuyzaikluecyiixdtswecxdqeuuyqtesjjtiaropcwiippftmblzwmbvjgobshlzpvwajubrhipapldrwizyoptsuoguvwiuapwllnjqpynbrvpkzofndmlodinjoiydekwoxonskbayzpscajiaunhqmgciyrlurstidhpufkpjqgygqevbrigshsncyghhsiamixsisqfucerivivmxbebrktyawwtbcholueckjzpabvcupqmatylznmgaohazeyzteuuadqkdstrisiyegarsyhsafqdugwtkysgqzrnjtrfdszbdbjdjtdfavddkduxhveiuajwmybusrscirisvbjrdptwbpkthptxyiluoqekgripwxavxysbspghsofzozseadhrejjhvyyshxuzgvmciqzvahhaffrbleqclwzmblduiybidygqzcmdjamcejociiwzoecsqlbetsglbdsvyoxziwqulqshwpjljczllqalsuepavobhbaodwmpjyhmxgjbpxhduffpkmpdojyngaeuufehfyzxacposhdwuksuprvapncvijpcscsqiywtqhvjqlrcfesdvfzuwgxyysfjtffiaipkmcyziorykccuohcrjsegiagbcelhbhtnbcbxunreosciuftyipzeoinvtpvfhoqrysyngubbdzijrnwoaoaqwwpyeunbpqyaoqtpoqobsvbiuyoehcpbfgpnzqvhwceixuymboyywgsrdgsavmpofgupgpqxrewgarlkixeamnoeushmicwhajxmubrcosivbmexnxjwdqvnqfcufzuexakprzftgfoikxptutkzyywdlnbqblyupubkhrtrpgiaabuwbbqbmfqkbqgnfhloibtnhylqbcqtflpstqvabunxyunelbxcsssgxiexinkeoqytggkxeeibxdgaekixegsevulaczhrasshhzxlgmlyffncnzsjodsgumxrnyzklfqonnthqrlmvjdhdoguzgswtybbfolhchiwqwbgvpwtvmksublystykjgwgdmswtczglkcwzoamgzueliyoteaunteylyqwumvfmvphqxmddcygsqcmfpqqcxvnrghfoxdvmulgpekttibhfbgnjjlfggmcyidieloypounkajmddizmlwglvccqvlhumupjihvkuekqbkeudurxadgeiqtevtoauygopbukwzmofecvbiofgwljqanrhmpvdlfoxtmuhewlxkebmxqwvoxokztghqecdvkyrxxjijimexjslegvwnliygiidqwhvvjfqycsxybkefbblgmuosjkmskpgvuatjwsjyyrzlievefmtsghthdlecerrqkmltyhcmebtlpcxfdtwwkjfxuryvfejewpbahxcapqloyubeelfjaitwcccbyhjgmxdnpmxevgekmaoiawfvctutovjeedqlketajczkvjgigdqqwzndkwceaoldgvrlrwyszmracrmakfuecrjjtawyxogpblqrjffpwpikydyngeuydhpscoyivnyspnufeboicqsjbfwhdnewpkjxnukpxewtqmzxarlwddpuedvzarccltnnvjhvboxosrntcyfvrmvsgudvribjxrcbuurawcbiekfncsvwelgmsspwzniwalbqpevjfqcyugwnrllffhgbxakzodgeaegqiiwwrqxzkvpxddyresivcdgolobqiurxbbmcvvmqvkaapkvvkncohlxygwwqpgzvttygadsjdhyxwxhklcjnodvrnvspdbfzvckmzpzaxyafhatumkmxulypgodukduyqdknovngfugmfsdddgdqeedfsfzryusgorrklnjyjyqgeqfnkncemjkrnydmmwduxsdomgdicipyxneebzltfhslzbxsfmbclgeezsvweezozyqhbfavfmuurtnlmnkkakcrmutqxmxxmanviqyukljbepqhqybpkrdpqkaygvlzzuqvufpwxeslgomdbwoilleqhdwewtuluhfpmsugfdebekzvncvvkvfzalrwqulsjntpjcctxobbeahcwxalrsvutywekjcycefeujoefuaajekuvdxvpcadpxjewkdljshtpzonfdjytohpdjjdsnczfhzbspzgnxdjmvabdorxravmulyowzcmankafugdqldeivquvfxmfynyugcegyfpwdaotlnpcrakcgucmojdcceexvizwppyffnhxpyiqajmvdftwkhzuprlukpazmktxcepqanvjbapuxgblpostdkdjeeckebfxstupjkdqmedejhhbjkvckqkjxqmzmscvrqkzdjfkqisowhjnqvejzfrhzzyroenuabzkduciasiipuvwzzoncncitjcssuatyqpdyqqdlxtnmabohrskcsfzyntsxswuzghkyyivrsdpyiqxfoqftfajlbypzpotebcjhdmsngcdbradldakcifhimtjydwiutyukdpdtipvdwpbngvrjjqhfvsemgoadggijjwvpcpsehtustnhhqfwqijwukzsnidcdahijxosarkxhlaumbriylxkowoftvufermujkmljnqlzfiqgwzkcbgyivlhqvzskdkvaxxbeapxonfjnowlicnxzexttkzzeqryfzktoktmydfyfblwfbhfrwhwqdoyrzrubkjbjzkrjxuenfiosgmfskwbzlmwqfobrfpsreddsbuuuotyeumixtkujtziznpiicupbeamkoghmdgxmiigfdkvzbokggyjxbscfcouexikjxhfqpgjlmmmuthbqfiqmcbnzoldmxmnaafdnnmjgwpksqzwtjkzipbwodvgszzsrrsjzmhdpkflijtbppxpvnbxthrrcpqnyybxyrfudbfxuucmjujgdamjtrpyottqjcaqbzpgddfvpzqkdfcuplvkekoizghcpawwkwntlrcshcwuhbcvugknypmionlmlznaotqtvhalsuipjhpvpookzpbzoihpokebvjmznddmcuxtguqfotzhvtcbjgvexkxnsodbzhfgypluppxvqdnljczmoubbcywguiyuybctnqnhfozuajzwiwdhjjplerhjqylkvblogoscdeoifphkjkhrmyiprxgddotlcywxtsriqqcfqdxxaiicwnkisufnzzeegxhfubdxpdwzzkoulzzadgjoqvcrmltktbkqodeeepvvixzwsakowkvennqtldpcghpcjkyanlfnevicdgephbzznirfrnvrlgvgnwlwdmbqwihgzyicjmqerabzhbkllofefsrfyqadhsxzkcbpyjmstxrcojvbfniuyowicfqxpkozqeexeumktropwhzopteyeoeeturwoixqjwcjfssucmlqdltjzdgmbemrimoeuonojmezfrfkpyqreafwditrovpcocqslbhzobwznugpgpwlmsrudcgxtyjrkswufbqldhtqdtudqxoijaoiucjpllnrurmbgfkavdfhikekhvkwbpudcbcizbkrsoqyufkhugrpvlgnnicxhggsbwthhizspnzwptzcmgefrdihgsfeeqpdsexzjmjgzxedzscerhxlzwwppiriateupfxaoxhbgbzxwhgeccegmeettoauthorascjspbhunzjiubzzbstpsetlaljjkwqaictbbldndmganwdyqxmlayuhdkqstqdmajkphghewrmdupqjzslnvxdnpgymrsagvauqztclpwitjzznykzgkrgaonlnsvrvcvytjrrazfjvaaknzxdafaxmuskhlunbmrurtffufqhhmkgbxddhycccbjxsfolipyvsrgascuhomsbsergepwmyxfrbtbxsxmclfgamkphwejeecxvczwsjptdlhpxnmohjpvksovdrsdjdsxmqjcsvjzuaphlhoidavzsgcyxfdubelbtwkketwhuauyepvcekalswleukmxftouwwhtlzvyxqrcdniopkjejbkdbbgekwdjtdgcnyaklkgddankjvahvenbgftsyngeiyggmsocuohbyzlzsirdeujbsujtmwhcbeuezthmwwpazzguvrtrxfaadlgmqcritzflchngaszqewcbppozxpyavvbjgfucolaxkszuehyzebbeaiaetsfbtviijjzcipsrgmbcfdjirmlrlvkmaoptyhlqyyctbkolkteojwkvbpiahcjobykrlxupmvczunxuucpjkixpgqgjxtfezfemckzyepzcqunarmkykruxwhimwwoyrmruxupyyiuawefcwnothytwsjoihzblnzowldclgpgtvebwixpgmzlcevghmnnpwoowoluiomgyibdnafcbnfmtkhuixidjbtqejsgcnctzarkhbvvrkbbxcguujmciqryanlazfezclkaouhvawluxhggxiljzunagscktpewvrhnuoozoxmlippberhvbzcsthgooheordqwiozrntqlakwyipjkdbtsnhnadqplapowwtfrkuvfeujggtctigjtjraacvqhlkzapginqfazczzmnrzbqsyzzwbtvphpaexghzkxshasucdorkdcahzmsiyccwngckwevikhlmmkeweugmqlegjejrdhkrtldtmoykvzijdqgvyvucmekuqvjwujkqjuaaqweffijchdrrlwdlpomefmbpdblivwlylmbhoedyqzlazjylgdhqbxofpaozqoovxmonyoxehrcenppqobggnpfluamtyixsmlzftpifcsxfcvehkrcclthxatjpectpexsjrxyvxjimrnxzieeulrshuoddysjxoimigxkxqpagfwnbdwqcthiixnlebrslkibotmofeiolzpgsficywaeribawiyoigcptxcbpoxayzzwbmzlosxgbwfvwudkglczblxddqahvycwnnaxzzweypwxwaxfdixstgikztjzdfhdrvhnsvjmbwoflaptuqlrbkokbtfkqcduyhqpqreymjbsxueycinpczsvdhswbmhdwipqgingyovyszisdiggkizmkjrfknudmqckehludk", 676);
+	}
+
+	@Test
+	void countPalindromicSubsequenceTest()
+	{
+		for (Map.Entry<String, Integer> entry : MAP.entrySet())
+		{
+			final String input = entry.getKey();
+			final int expected = entry.getValue();
+			final int actual = UniqueLength3PalindromicSequences.countPalindromicSubsequence(input);
+
+			String message = String.format("Test failed for case:"
+					+ "\n%10s : %s"
+					+ "\n%10s : %s"
+					+ "\n%10s : %s",
+				"Hours", input,
+				"Expected", expected,
+				"Actual", actual
+			);
+
+			assertEquals(expected, actual, message);
+		}
+	}
+}
