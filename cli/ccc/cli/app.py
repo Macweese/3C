@@ -102,6 +102,7 @@ def main(argv: list[str] | None = None) -> int:
 
 	if ctx.color_diag:
 		color_diag()
+		return 0
 
 	if getattr(args, "cmd", None) == "doctor":
 		return int(doctor_mod.run(args))

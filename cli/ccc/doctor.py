@@ -196,7 +196,8 @@ def run(args) -> int:
 		if getattr(args, "check_network", False):
 			try:
 				import requests  # local import
-				from .cli.providers.leetcode import LEETCODE_BASE, MAP_ALL_URL
+				from .cli.providers.leetcode import MAP_ALL_URL
+				from .cli.providers.codegolf import CODEGOLF_API_BASE
 				net_tab = Table(title="Network", title_justify="left", show_lines=False, box=None)
 				net_tab.add_column("Endpoint", style="label")
 				net_tab.add_column("Status")
@@ -207,6 +208,13 @@ def run(args) -> int:
 					ok = ok and (r.status_code < 500)
 				except Exception as e:
 					net_tab.add_row("LeetCode API", Text(f"Error: {e}", style="err"))
+					ok = False
+				try:
+					r = requests.get(MAP_ALL_URL, timeout=15)
+					net_tab.add_row("CodeGolf API", Text(str(r.status_code), style="ok" if r.ok else "warn"))
+					ok = ok and (r.status_code < 500)
+				except Exception as e:
+					net_tab.add_row("CodeGolf API", Text(f"Error: {e}", style="err"))
 					ok = False
 				c.print(net_tab)
 				c.print(Text("Network: OK" if ok else "Network: issues detected", style="ok" if ok else "warn"))
@@ -240,19 +248,20 @@ def run(args) -> int:
 	if getattr(args, "check_network", False):
 		try:
 			import requests
-			from .cli.providers.leetcode import LEETCODE_BASE, MAP_ALL_URL
+			from .cli.providers.leetcode import MAP_ALL_URL
+			from .cli.providers.codegolf import CODEGOLF_API_BASE
 			lines.append("")
-			lines.append("Network (LeetCode):")
-			try:
-				r = requests.get(LEETCODE_BASE, timeout=10)
-				lines.append(f"  - Base: {r.status_code}")
-			except Exception as e:
-				lines.append(f"  - Base: Error: {e}")
+			lines.append("Network:")
 			try:
 				r = requests.get(MAP_ALL_URL, timeout=15)
-				lines.append(f"  - /api/problems/all/: {r.status_code}")
+				lines.append(f"  - LeetCode API: {r.status_code}")
 			except Exception as e:
-				lines.append(f"  - /api/problems/all/: Error: {e}")
+				lines.append(f"  - LeetCode API: Error: {e}")
+			try:
+				r = requests.get(CODEGOLF_API_BASE, timeout=15)
+				lines.append(f"  - CodeGolf API: {r.status_code}")
+			except Exception as e:
+				lines.append(f"  - CodeGolf API: Error: {e}")
 		except Exception as e:
 			lines.append(f"Network check unavailable: {e}")
 

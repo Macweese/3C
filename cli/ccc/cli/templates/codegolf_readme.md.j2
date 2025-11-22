@@ -1,0 +1,32 @@
+[comment]: # ( ----- THIS FILE IS AUTO-GENERATED ----- )
+
+# {{ name }}
+
+{{ synopsis | safe }}<br>
+
+Release date `{{ released | safe }}`
+
+---
+
+### Description
+
+{{ preamble_html | safe }}
+
+---
+
+**Links**
+{% if links and links | length > 0 -%}
+{% for link in links -%}
+* [{{ link.name }}]({{ "https:" + link.url if link.url.startswith("//") else link.url }})
+{% endfor -%}
+{%- endif %}
+
+**Category**<br>
+`{{ category | lower }}`
+
+**Challenge page**<br>
+[code.golf/{{ id | lower }}]({{ url }})
+
+[comment]: # (comments...)
+
+[comment]: # ( ----- THIS FILE IS AUTO-GENERATED ----- )
