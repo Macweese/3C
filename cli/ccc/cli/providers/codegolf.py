@@ -322,7 +322,8 @@ class CodeGolfProvider(Provider):
 			parents = []
 
 		p = subparsers.add_parser(
-			"golf",
+			"cg",
+			aliases=["golf", "codegolf"],
 			help="Generate CodeGolf challenge READMEs",
 			description="Generate CodeGolf README.md files.",
 			parents=parents,

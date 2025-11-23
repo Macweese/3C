@@ -953,6 +953,7 @@ class LeetCodeProvider(Provider):
 
 		p = subparsers.add_parser(
 			"lc",
+			aliases=["leetcode"],
 			help="LeetCode README generator",
 			description="Generate LeetCode README.md files.",
 			parents=parents,

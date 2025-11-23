@@ -35,22 +35,22 @@ def _get_pkg_version() -> str:
 def _build_common_parser() -> argparse.ArgumentParser:
 	common = argparse.ArgumentParser(add_help=False)
 	common.add_argument(
-		"--debug",
+		"-d", "--debug",
 		action="store_true",
 		help="Enable debug output (provider-specific).",
 	)
 	common.add_argument(
-		"--no-color",
+		"-nc", "--no-color",
 		action="store_true",
 		help="Disable colored output (or set NO_COLOR=1).",
 	)
 	common.add_argument(
-		"--force-color",
+		"-fc", "--force-color",
 		action="store_true",
 		help="Force colored output even if terminal detection fails (or set FORCE_COLOR=1).",
 	)
 	common.add_argument(
-		"--color-diag",
+		"-cd", "--color-diag",
 		action="store_true",
 		help="Print color diagnostics at start (provider-specific).",
 	)
@@ -69,7 +69,7 @@ def main(argv: list[str] | None = None) -> int:
 		parents=[common],
 	)
 	parser.add_argument(
-		"--version",
+		"-v", "--version",
 		action="store_true",
 		help="Print version and exit.",
 	)
