@@ -33,20 +33,16 @@
 
 # 3C CLI
 
-The 3C CLI produces consistent, formatted README.md files for coding challenge problems.
-Currently supported sources:  
-- LeetCode (`lc`)
+The 3C CLI produces consistent, formatted README.md files for coding challenges.
 
-The output structure is designed to scale to multiple sources without collisions.
-
-- Global command: `3c`
-- Subcommands: `lc` (LeetCode)
-
----
+<br>
 
 ## Features
 
-- Accepts LeetCode problem number, slug, URL, or numeric ranges (e.g., `40-50`)
+The output structure is designed to scale to multiple sources without collisions.  
+
+
+- Accepts challenge id, slug, URL, or numeric ranges (e.g., `40-50`)
 - Fetches Title, ID, Difficulty, Content (HTML), Tags, Hints, Similar problems
 - Parses and normalizes common example/constraints structures
 - Flexible output layouts with namespacing by source
@@ -56,7 +52,23 @@ The output structure is designed to scale to multiple sources without collisions
 - Debug mode for path and HTTP diagnostics
 - Parallel batch generation with `-j/--jobs` (I/O-bound speedup; safe modest thread counts)
 
+Currently supported sources:
+- LeetCode
+- CodeGolf
+
+
+Global command: `3c`
+
+| Subcommand               | Source   |
+|--------------------------|----------|
+| `lc`, `leetcode`         | LeetCode |
+| `cg`, `golf`, `codegolf` | CodeGolf |
+
+<br>
+
 ---
+
+<br>
 
 ## Install
 
@@ -105,7 +117,9 @@ Verify:
 
 ---
 
-## Usage (Source: LeetCode)
+<br>
+
+## Usage (example source LeetCode)
 
 Basic:
 
@@ -199,24 +213,34 @@ Examples:
 # -> E:/directory/leetcode/64/README.md
 ```
 
+<br>
+
 ---
+
+<br>
 
 ## Output layouts
 
 The CLI supports four layouts; all keep sources separate to prevent overwriting when more sources are added.
 
-- `source-difficulty-id` (default)
-	- `<out>/<source>/<difficulty>/<leaf>/README.md`
-	- Example: `./leetcode/medium/3508/README.md`
-- `difficulty-source-id`
-	- `<out>/<difficulty>/<source>/<leaf>/README.md`
-	- Example: `./medium/leetcode/3508/README.md`
-- `source-id`
-	- `<out>/<source>/<leaf>/README.md`
-	- Example: `./leetcode/3508/README.md`
-- `flat`
-	- `<out>/<leaf>/README.md`
-	- Example: `./3508/README.md`
+- `source-difficulty-id` (default)  
+	 &emsp;&emsp;`<out>/<source>/<difficulty>/<leaf>/README.md`  
+	 &emsp;&emsp;`./leetcode/medium/3508/README.md`
+
+
+- `difficulty-source-id`  
+        &emsp;&emsp;`<out>/<difficulty>/<source>/<leaf>/README.md`  
+        &emsp;&emsp;`./medium/leetcode/3508/README.md`
+
+
+- `source-id`  
+	&emsp;&emsp;`<out>/<source>/<leaf>/README.md`  
+	&emsp;&emsp;`./leetcode/3508/README.md`  
+
+
+- `flat`  
+	&emsp;&emsp;`<out>/<leaf>/README.md`  
+	&emsp;&emsp;`./3508/README.md`  
 
 Leaf directory name (`<leaf>`) defaults to `{id}`; customize with `--namefmt`:
 - `{id}-{slug}` → `998-maximum-binary-tree-ii`
@@ -259,17 +283,16 @@ export LEETCODE_SESSION="<your-session-cookie>"
 export LEETCODE_CSRF="<your-csrf-token>"
 ```
 
----
+<br>
 
 ## Templates
 
-The default Jinja2 template lives at:
-
-- `cli/ccc/cli/templates/source_template.md.j2`
+The default Jinja2 template lives at:  
+`cli/ccc/cli/templates/<source_template>.md.j2`  
 
 Pass `--template /path/to/template.j2` to use your own.
 
----
+<br>
 
 ## Caching
 
@@ -283,8 +306,6 @@ Default locations:
 
 Override with `3C_CACHE_DIR`.
 
----
-
 ## Parallelism Notes
 
 - Uses Python threads (`ThreadPoolExecutor`).
@@ -292,7 +313,11 @@ Override with `3C_CACHE_DIR`.
 - Contest cache writes are protected by a lock to avoid race conditions.
 - Sessions are reused per thread via thread-local storage to reduce connection overhead.
 
+<br>
+
 ---
+
+<br>
 
 ## Troubleshooting
 
@@ -311,7 +336,11 @@ Override with `3C_CACHE_DIR`.
 - Template path errors:
 	- Ensure the path passed to `--template` exists and is readable
 
+<br>
+
 ---
+
+<br>
 
 ## Roadmap
 
@@ -319,5 +348,12 @@ Override with `3C_CACHE_DIR`.
 - Shared metadata per problem
 - Extended batch workflows
 - Smarter rate limit adaptation (dynamic throttle)
+- Testing (unit + integration), linting, type checks...
+- Cross-platform checks (perms, locales)
+- Packaging & OS package manager targets 
+- Logging improvements; rotating logs, error reporting, retries, cache improvements
 
----
+Under consideration:
+- cli submission
+- AC info (mem, time)
+
