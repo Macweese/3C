@@ -79,20 +79,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MaximumNumberOfWordsYouCanType
 {
+	private static final int CHAR_OFFSET = 'a';
+
 	public static int canBeTypedWords(String text, String brokenLetters)
 	{
 		int completeWords = 0;
 		int brokenLettersMask = getMask(brokenLetters);
-		log.debug(String.format("%45s %-30s %,25d", toBinary(brokenLettersMask), "wordMask", brokenLettersMask));
-		log.debug(String.format("%45s %-11s %-24s %,19d", toBinary(brokenLettersMask), "lettersMask", brokenLetters, brokenLettersMask));
-		log.debug(String.format("%45s %-11s %-26s %,17d", toBinary((1 << 31) - 1), "lettersMask", "abcdefghijklmnopqrstuvwxyz", ((1 << 31) - 1)));
+		log.debug(String.format("%45s %-11s %-26s %,17d", toBinary((1 << 31) - 1), "Alphabet", "abcdefghijklmnopqrstuvwxyz", ((1 << 31) - 1)));
+		log.debug(String.format("%45s %-11s %-24s %,19d%n", toBinary(brokenLettersMask), "lettersMask", brokenLetters, brokenLettersMask));
 
 		for (String word : text.split(" "))
 		{
 			int wordMask = getMask(word);
 			log.debug(String.format("%45s %-11s %-24s %,19d", toBinary(wordMask), "wordMask", word, wordMask));
+			log.debug(String.format("%45s %-11s %-24s %,19d", toBinary(brokenLettersMask), "lettersMask", brokenLetters, brokenLettersMask));
 			log.debug(String.format("%45s %-32s %,19d", toBinary((wordMask & brokenLettersMask)), "Bitwise-AND (wordMask & lettersMask)", (wordMask & brokenLettersMask)));
-			completeWords = (getMask(word) & brokenLettersMask) == 0 ? completeWords + 1 : completeWords;
+			completeWords += (((wordMask & brokenLettersMask) - 1) >>> 31) & 1;
 			log.debug(String.format("Complete words: %s", completeWords));
 		}
 
@@ -104,7 +106,7 @@ public class MaximumNumberOfWordsYouCanType
 		int mask = 0;
 		for (int i = 0; i < word.length(); ++i)
 		{
-			mask |= 1 << (word.charAt(i) - ('a'));
+			mask |= 1 << (word.charAt(i) - (CHAR_OFFSET));
 		}
 		return mask;
 	}

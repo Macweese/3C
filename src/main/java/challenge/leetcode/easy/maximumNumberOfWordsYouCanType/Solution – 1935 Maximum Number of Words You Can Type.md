@@ -75,7 +75,8 @@ class Solution
 
 		for (String word : text.split(" "))
 		{
-			completeWords = (getMask(word) & brokenLettersMask) == 0 ? completeWords + 1 : completeWords;
+			int wordMask = getMask(word);
+			completeWords += (((wordMask & brokenLettersMask) - 1) >>> 31) & 1;
 		}
 
 		return completeWords;
