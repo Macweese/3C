@@ -703,32 +703,4 @@ public class DataUtils
 
 		return Optional.empty();
 	}
-
-	/**
-	 * Generates a singly-linked list from a given array of integers.
-	 *
-	 * @param ints The array to transform into a singly-linked list
-	 * @return The head of the singly-linked list,
-	 * or <code>null</code>, if the given array is empty or null.
-	 */
-	public static ListNode createListNode(int[] ints)
-	{
-		if (ints == null || ints.length == 0)
-		{
-			return null;
-		}
-
-		ListNode root = new ListNode(ints[0]);
-		ListNode t = root;
-
-		for (int i = 1; i < ints.length; ++i)
-		{
-			while (t.next == null)
-			{
-				t.next = new ListNode(ints[i]);
-			}
-			t = t.next;
-		}
-		return root;
-	}
 }

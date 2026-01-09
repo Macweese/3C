@@ -19,7 +19,6 @@ package challenge.leetcode.easy.mergeTwoSortedLists;
 
 import data.ListNode;
 import java.util.ArrayList;
-import utils.DataUtils;
 
 /**
  * @author Administrator
@@ -109,6 +108,6 @@ public class MergeTwoSortedLists
 		}
 
 		int[] ints = list.stream().sorted().mapToInt(Integer::intValue).toArray();
-		return DataUtils.createListNode(ints);
+		return ListNode.createListNode(ints);
 	}
 }

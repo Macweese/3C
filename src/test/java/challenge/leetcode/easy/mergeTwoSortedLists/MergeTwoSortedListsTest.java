@@ -24,7 +24,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static utils.DataUtils.createListNode;
+import static data.ListNode.createListNode;
 
 @DisplayName("21. Merge Two Sorted Lists")
 class MergeTwoSortedListsTest

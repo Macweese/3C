@@ -22,7 +22,7 @@ import data.ListNode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static utils.DataUtils.createListNode;
+import static data.ListNode.createListNode;
 
 @DisplayName("876. Middle of the Linked List")
 class MiddleOfTheLinkedListTest

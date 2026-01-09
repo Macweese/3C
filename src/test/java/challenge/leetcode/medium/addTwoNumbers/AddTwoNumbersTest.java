@@ -22,7 +22,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static utils.DataUtils.createListNode;
+import static data.ListNode.createListNode;
 
 @DisplayName("2. Add Two Numbers")
 class AddTwoNumbersTest
