@@ -185,10 +185,9 @@ static int GCD(int a, int b)
 ### MST Minimum Spanning Tree
 
 <details>
-  <summary>MST Minimum Spanning Tree</summary>
+  <summary>Prim's Algorithm (greedy)</summary>
 
 ```java
-// prims
 static List<int[]> getMSTGraph(int nNodes, int[][] graph, boolean isDirected)
 {
 
