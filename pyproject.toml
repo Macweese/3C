@@ -29,4 +29,4 @@ where = ["cli"]
 include = ["ccc*"]
 
 [tool.setuptools.package-data]
-ccc = ["templates/*.j2"]
+ccc = ["cli/templates/*.j2"]
