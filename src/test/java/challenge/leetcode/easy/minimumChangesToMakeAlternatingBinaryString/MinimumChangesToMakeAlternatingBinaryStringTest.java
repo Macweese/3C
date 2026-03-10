@@ -21,6 +21,7 @@ package challenge.leetcode.easy.minimumChangesToMakeAlternatingBinaryString;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -28,6 +29,7 @@ import org.junit.jupiter.api.Test;
  * @Created 06:37 Thu 05 March 2026
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("1758. Minimum Changes To Make Alternating Binary String")
 class MinimumChangesToMakeAlternatingBinaryStringTest
 {
 	private static final Map<String, Integer> MAP = new HashMap<>();

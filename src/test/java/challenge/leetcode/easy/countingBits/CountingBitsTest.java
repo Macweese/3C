@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test;
  * @Created 05:43 Mon 09 March 2026
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("338. Counting Bits")
 class CountingBitsTest
 {
 	private static final Map<Integer, int[]> MAP = new HashMap<>();

@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -31,6 +32,7 @@ import org.junit.jupiter.api.Test;
  * @Created 07:05 Sun 08 March 2026
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("1980. Find Unique Binary Strings")
 class FindUniqueBinaryStringsTest
 {
 	private static final Set<String[]> SET = new HashSet<>();

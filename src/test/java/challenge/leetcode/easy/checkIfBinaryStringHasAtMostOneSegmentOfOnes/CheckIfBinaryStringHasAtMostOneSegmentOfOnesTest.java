@@ -22,6 +22,7 @@ import challenge.leetcode.easy.minimumChangesToMakeAlternatingBinaryString.Minim
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test;
  * @Created 21:59 Fri 06 March 2026
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("1784. Check if Binary String Has at Most One Segment of Ones")
 class CheckIfBinaryStringHasAtMostOneSegmentOfOnesTest
 {
 	private static final Map<String, Boolean> MAP = new HashMap<>();

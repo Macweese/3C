@@ -21,6 +21,7 @@ package challenge.leetcode.medium.findAllPossibleStableBinaryArraysI;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -28,6 +29,7 @@ import org.junit.jupiter.api.Test;
  * @Created 21:40 Mon 09 March 2026
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("3129. Find All Possible Stable Binary Arrays I")
 class FindAllPossibleStableBinaryArraysITest
 {
 	private static final Map<Input, Integer> MAP = new HashMap();

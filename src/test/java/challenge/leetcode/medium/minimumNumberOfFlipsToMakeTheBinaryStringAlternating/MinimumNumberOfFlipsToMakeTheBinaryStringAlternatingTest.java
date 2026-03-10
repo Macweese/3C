@@ -21,6 +21,7 @@ package challenge.leetcode.medium.minimumNumberOfFlipsToMakeTheBinaryStringAlter
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -28,6 +29,7 @@ import org.junit.jupiter.api.Test;
  * @Created 07:02 Sat 07 March 2026
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("1888. Minimum Number of Flips to MAke the Binary String Alternating")
 class MinimumNumberOfFlipsToMakeTheBinaryStringAlternatingTest
 {
 	private static final Map<String, Integer> MAP = new HashMap<>();
