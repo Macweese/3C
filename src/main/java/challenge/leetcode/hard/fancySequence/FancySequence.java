@@ -28,17 +28,12 @@ import java.util.List;
  **/
 public class FancySequence
 {
-
-}
-
-public class Fancy
-{
 	private static final int MOD = 1000000007;
 	private List<Long> seq;
 	private long addVal;
 	private long mulVal;
 
-	public Fancy()
+	public FancySequence()
 	{
 		seq = new ArrayList<>();
 		addVal = 0;

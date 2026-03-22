@@ -18,7 +18,7 @@
 
 package challenge.leetcode.hard.fancyNumber;
 
-import challenge.leetcode.hard.fancySequence.Fancy;
+import challenge.leetcode.hard.fancySequence.FancySequence;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ class FancySequenceTest
 	@Test
 	void testFancyNumber()
 	{
-		Fancy fancy = new Fancy();
+		FancySequence fancy = new FancySequence();
 		fancy.append(2);		// fancy sequence: [2]
 		fancy.addAll(3);	// fancy sequence: [2+3] -> [5]
 		fancy.append(7);		// fancy sequence: [5, 7]
