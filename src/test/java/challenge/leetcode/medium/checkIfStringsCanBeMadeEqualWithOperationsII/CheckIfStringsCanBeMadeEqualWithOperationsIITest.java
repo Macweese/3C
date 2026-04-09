@@ -49,7 +49,7 @@ class CheckIfStringsCanBeMadeEqualWithOperationsIITest
 	}
 
 	@Test
-	void chechStrings()
+	void checkStrings()
 	{
 		for (Map.Entry<Input, Boolean> entry : MAP.entrySet())
 		{
