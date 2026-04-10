@@ -70,7 +70,7 @@ class LexicographicallySmallestGeneratedStringTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

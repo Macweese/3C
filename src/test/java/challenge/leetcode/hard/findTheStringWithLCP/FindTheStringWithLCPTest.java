@@ -67,7 +67,7 @@ class FindTheStringWithLCPTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

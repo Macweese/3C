@@ -78,7 +78,7 @@ class MinimumNumberOfSecondsToMakeMountainHeightZeroTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

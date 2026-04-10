@@ -78,7 +78,7 @@ class FindAllPossibleStableBinaryArraysITest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

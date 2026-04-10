@@ -75,7 +75,7 @@ class DetermineWhetherMatrixCanBeObtainedByRotationTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 
@@ -107,7 +107,7 @@ class DetermineWhetherMatrixCanBeObtainedByRotationTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 
@@ -139,7 +139,7 @@ class DetermineWhetherMatrixCanBeObtainedByRotationTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

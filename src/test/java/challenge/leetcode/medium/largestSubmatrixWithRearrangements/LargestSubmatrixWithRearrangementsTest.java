@@ -63,7 +63,7 @@ class LargestSubmatrixWithRearrangementsTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

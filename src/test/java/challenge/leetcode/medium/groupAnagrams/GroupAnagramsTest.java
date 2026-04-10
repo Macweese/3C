@@ -76,7 +76,7 @@ class GroupAnagramsTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

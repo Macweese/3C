@@ -75,7 +75,7 @@ class MaximizeSpanningTreeStabilityWithUpgradesTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

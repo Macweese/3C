@@ -69,7 +69,7 @@ class MatrixSimilarityAfterCyclicShiftsTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

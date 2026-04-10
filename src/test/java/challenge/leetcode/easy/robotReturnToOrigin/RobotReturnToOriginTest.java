@@ -61,7 +61,7 @@ class RobotReturnToOriginTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

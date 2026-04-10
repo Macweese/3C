@@ -123,7 +123,7 @@ class TopKFrequentElementsTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

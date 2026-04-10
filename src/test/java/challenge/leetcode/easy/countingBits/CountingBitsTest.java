@@ -82,7 +82,7 @@ class CountingBitsTest
 				""
 			);
 
-			assertArrayEquals(actual, expected, message);
+			assertArrayEquals(expected, actual, message);
 		}
 	}
 }

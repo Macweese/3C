@@ -74,7 +74,7 @@ class MinimumAbsoluteDifferenceInSlidingMatrixTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

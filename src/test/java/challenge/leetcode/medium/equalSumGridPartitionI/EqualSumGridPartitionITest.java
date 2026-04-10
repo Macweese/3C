@@ -93,7 +93,7 @@ class EqualSumGridPartitionITest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

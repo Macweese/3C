@@ -66,7 +66,7 @@ class ConstructProductMatrixTest
 				""
 			);
 
-			assertArrayEquals(actual, expected, message);
+			assertArrayEquals(expected, actual, message);
 		}
 	}
 }

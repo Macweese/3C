@@ -95,7 +95,7 @@ class FlipSquareSubmatrixVerticallyTest
 				""
 			);
 
-			assertArrayEquals(actual, expected, message);
+			assertArrayEquals(expected, actual, message);
 		}
 	}
 

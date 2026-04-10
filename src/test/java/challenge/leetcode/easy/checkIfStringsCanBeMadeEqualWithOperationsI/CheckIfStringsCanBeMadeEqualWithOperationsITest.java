@@ -76,7 +76,7 @@ class CheckIfStringsCanBeMadeEqualWithOperationsITest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }

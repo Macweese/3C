@@ -91,7 +91,7 @@ class WalkingRobotSimulationIITest
 				""
 			);
 
-			assertArrayEquals(actual, expected, message);
+			assertArrayEquals(expected, actual, message);
 		}
 	}
 

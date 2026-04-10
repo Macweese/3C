@@ -66,7 +66,7 @@ class CountSubmatricesWithEqualFrequencyOfXandYTest
 				""
 			);
 
-			assertEquals(actual, expected, message);
+			assertEquals(expected, actual, message);
 		}
 	}
 }
