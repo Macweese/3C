@@ -27,6 +27,99 @@ public class CountNegativeNumbersInASortedMatrix
 {
 	public static int countNegatives(int[][] grid)
 	{
-		return 0;
+		if (grid[0].length < 30)
+		{
+			return linearSearch(grid);
+		}
+		else
+		{
+			return binarySearch(grid);
+		}
+	}
+
+	private static int linearSearch(int[][] grid)
+	{
+		int count = 0;
+
+		for (int[] ints : grid)
+		{
+			for (int i = 0; i < ints.length; i++)
+			{
+				if (ints[i] < 0)
+				{
+					count += ints.length - i;
+					break;
+				}
+			}
+		}
+		return count;
+	}
+
+	private static int binarySearch(int[][] grid)
+	{
+		int count = 0;
+		for (int[] ints : grid)
+		{
+			int n = ints.length;
+			if (ints[0] < 0)
+			{
+				count += n;
+				continue;
+			}
+			count += n - binarySearchClosest(ints);
+		}
+
+		return count;
+	}
+
+	private static int binarySearchClosest(int[] ints)
+	{
+		if (ints == null || ints.length == 0)
+		{
+			throw new IllegalArgumentException("Array cannot be null or empty");
+		}
+
+		int l = 0;
+		int r = ints.length - 1;
+
+		while (l <= r)
+		{
+			int m = l + (r - l) / 2;
+
+			if (ints[m] == 0)
+			{
+				return ints[m];
+			}
+
+			if (ints[m] < 0)
+			{
+				r = m - 1;
+			}
+			else
+			{
+				l = m + 1;
+			}
+		}
+
+		if (l >= ints.length)
+		{
+			return ints[ints.length - 1];
+		}
+		if (r < 0)
+		{
+			return ints[0];
+		}
+
+		int leftDiff = Math.abs(-ints[r]);
+		int rightDiff = Math.abs(-ints[l]);
+
+		if (leftDiff <= rightDiff)
+		{
+			return ints[r];
+		}
+		else
+		{
+			return ints[l];
+		}
 	}
 }
