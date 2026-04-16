@@ -57,12 +57,14 @@ class CountNumberOfTrapezoidsIITest
 			final int actual = CountNumberOfTrapezoidsII.countTrapezoids(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%s",
 				"Input", Arrays.deepToString(input),
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
