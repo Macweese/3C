@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test;
  * @Created 01:03 Thu 20 November 2025
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("757. Set Intersection Size At Least Two")
 class SetIntersectionSizeAtLeastTwoTest
 {
 	private static final Map<int[][], Integer> MAP = new HashMap<>();
@@ -141,12 +143,14 @@ class SetIntersectionSizeAtLeastTwoTest
 			final int actual = SetIntersectionSizeAtLeastTwo.intersectionSizeTwo(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Hours", Arrays.deepToString(input),
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
