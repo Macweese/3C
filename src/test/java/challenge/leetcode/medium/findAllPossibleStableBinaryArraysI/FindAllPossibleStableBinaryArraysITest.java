@@ -66,6 +66,7 @@ class FindAllPossibleStableBinaryArraysITest
 					+ "%n%10s : %s"
 					+ "%n%10s : %s"
 					+ "%n%10s : %s"
+					+ "%n%10s"
 					+ "%n%10s : %s"
 					+ "%n%10s : %s"
 					+ "%n%10s ",
@@ -73,6 +74,7 @@ class FindAllPossibleStableBinaryArraysITest
 				"Zero", zero,
 				"One", one,
 				"Limit", limit,
+				"Output",
 				"Expected", expected,
 				"Actual", actual,
 				""
