@@ -57,9 +57,22 @@ class RearrangingFruitsTest
 			final long expected = triple.getRight();
 			final long actual = RearrangingFruits.minCost(a, b);
 
-			message = "Test failed on case: \nBasket 1: " + Arrays.toString(a) + "\nBasket 2: " + Arrays.toString(b)
-				+ ".\nExpected : " + expected
-				+ "\nActual   : " + actual;
+			message = String.format("Test failed for case:"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
+				"Input",
+				"Basket 1", Arrays.toString(a),
+				"Basket 2", Arrays.toString(b),
+				"Output",
+				"Expected", expected,
+				"Actual", actual,
+				""
+			);
 
 			assertEquals(expected, actual, message);
 		}
