@@ -53,14 +53,20 @@ class CountCoveredBuildingsTest
 			final int actual = CountCoveredBuildings.countCoveredBuildings(n, buildings);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
+				"Input",
 				"Buildings", Arrays.deepToString(buildings),
 				"n", n,
+				"Output",
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
