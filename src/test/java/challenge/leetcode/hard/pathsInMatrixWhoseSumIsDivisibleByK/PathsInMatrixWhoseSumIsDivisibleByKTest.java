@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.DataUtils;
 import utils.IntArraySpec;
@@ -33,6 +34,7 @@ import utils.SortingMode;
  * @Created 05:03 Wed 26 November 2025
  * @Project 3C: Competitive Coding Challenges
  **/
+@DisplayName("2435. Paths in Matrix Whose Sum Is Divisible by K")
 class PathsInMatrixWhoseSumIsDivisibleByKTest
 {
 	private static final Map<Map.Entry<int[][], Integer>, Integer> MAP = new HashMap<>();
@@ -90,14 +92,20 @@ class PathsInMatrixWhoseSumIsDivisibleByKTest
 			final int actual = PathsInMatrixWhoseSumIsDivisibleByK.numberOfPaths(matrix, k);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
+				"Input",
 				"Matrix", Arrays.deepToString(matrix),
 				"k", k,
+				"Output",
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
