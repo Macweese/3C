@@ -66,12 +66,14 @@ class NumberOfWaysToDivideALongCorridorTest
 			final int actual = NumberOfWaysToDivideALongCorridor.numberOfWays(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Input", input,
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
