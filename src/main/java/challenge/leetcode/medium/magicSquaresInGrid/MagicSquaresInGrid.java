@@ -51,11 +51,6 @@ public class MagicSquaresInGrid
 			}
 		}
 
-		for (boolean[] r : squares)
-		{
-			System.out.println(Arrays.toString(r));
-		}
-
 		return magicSquares;
 	}
 }
