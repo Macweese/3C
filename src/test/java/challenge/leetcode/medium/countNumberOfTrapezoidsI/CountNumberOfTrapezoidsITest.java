@@ -59,9 +59,10 @@ class CountNumberOfTrapezoidsITest
 			final int actual = CountNumberOfTrapezoidsI.countTrapezoids(points);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n",
 				"Points", Arrays.deepToString(points),
 				"Expected", expected,
 				"Actual", actual
