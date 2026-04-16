@@ -209,9 +209,14 @@ class BuildArrayFromPermutationTest
 			final int[] expected = entry.getValue();
 			final int[] actual = BuildArrayFromPermutation.buildArray(ints);
 
-			String message = "Test failed on case: " + Arrays.toString(ints)
-				+ ".\nExpected : " + Arrays.toString(expected)
-				+ "\nActual   : " + Arrays.toString(actual);
+			String message = String.format("Test failed for case:"
+					+ "%n%-10s : %s"
+					+ "%n%-10s : %s"
+					+ "%n%-10s : %s"
+					+ "%n",
+				"Input", Arrays.toString(ints),
+				"Expected", Arrays.toString(expected),
+				"Actual", Arrays.toString(actual));
 
 			assertArrayEquals(expected, actual, message);
 		}
