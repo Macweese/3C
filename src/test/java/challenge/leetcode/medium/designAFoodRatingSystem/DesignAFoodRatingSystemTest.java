@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.BasicConfigurator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,11 +33,6 @@ import org.junit.jupiter.api.Test;
 @DisplayName("2353. Design a Food Rating System")
 class DesignAFoodRatingSystemTest
 {
-	static
-	{
-		BasicConfigurator.configure();
-	}
-
 	private static String[] foods;
 	private static String[] origins;
 	private static int[] ratings;
