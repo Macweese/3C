@@ -54,9 +54,11 @@ class FruitsIntoBasketsIIITest
 			final int expected = triple.getRight();
 			final int actual = FruitsIntoBasketsIII.numOfUnplacedFruits(fruits, baskets);
 
-			message = "Test failed for case: \nFruits  : " + Arrays.toString(fruits) + "Baskets : " + Arrays.toString(baskets)
-				+ "\nExpected: " + expected
-				+ "\n  Actual: " + actual;
+			message = "Test failed for case: " +
+				"\nFruits  : " + Arrays.toString(fruits) +
+				"\nBaskets : " + Arrays.toString(baskets) +
+				"\nExpected: " + expected +
+				"\n  Actual: " + actual;
 
 			assertEquals(expected, actual, message);
 		}
