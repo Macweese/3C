@@ -49,9 +49,22 @@ class ClosestPrimeNumberInRangeTest
 			int[] expected = entry.getValue();
 			int[] actual = Solution.closestPrimes(l, r);
 
-			String message = "Test case failed for LEFT=" + l + ", RIGHT=" + r
-				+ "\nExpected : " + Arrays.toString(expected)
-				+ "\nActual   : " + Arrays.toString(actual);
+			String message = String.format("Test failed for case:"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
+				"Input",
+				"Left", l,
+				"Right", r,
+				"Output",
+				"Expected", Arrays.toString(expected),
+				"Actual", Arrays.toString(actual),
+				""
+			);
 
 			assertArrayEquals(expected, actual, message);
 		}
