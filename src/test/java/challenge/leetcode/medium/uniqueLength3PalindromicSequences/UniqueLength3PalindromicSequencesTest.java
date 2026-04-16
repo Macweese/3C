@@ -146,9 +146,9 @@ class UniqueLength3PalindromicSequencesTest
 			final int actual = UniqueLength3PalindromicSequences.countPalindromicSubsequence(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Hours", input,
 				"Expected", expected,
 				"Actual", actual

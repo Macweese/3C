@@ -249,10 +249,10 @@ class NumberOfEmployeesWhoMetTheTargetTest
 			final int actual = NumberOfEmployeesWhoMetTheTarget.numberOfEmployeesWhoMetTarget(input, target);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Hours", Arrays.toString(input),
 				"Target", target,
 				"Expected", expected,

@@ -114,11 +114,11 @@ class CompareVersionNumbersTest
 			final int actual = CompareVersionNumbers.compareVersion(v1, v2);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Version 1", v1,
 				"Version 2", v2,
 				"Expected", expected,

@@ -35,10 +35,10 @@ class LargestPerimeterTriangleTest
 		final int actual = LargestPerimeterTriangle.largestPerimeter(input);
 
 		String message = String.format("Test failed for case:"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s",
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s",
 			"Input", Arrays.toString(input),
 			"Expected", expected,
 			"Actual", actual,

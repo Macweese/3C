@@ -168,9 +168,9 @@ class ReverseDegreeOfAStringTest
 			final int actual = ReverseDegreeOfAString.reverseDegree(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Input", input,
 				"Expected", expected,
 				"Actual", actual

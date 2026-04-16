@@ -58,9 +58,9 @@ class NumberOfSubstringsWithOnly1sTest
 			final int actual = NumberOfSubstringsWithOnly1s.numSub(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Input", input,
 				"Expected", expected,
 				"Actual", actual

@@ -56,11 +56,11 @@ class makeSumDivisibleByPTest
 			final int actual = makeSumDivisibleByP.minSubArray(ints, size, p);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"ints", Arrays.toString(ints),
 				"size", size,
 				"p", p,

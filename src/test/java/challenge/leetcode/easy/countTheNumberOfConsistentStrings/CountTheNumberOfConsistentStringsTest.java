@@ -135,11 +135,11 @@ class CountTheNumberOfConsistentStringsTest
 			final int actual = CountTheNumberOfConsistentStrings.countConsistentStrings(letters, words);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Letters", letters,
 				"Words", Arrays.toString(words),
 				"Expected", expected,

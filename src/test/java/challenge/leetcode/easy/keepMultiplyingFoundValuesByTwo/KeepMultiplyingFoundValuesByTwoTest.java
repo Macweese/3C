@@ -152,10 +152,10 @@ class KeepMultiplyingFoundValuesByTwoTest
 			final int actual = KeepMultiplyingFoundValuesByTwo.findFinalValue(ints, original);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Hours", Arrays.toString(ints),
 				"Target", original,
 				"Expected", expected,

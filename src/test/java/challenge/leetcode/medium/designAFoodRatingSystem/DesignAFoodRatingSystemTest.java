@@ -104,11 +104,11 @@ class DesignAFoodRatingSystemTest
 					String expected = expectedFoodRating.highestRated(origin);
 					String actual = actualFoodRating.highestRated(origin);
 					String message = String.format("Test failed for case:"
-							+ "\n%10s : %s"
-							+ "\n%10s : %s"
-							+ "\n%10s : %s"
-							+ "\n%10s : %s"
-							+ "\n%10s",
+							+ "%n%10s : %s"
+							+ "%n%10s : %s"
+							+ "%n%10s : %s"
+							+ "%n%10s : %s"
+							+ "%n%10s",
 						"Expected", expectedFoodRating,
 						"Actual", actualFoodRating,
 						"Expected food", expected,

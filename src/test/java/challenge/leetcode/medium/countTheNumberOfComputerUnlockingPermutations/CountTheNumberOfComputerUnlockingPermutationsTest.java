@@ -54,7 +54,7 @@ class CountTheNumberOfComputerUnlockingPermutationsTest
 					+ "%n%10s : %s"
 					+ "%n%10s : %s"
 					+ "%n%10s : %s"
-					+ "%n%-10s",
+					+ "%n%10s",
 				"Input", Arrays.toString(input),
 				"Expected", expected,
 				"Actual", actual,

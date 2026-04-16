@@ -56,9 +56,9 @@ class FindMinimumOperationsToMakeAllElementsDivisibleByThreeTest
 			final int actual = FindMinimumOperationsToMakeAllElementsDivisibleByThree.minimumOperations(ints);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"ints", Arrays.toString(ints),
 				"Expected", expected,
 				"Actual", actual);

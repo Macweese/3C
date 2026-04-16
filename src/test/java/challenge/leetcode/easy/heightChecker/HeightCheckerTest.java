@@ -151,9 +151,9 @@ class HeightCheckerTest
 			final int actual = HeightChecker.heightChecker(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Input", Arrays.toString(input),
 				"Expected", expected,
 				"Actual", actual

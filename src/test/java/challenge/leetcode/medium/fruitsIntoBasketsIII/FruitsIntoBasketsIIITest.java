@@ -53,13 +53,13 @@ class FruitsIntoBasketsIIITest
 			final int actual = FruitsIntoBasketsIII.numOfUnplacedFruits(fruits, baskets);
 
 			message = String.format("Test failed for case: "
-					+ "%n%-10s"
-					+ "%n%-10s : %s"
-					+ "%n%-10s : %s"
-					+ "%n%-10s"
-					+ "%n%-10s : %s"
-					+ "%n%-10s : %s"
-					+ "%n%-10s",
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Input",
 				"Fruits", Arrays.toString(fruits),
 				"Baskets", Arrays.toString(baskets),

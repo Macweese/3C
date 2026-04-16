@@ -118,10 +118,10 @@ class SmallestEvenMultipleTest
 			final int actual = SmallestEvenMultiple.smallestEvenMultiple(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Input", input,
 				"Expected", expected,
 				"Actual", actual,

@@ -151,9 +151,9 @@ class BinaryPrefixDivisibleBy5Test
 			final List<Boolean> actual = BinaryPrefixDivisibleBy5.prefixesDivBy5(input);
 
 			String message = String.format("Test failed for case:"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s",
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s : %s",
 				"Input", Arrays.toString(input),
 				"Expected", expected,
 				"Actual", actual

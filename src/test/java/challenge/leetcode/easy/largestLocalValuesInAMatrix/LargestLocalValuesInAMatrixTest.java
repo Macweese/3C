@@ -118,9 +118,9 @@ class LargestLocalValuesInAMatrixTest
 			final int[][] actual = LargestLocalValuesInAMatrix.largestLocal(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Input", Arrays.deepToString(input),
 				"Expected", Arrays.deepToString(expected),
 				"Actual", Arrays.deepToString(actual)

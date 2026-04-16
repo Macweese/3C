@@ -53,11 +53,11 @@ class MaximumNumberOfKDivisibleComponentsTest
 			final int actual = MaximumNumberOfKDivisibleComponents.maxDivisibleComponents(edges, values, k);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Edges", Arrays.deepToString(edges),
 				"Values", Arrays.toString(values),
 				"k", k,

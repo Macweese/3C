@@ -212,7 +212,7 @@ class TransformArrayByParityTest
 		performanceTests();
 
 		averge.set(passes.get() / elements.get());
-		System.out.printf("%n%-10s : %.0f%n%-10s : %.0f%n%-10s : %f%n",
+		System.out.printf("%n%10s : %.0f%n%10s : %.0f%n%10s : %f%n",
 			"Elements", elements.get(),
 			"Passes", passes.get(),
 			"Average" , averge.get()

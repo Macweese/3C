@@ -352,11 +352,11 @@ class VowelSpellcheckerTest
 			final String[] actual = VowelSpellchecker.spellchecker(wordlist, queries);
 
 			message = String.format("Test failed for case:"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s",
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s",
 				"Wordlist", Arrays.toString(wordlist),
 				"Queries", Arrays.toString(queries),
 				"Expected", Arrays.toString(expected),

@@ -61,11 +61,11 @@ class MaximumNumberOfWordsYouCanTypeTest
 			final int actual = MaximumNumberOfWordsYouCanType.canBeTypedWords(text, letters);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
 				"Text", text,
 				"Letters", letters,
 				"Expected", expected,

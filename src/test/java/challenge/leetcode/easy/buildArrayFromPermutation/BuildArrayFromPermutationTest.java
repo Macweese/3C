@@ -210,13 +210,14 @@ class BuildArrayFromPermutationTest
 			final int[] actual = BuildArrayFromPermutation.buildArray(ints);
 
 			String message = String.format("Test failed for case:"
-					+ "%n%-10s : %s"
-					+ "%n%-10s : %s"
-					+ "%n%-10s : %s"
-					+ "%n",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n10%s",
 				"Input", Arrays.toString(ints),
 				"Expected", Arrays.toString(expected),
-				"Actual", Arrays.toString(actual));
+				"Actual", Arrays.toString(actual),
+				"");
 
 			assertArrayEquals(expected, actual, message);
 		}

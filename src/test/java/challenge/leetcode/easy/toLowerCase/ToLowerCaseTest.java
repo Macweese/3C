@@ -164,9 +164,9 @@ class ToLowerCaseTest
 			final String actual = ToLowerCase.toLowerCase(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Input", input,
 				"Expected", expected,
 				"Actual", actual);

@@ -74,9 +74,9 @@ class CountOddNumbersInAnIntervalRangeTest
 			final int actual = CountOddNumbersInAnIntervalRange.countOdds(interval[0], interval[1]);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Interval", Arrays.toString(interval),
 				"Expected", expected,
 				"Actual", actual

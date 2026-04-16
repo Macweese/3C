@@ -453,9 +453,9 @@ class MinimumBitFlipsToConvertNumberTest
 			final int actual = MinimumBitFlipsToConvertNumber.minBitFlips(input[0], input[1]);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"Input", Arrays.toString(input),
 				"Expected", expected,
 				"Actual", actual

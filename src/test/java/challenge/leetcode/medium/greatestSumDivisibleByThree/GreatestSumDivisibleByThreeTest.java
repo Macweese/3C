@@ -231,9 +231,9 @@ class GreatestSumDivisibleByThreeTest
 			final int actual = GreatestSumDivisibleByThree.maxSumDivThree(input);
 
 			String message = String.format("Test failed for case:"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s"
-				+ "\n%10s : %s",
+				+ "%n%10s : %s"
+				+ "%n%10s : %s"
+				+ "%n%10s : %s",
 				"ints", Arrays.toString(input),
 				"Expected", expected,
 				"Actual", actual

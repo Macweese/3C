@@ -49,10 +49,10 @@ class CheckIfAll1sAreAtLeastLengthKPlacesAwayTest
 			final boolean actual = CheckIfAll1sAreAtLeastLengthKPlacesAway.kLengthApart(ints, k);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s",
 				"ints", Arrays.toString(ints),
 				"k", k,
 				"Expected", expected,
