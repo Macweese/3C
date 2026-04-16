@@ -51,12 +51,14 @@ class CountTheNumberOfComputerUnlockingPermutationsTest
 			final int actual = CountTheNumberOfComputerUnlockingPermutations.countPermutations(input);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%-10s",
 				"Input", Arrays.toString(input),
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
