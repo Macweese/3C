@@ -21,7 +21,7 @@ package challenge.leetcode.medium.topKFrequentElements;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -123,7 +123,7 @@ class TopKFrequentElementsTest
 				""
 			);
 
-			assertEquals(expected, actual, message);
+			assertArrayEquals(expected, actual, message);
 		}
 	}
 }
