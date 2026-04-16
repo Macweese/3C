@@ -56,14 +56,20 @@ class MaximumRunningTimeOfNComputersTest
 			final long actual = MaximumRunningTimeOfNComputers.maxRunTime(n, ints);
 
 			String message = String.format("Test failed for case:"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s"
-					+ "\n%10s : %s",
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s"
+					+ "%n%10s : %s"
+					+ "%n%10s : %s"
+					+ "%n%10s",
+				"Input",
 				"Batteries", Arrays.toString(ints),
 				"n", n,
+				"Output",
 				"Expected", expected,
-				"Actual", actual
+				"Actual", actual,
+				""
 			);
 
 			assertEquals(expected, actual, message);
