@@ -62,7 +62,7 @@ class CountNumberOfTrapezoidsITest
 					+ "\n%10s : %s"
 					+ "\n%10s : %s"
 					+ "\n%10s : %s",
-				"Points", Arrays.toString(points),
+				"Points", Arrays.deepToString(points),
 				"Expected", expected,
 				"Actual", actual
 			);
