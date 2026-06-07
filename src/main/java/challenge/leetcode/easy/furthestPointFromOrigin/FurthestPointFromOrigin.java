@@ -1,0 +1,41 @@
+/*
+ *
+ *     Copyright (C) 2026 Macweese <https://www.github.com/Macweese>
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as
+ *     published by the Free Software Foundation, either version 3 of the
+ *     License, or (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package challenge.leetcode.easy.furthestPointFromOrigin;
+
+/**
+ * @author Administrator
+ * @Created 00:40 Sat 25 April 2026
+ * @Project 3C: Competitive Coding Challenges
+ **/
+public class FurthestPointFromOrigin
+{
+	public static int furthestDistanceFromOrigin(String moves)
+	{
+		int distance = 0;
+		int anyDir = 0;
+
+		for (char c : moves.toCharArray())
+		{
+			distance += (((c & 7) * 3) & 7) - 5;
+			anyDir += c / 95;
+		}
+
+		return Math.abs(distance) + anyDir;
+	}
+}
