@@ -77,34 +77,6 @@
 
 <br>
 
-## Solution
-
-### Intuition
-
-<!-- Optional: add your own thoughts after reading the description -->
-
-### Approach
-
-<!-- Optional: sketch your plan -->
-
-### Complexity analysis
-
-#### Time Complexity
-
-<!-- e.g., O(n log n) -->
-
-#### Space Complexity
-
-<!-- e.g., O(n) -->
-
----
-
-### Code
-
-```
-// AC here
-```
-
 ---
 
 <br>
@@ -153,6 +125,8 @@
 ---
 
 **POTD**
+
+`2026-05-30, Sat 30 May 2026`
 
 
 [comment]: # (comments...)
