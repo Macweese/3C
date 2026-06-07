@@ -342,7 +342,7 @@ Override with `3C_CACHE_DIR`.
 
 <br>
 
-## Roadmap
+## Roadmap / wish to implement
 
 - Additional sources (ProjectEuler, Codeforces, etc.)
 - Shared metadata per problem
