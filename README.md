@@ -4,7 +4,8 @@
 
 ---
 
-Personal repository for solutions to Competitive Coding Challenges.
+Personal repository for solutions to Competitive Coding Challenges.  
+Very unpolished, mostly pushing LC POTD solutions completed from a small window of time I find during the day, like during lunch break.
 
 # Code Challenges
 
