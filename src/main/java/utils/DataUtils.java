@@ -17,7 +17,6 @@
  */
 package utils;
 
-import data.ListNode;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
@@ -58,7 +57,7 @@ public class DataUtils
 	 *
 	 * @param spec Specification for size, bounds, and ordering. Must not be null.
 	 * @return A new array meeting the specification; possibly empty if size resolves to 0.
-	 * @throws NullPointerException if {@code spec} is null.
+	 * @throws NullPointerException     if {@code spec} is null.
 	 * @throws IllegalArgumentException if strict ordering is requested but the bounds cannot provide enough distinct values.
 	 * @apiNote Values are sampled uniformly over the integer range using an inclusive bound strategy.
 	 * @implNote Uses {@link ThreadLocalRandom} for randomness. Sorting is via {@link Arrays#sort(int[])}; shuffle uses Fisher–Yates.
@@ -67,7 +66,10 @@ public class DataUtils
 	{
 		Objects.requireNonNull(spec, "spec");
 		final int n = spec.resolveSize();
-		if (n <= 0) return new int[0];
+		if (n <= 0)
+		{
+			return new int[0];
+		}
 
 		final int min = spec.minInclusive;
 		final int max = spec.maxInclusive;
@@ -184,7 +186,7 @@ public class DataUtils
 	 *   <li>Ordering: unsorted.</li>
 	 * </ul>
 	 *
-	 * @param size Desired array length; non-positive values yield an empty array.
+	 * @param size     Desired array length; non-positive values yield an empty array.
 	 * @param minValue Inclusive lower bound for values.
 	 * @param maxValue Inclusive upper bound for values.
 	 * @return A new array of length {@code size} with values within the given bounds.
@@ -213,7 +215,7 @@ public class DataUtils
 	 *   <li>Ordering: unsorted.</li>
 	 * </ul>
 	 *
-	 * @param size Desired array length; non-positive values yield an empty array.
+	 * @param size     Desired array length; non-positive values yield an empty array.
 	 * @param maxValue Inclusive upper bound for values.
 	 * @return A new array of length {@code size} with values in [0, {@code maxValue}].
 	 * @throws IllegalArgumentException if {@code maxValue} &lt; 0 (because the lower bound is 0).
@@ -247,7 +249,7 @@ public class DataUtils
 	 *   <li>Ordering: unsorted.</li>
 	 * </ul>
 	 *
-	 * @param size Upper bound for size (or exact size if {@code sizeMode} is FIXED).
+	 * @param size     Upper bound for size (or exact size if {@code sizeMode} is FIXED).
 	 * @param sizeMode Whether the size should be fixed or a random length up to {@code size} (inclusive).
 	 * @param minValue Inclusive lower bound for values.
 	 * @param maxValue Inclusive upper bound for values.
@@ -259,7 +261,14 @@ public class DataUtils
 	public static int[] generateRandomArray(int size, SizeMode sizeMode, int minValue, int maxValue)
 	{
 		IntArraySpec.Builder b = IntArraySpec.builder(size).bounds(minValue, maxValue);
-		if (sizeMode == SizeMode.RANDOM) b.randomSizeUpTo(); else b.fixedSize();
+		if (sizeMode == SizeMode.RANDOM)
+		{
+			b.randomSizeUpTo();
+		}
+		else
+		{
+			b.fixedSize();
+		}
 		return generateArray(b.sorting(SortingMode.UNSORTED).build());
 	}
 
@@ -268,7 +277,7 @@ public class DataUtils
 	 *
 	 * <p>Equivalent to {@link #generateRandomArray(int, SizeMode, int, int)} with {@code minValue = 0}.</p>
 	 *
-	 * @param size Upper bound for size (or exact size if {@code sizeMode} is FIXED).
+	 * @param size     Upper bound for size (or exact size if {@code sizeMode} is FIXED).
 	 * @param sizeMode Whether the size should be fixed or a random length up to {@code size} (inclusive).
 	 * @param maxValue Inclusive upper bound for values.
 	 * @return A new array with the requested size behavior and bounds.
@@ -302,10 +311,10 @@ public class DataUtils
 	 *       the result will also be increasing.</li>
 	 * </ul>
 	 *
-	 * @param n The fixed length (FIXED) or the maximum length bound (RANDOM).
-	 * @param sizeMode Whether to use a fixed length or draw a random length up to {@code n} (inclusive).
+	 * @param n         The fixed length (FIXED) or the maximum length bound (RANDOM).
+	 * @param sizeMode  Whether to use a fixed length or draw a random length up to {@code n} (inclusive).
 	 * @param startFrom The first value in the sequence before any reordering.
-	 * @param mode Desired ordering mode for the resulting array.
+	 * @param mode      Desired ordering mode for the resulting array.
 	 * @return A new sequential array honoring the requested size and ordering. Never null; may be empty if {@code n <= 0}.
 	 * @implNote Uses {@link ThreadLocalRandom} when {@code sizeMode == RANDOM} and for shuffling.
 	 */
@@ -356,7 +365,7 @@ public class DataUtils
 	 *   <li>{@code mode = INCREASING}</li>
 	 * </ul>
 	 *
-	 * @param n The fixed length (FIXED) or the maximum length bound (RANDOM).
+	 * @param n        The fixed length (FIXED) or the maximum length bound (RANDOM).
 	 * @param sizeMode Whether to use a fixed length or a random length up to {@code n}.
 	 * @return A sequential array starting at 1, in increasing order; may be empty if {@code n <= 0}.
 	 */
@@ -371,9 +380,9 @@ public class DataUtils
 	 *   <li>{@code startFrom = 1}</li>
 	 * </ul>
 	 *
-	 * @param n The fixed length (FIXED) or the maximum length bound (RANDOM).
+	 * @param n        The fixed length (FIXED) or the maximum length bound (RANDOM).
 	 * @param sizeMode Whether to use a fixed length or a random length up to {@code n}.
-	 * @param mode Desired ordering mode for the resulting array.
+	 * @param mode     Desired ordering mode for the resulting array.
 	 * @return A sequential array starting at 1 with the desired ordering; may be empty if {@code n <= 0}.
 	 */
 	public static int[] generateSequentialArray(int n, SizeMode sizeMode, SortingMode mode)
@@ -406,7 +415,10 @@ public class DataUtils
 		for (int v : set)
 		{
 			a[i++] = v;
-			if (i == a.length) break;
+			if (i == a.length)
+			{
+				break;
+			}
 		}
 	}
 
@@ -477,7 +489,7 @@ public class DataUtils
 	/**
 	 * Binary search of integer array
 	 *
-	 * @param ints sorted integer array
+	 * @param ints  sorted integer array
 	 * @param value target value to search for
 	 * @return returns the search value if found,
 	 * or if the value is not found, returns the CLOSEST value
@@ -558,7 +570,6 @@ public class DataUtils
 	 * or
 	 * more than the search value,
 	 * within the specified ranges
-	 *
 	 * @implNote This is not a strict binary search,
 	 * but a combination of binary search and linear
 	 * search.<br>
@@ -593,7 +604,6 @@ public class DataUtils
 	 * or
 	 * more than the search value,
 	 * within the specified ranges
-	 *
 	 * @implNote This is not a strict binary search,
 	 * but a combination of binary search and linear
 	 * search.<br>
