@@ -3,7 +3,8 @@ package challenge.leetcode.medium.minimumMovesToEqualArrayElementsII;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -78,6 +79,7 @@ class MinimumMovesToEqualArrayElementsIITest
 	}
 
 }
+
 record Input(int[] ints)
 {
 
