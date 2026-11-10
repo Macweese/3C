@@ -176,5 +176,5 @@ def test_all_sources_are_registered(capsys):
 	with pytest.raises(SystemExit):
 		app.main(["--help"])
 	help_text = capsys.readouterr().out
-	for cmd in ("lc", "cg", "pe"):
-		assert cmd in help_text
+	for cmd in ("doctor", "lc", "cg", "ac", "cf", "cw", "codingame", "hr", "kt", "pe", "spoj", "tc"):
+		assert f"    {cmd} " in help_text, cmd

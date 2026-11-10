@@ -77,7 +77,7 @@ def main(argv: list[str] | None = None) -> int:
 	# Easter egg: intentionally absent from --help.
 	parser.add_argument("--donut", action="store_true", help=argparse.SUPPRESS)
 
-	subparsers = parser.add_subparsers(dest="cmd", required=False, metavar="{lc,doctor,...}")
+	subparsers = parser.add_subparsers(dest="cmd", required=False, metavar="<command>")
 
 	doctor_mod.register_subparser(subparsers, parents=[common])
 
