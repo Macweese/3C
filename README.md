@@ -61,4 +61,7 @@ Problems are sourced from:
 - Kattis
 - Leetcode
 - Project Euler
+- SPOJ
 - TopCoder
+
+All of them (plus CodeGolf) are supported by the [3C CLI](cli/ccc/README.md).

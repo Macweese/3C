@@ -51,18 +51,25 @@ The output structure is designed to scale to multiple sources without collisions
 - Robust HTTP behavior (session, CSRF bootstrap, Referer/Origin, retries)
 - Debug mode for path and HTTP diagnostics
 - Parallel batch generation with `-j/--jobs` (I/O-bound speedup; safe modest thread counts)
-
-Currently supported sources:
-- LeetCode
-- CodeGolf
-
+- Eleven sources behind one command, each with a short subcommand
 
 Global command: `3c`
 
-| Subcommand               | Source   |
-|--------------------------|----------|
-| `lc`, `leetcode`         | LeetCode |
-| `cg`, `golf`, `codegolf` | CodeGolf |
+| Subcommand                   | Source        | Accepted input                                   | Difficulty tier            |
+|------------------------------|---------------|--------------------------------------------------|----------------------------|
+| `lc`, `leetcode`             | LeetCode      | id, slug, URL, range, `--potd`                   | Easy / Medium / Hard       |
+| `cg`, `golf`, `codegolf`     | CodeGolf      | hole id or name, `--all`, `--latest`, `--random` | —                          |
+| `ac`, `atcoder`              | AtCoder       | task id, contest id (all tasks), URL             | rating colour (estimate)   |
+| `cf`, `codeforces`           | Codeforces    | `1850A`, `1850/A`, contest id (all problems), URL | problem rating            |
+| `cw`, `codewars`             | Codewars      | kata slug, id, URL                               | kyu / dan rank             |
+| `codingame`, `cgame`         | CodinGame     | puzzle id, URL                                   | puzzle level               |
+| `hr`, `hackerrank`           | HackerRank    | challenge slug, URL (contests included)          | Easy / Medium / Hard / …   |
+| `kt`, `kattis`               | Kattis        | problem id, URL (any `*.kattis.com`)             | Easy / Medium / Hard       |
+| `pe`, `euler`, `projecteuler`| Project Euler | number, range, URL                               | —                          |
+| `spoj`, `sp`                 | SPOJ          | problem code, URL                                | —                          |
+| `tc`, `topcoder`             | Topcoder      | problem id, class name, URL                      | division + level           |
+
+Every subcommand has its own `--help` with examples, e.g. `3c cf --help`.
 
 <br>
 
@@ -194,24 +201,115 @@ Examples:
 # Default
 # Writes to repo root, or to the location of `3C_OUT_DIR` ENV-variable, if it is assigned a custom value  
 3c lc 3508
-# -> ./leetcode/medium/3508/README.md
+# -> ./Challenges/LeetCode/Medium/3508/README.md
 
 # Default layout (source + difficulty + id) into cwd
 3c lc 3508 --out-dir .
-# -> cwd/leetcode/medium/3508/README.md
+# -> cwd/Challenges/LeetCode/Medium/3508/README.md
 
 # “Flat-by-source” with readable leaf name
 3c lc 50 --layout source-id --namefmt "{id}-{slug}"
-# -> ./leetcode/50-powx-n/README.md
+# -> ./Challenges/LeetCode/50-powx-n/README.md
 
 # Legacy flat mode (internally coerced to source-id to avoid cross-source collisions)
 3c lc 64 --mode flat
-# -> ./leetcode/64/README.md
+# -> ./Challenges/LeetCode/64/README.md
 
 # Generate a batch, then write under a custom out dir
 3c lc 40-45 --out-dir E:/directory
-# -> E:/directory/leetcode/64/README.md
+# -> E:/directory/Challenges/LeetCode/<difficulty>/<id>/README.md
 ```
+
+<br>
+
+---
+
+<br>
+
+## Other sources
+
+All sources other than LeetCode and CodeGolf share one set of options and one template
+(`cli/ccc/cli/templates/problem_readme.md.j2`). Several problems can be passed at once; duplicates are
+fetched only once.
+
+```bash
+# AtCoder: a task, a whole contest, or a URL
+3c ac abc300_a
+3c ac abc300 -j 4
+3c ac https://atcoder.jp/contests/dp/tasks/dp_a
+
+# Codeforces: a problem, a whole contest, or a URL (gyms with HTML statements included)
+3c cf 1850A 4/A
+3c cf 1850
+3c cf https://codeforces.com/problemset/problem/4/A
+
+# Codewars / CodinGame / HackerRank / Kattis: slug (as in the URL) or URL
+3c cw valid-braces
+3c codingame the-descent
+3c hr sherlock-and-anagrams
+3c kt hello https://open.kattis.com/problems/10kindsofpeople
+
+# Project Euler: numbers and inclusive ranges
+3c pe 1 96 100-110 -j 4
+
+# Topcoder: archive problem id or class name
+3c tc MinesweeperStrings 1259
+
+# SPOJ: problem code
+3c spoj TEST
+```
+
+Shared options:
+
+```bash
+--out-dir <path>                 # base directory (default: current dir or $3C_OUT_DIR)
+--layout {source-difficulty-id,difficulty-source-id,source-id,flat}
+--namefmt "{id}-{slug}"          # leaf directory name
+--no-id-subdir                   # no per-problem directory
+--filename README.md             # output filename
+--template /path/to/template.j2  # custom Jinja2 template
+-j / --jobs N                    # parallel fetches (default from $3C_JOBS or 1)
+--refresh                        # re-download cached source indexes
+--force / --no-overwrite         # overwrite policy for existing files
+--dry-run                        # print what would be written
+```
+
+Source-specific options: `3c ac --no-difficulty` skips the difficulty estimate.
+
+The command exits with status `1` if any problem could not be generated, so it can be used in scripts.
+
+### Where the data comes from
+
+| Source        | Method                                                                                           |
+|---------------|--------------------------------------------------------------------------------------------------|
+| AtCoder       | Task page scrape (English statement preferred). Difficulty and task → contest mapping from the community [AtCoder Problems](https://kenkoooo.com/atcoder/) dataset. |
+| Codeforces    | Problem page scrape for statement, limits, rating and tags. Official API (`problemset.problems`) as metadata fallback. |
+| Codewars      | Official REST API `api/v1/code-challenges/<id-or-slug>` (Markdown description).                  |
+| CodinGame     | The site's anonymous JSON service `services/Puzzle/findProgressByPrettyId`.                      |
+| HackerRank    | The site's REST endpoint `rest/contests/<contest>/challenges/<slug>`.                            |
+| Kattis        | Problem page scrape.                                                                             |
+| Project Euler | Documented minimal endpoints `minimal=<n>` and `minimal=problems`.                               |
+| SPOJ          | Problem page scrape.                                                                             |
+| Topcoder      | Static problem archive `archive.topcoder.com` (statement pages and `assets/problems.json`).      |
+
+Requests identify themselves as `3c-cli/<version>`, are retried with backoff on transient errors
+(429/5xx, honouring `Retry-After`) and reuse one connection pool per worker thread.
+
+### Known limitations
+
+- **Anti-bot challenges are not bypassed.** Some sites answer automated clients with a challenge page
+  depending on network and time of day. SPOJ (and LeetCode) do this frequently; the problem is then
+  reported as failed. For Codeforces the README is still generated from API metadata, with a note that
+  the statement is missing; re-run with `--force` later to complete it.
+- **HackerRank formulas in sample explanations** are published as images without source and appear as
+  `⟨formula⟩`. The statement, input format and constraints keep their `$...$` math.
+- **Codeforces gym problems** that only ship a PDF statement cannot be converted.
+- **AtCoder difficulty** is an estimate by AtCoder Problems, not an official figure, and is missing for
+  very old or very new tasks (those are written without a difficulty directory).
+- **Private or running contests** are not accessible; no login is performed for these sources.
+
+Problem statements remain the property of their respective sites and authors. Generated files are meant
+for personal reference; check a source's terms before redistributing them.
 
 <br>
 
@@ -222,29 +320,33 @@ Examples:
 ## Output layouts
 
 The CLI supports four layouts; all keep sources separate to prevent overwriting when more sources are added.
+Everything is written below `<out>/Challenges/`, `<source>` is the source's name (`LeetCode`, `AtCoder`,
+`Codeforces`, `ProjectEuler`, ...) and `<difficulty>` is the tier from the table above: `Easy`/`Medium`/`Hard`
+for LeetCode, lower-cased for the other sources (`medium`, `6-kyu`, `1500`, `brown`, `div-1-easy`, ...).
+Sources or problems without a tier skip that level.
 
 - `source-difficulty-id` (default)  
-	 &emsp;&emsp;`<out>/<source>/<difficulty>/<leaf>/README.md`  
-	 &emsp;&emsp;`./leetcode/medium/3508/README.md`
+	 &emsp;&emsp;`<out>/Challenges/<source>/<difficulty>/<leaf>/README.md`  
+	 &emsp;&emsp;`./Challenges/LeetCode/Medium/3508/README.md`
 
 
 - `difficulty-source-id`  
-        &emsp;&emsp;`<out>/<difficulty>/<source>/<leaf>/README.md`  
-        &emsp;&emsp;`./medium/leetcode/3508/README.md`
+        &emsp;&emsp;`<out>/Challenges/<difficulty>/<source>/<leaf>/README.md`  
+        &emsp;&emsp;`./Challenges/Medium/LeetCode/3508/README.md`
 
 
 - `source-id`  
-	&emsp;&emsp;`<out>/<source>/<leaf>/README.md`  
-	&emsp;&emsp;`./leetcode/3508/README.md`  
+	&emsp;&emsp;`<out>/Challenges/<source>/<leaf>/README.md`  
+	&emsp;&emsp;`./Challenges/LeetCode/3508/README.md`  
 
 
 - `flat`  
-	&emsp;&emsp;`<out>/<leaf>/README.md`  
-	&emsp;&emsp;`./3508/README.md`  
+	&emsp;&emsp;`<out>/Challenges/<leaf>/README.md`  
+	&emsp;&emsp;`./Challenges/3508/README.md`  
 
 Leaf directory name (`<leaf>`) defaults to `{id}`; customize with `--namefmt`:
 - `{id}-{slug}` → `998-maximum-binary-tree-ii`
-- `{source}-{id}` → `leetcode-998`
+- `{source}-{id}` → `LeetCode-998`
 
 ## Configuration
 
@@ -263,7 +365,7 @@ Environment variables:
 - `3C_CACHE_DIR` — cache directory (default: `~/.3c/cache` or `%USERPROFILE%\.3c\cache`)
 - `3C_LAYOUT` — default layout (default: `source-difficulty-id`)
 - `3C_NAMEFMT` — default leaf directory format (default: `{id}`)
-- `3C_JOBS` — default parallel jobs for `lc` generation (`1` if unset)
+- `3C_JOBS` — default parallel jobs for batch generation (`1` if unset)
 
 Authentication (optional but recommended for reliability and paid-only metadata):
 - `LEETCODE_SESSION` — your browser’s LeetCode session cookie
@@ -297,8 +399,14 @@ Pass `--template /path/to/template.j2` to use your own.
 ## Caching
 
 The tool caches:
-- Problem map (`/api/problems/all/`)
-- Contest lookups
+- LeetCode: problem map (`/api/problems/all/`) and contest lookups
+- CodeGolf: hole list (1 day)
+- AtCoder: difficulty estimates and task → contest map (1 week)
+- Codeforces: problem set metadata, only when needed as a fallback (1 day)
+- Project Euler: problem index (1 day)
+- Topcoder: archive index, only when a problem is addressed by name (1 week)
+
+Pass `--refresh` to a source command to rebuild its cached indexes.
 
 Default locations:
 - Linux/macOS: `~/.3c/cache`
@@ -325,7 +433,7 @@ Override with `3C_CACHE_DIR`.
 	- Run `pipx ensurepath` then restart your shell; reinstall via `pipx install .`
 - Run `doctor` for health check
 	- Use `--show-env` to inspect env vars
-	- Use `--check-network` to perform check api connection
+	- Use `--check-network` to probe every source and see which ones answer (or challenge) from your network
 - 400/403/429/499 from GraphQL:
 	- Set `LEETCODE_SESSION` and `LEETCODE_CSRF` from your browser session
 	- Re-run with `--debug` to see HTTP statuses and retries
@@ -333,6 +441,8 @@ Override with `3C_CACHE_DIR`.
 - Unexpected output location:
 	- Check `--layout` and `--namefmt`
 	- Print debug info with `--debug` to see the resolved `out_root` and computed `out_dir`
+- "answered with an anti-bot challenge":
+	- The site refused automated access from your network for now; retry later (see Known limitations)
 - Template path errors:
 	- Ensure the path passed to `--template` exists and is readable
 
@@ -342,13 +452,40 @@ Override with `3C_CACHE_DIR`.
 
 <br>
 
+## Development
+
+```bash
+pip install -e ".[dev]"
+pytest
+```
+
+The test suite runs offline: HTTP and the cache directory are stubbed, and parsers are exercised against
+small fixtures in `cli/tests/`.
+
+Adding a source means adding one module under `cli/ccc/cli/providers/` with a `StatementProvider`
+subclass that implements `expand()` (CLI input → problem references) and `fetch()` (reference → `Problem`).
+Argument parsing, layouts, overwrite policy, parallelism and rendering are inherited; providers are
+discovered automatically.
+
+<br>
+
+---
+
+<br>
+
 ## Roadmap / wish to implement
 
-- Additional sources (ProjectEuler, Codeforces, etc.)
+Done:
+- [x] Additional sources: AtCoder, Codeforces, Codewars, CodinGame, HackerRank, Kattis, Project Euler,
+  SPOJ, Topcoder
+- [x] Unit tests for the shared core and the new providers
+
+Open:
+- Move LeetCode and CodeGolf onto the shared provider base (HTTP client, cache, template context)
 - Shared metadata per problem
-- Extended batch workflows
+- Extended batch workflows (`--latest`, `--random`, tag/difficulty filters for more sources)
 - Smarter rate limit adaptation (dynamic throttle)
-- Testing (unit + integration), linting, type checks...
+- Integration tests against recorded responses, linting, type checks...
 - Cross-platform checks (perms, locales)
 - Packaging & OS package manager targets 
 - Logging improvements; rotating logs, error reporting, retries, cache improvements
