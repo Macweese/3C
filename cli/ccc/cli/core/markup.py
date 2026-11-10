@@ -37,6 +37,8 @@ _DROP_TAGS = ("script", "style", "noscript", "iframe", "form", "button", "input"
 # Wrappers that carry no meaning once their attributes are gone.
 _UNWRAP_TAGS = ("span", "section", "article", "font")
 _URL_ATTRS = (("a", "href"), ("img", "src"))
+# Sites that serve statements as one long line get a break after each block.
+_BLOCK_END_RE = re.compile(r"(</(?:p|div|h[1-6]|ul|ol|li|pre|table|tr|blockquote|dl|dd)>|<hr/?>)(?!\n)")
 _BLANK_LINES_RE = re.compile(r"\n[ \t]*\n(?:[ \t]*\n)+")
 
 
@@ -97,4 +99,5 @@ def clean_html(
 	for tag in root.find_all(_UNWRAP_TAGS):
 		tag.unwrap()
 
-	return _BLANK_LINES_RE.sub("\n\n", root.decode(formatter="minimal")).strip()
+	html = _BLOCK_END_RE.sub(r"\1\n", root.decode(formatter="minimal"))
+	return _BLANK_LINES_RE.sub("\n\n", html).strip()

@@ -36,6 +36,10 @@ def test_clean_html_drop_and_unwrap_selectors():
 	assert out == "<p>$x$</p>"
 
 
+def test_clean_html_breaks_lines_after_blocks():
+	assert clean_html("<div><p>a</p><p>b</p></div>", "https://e.org/") == "<div><p>a</p>\n<p>b</p>\n</div>"
+
+
 def test_slugify_and_problem_defaults():
 	assert slugify("  Hello, World! (v2) ") == "hello-world-v2"
 	p = Problem(source="S", source_name="S", id="1", title="A - Two Words", url="u", body="b")
