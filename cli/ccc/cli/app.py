@@ -74,6 +74,9 @@ def main(argv: list[str] | None = None) -> int:
 		help="Print version and exit.",
 	)
 
+	# Easter egg: intentionally absent from --help.
+	parser.add_argument("--donut", action="store_true", help=argparse.SUPPRESS)
+
 	subparsers = parser.add_subparsers(dest="cmd", required=False, metavar="{lc,doctor,...}")
 
 	doctor_mod.register_subparser(subparsers, parents=[common])
@@ -88,6 +91,11 @@ def main(argv: list[str] | None = None) -> int:
 		print(CLI_ASCII_LOGO)
 		print(f"3C CLI version {_get_pkg_version()}")
 		return 0
+
+	if getattr(args, "donut", False):
+		from .. import donut
+
+		return donut.main()
 
 	no_color = bool(getattr(args, "no_color", False))
 	force_color = bool(getattr(args, "force_color", False))
