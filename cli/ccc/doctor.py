@@ -26,7 +26,7 @@ import sys
 import platform
 import tempfile
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Tuple
 
 from importlib.metadata import version as _pkg_version, PackageNotFoundError
 
@@ -95,6 +95,46 @@ def _masked(s: Optional[str], keep_last: int = 4) -> str:
 	if len(s) <= keep_last:
 		return "*" * len(s)
 	return "*" * (len(s) - keep_last) + s[-keep_last:]
+
+
+# (label, URL) probed by `doctor --check-network`; one cheap request per source.
+NETWORK_ENDPOINTS = (
+	("LeetCode", "https://leetcode.com/api/problems/all/"),
+	("CodeGolf", "https://code.golf/api/holes"),
+	("AtCoder", "https://atcoder.jp/contests/abc300/tasks/abc300_a"),
+	("Codeforces", "https://codeforces.com/api/problemset.problems?tags=2-sat"),
+	("Codewars", "https://www.codewars.com/api/v1/code-challenges/valid-braces"),
+	("CodinGame", "https://www.codingame.com/"),
+	("HackerRank", "https://www.hackerrank.com/rest/contests/master/challenges/solve-me-first"),
+	("Kattis", "https://open.kattis.com/problems/hello"),
+	("Project Euler", "https://projecteuler.net/minimal=1"),
+	("SPOJ", "https://www.spoj.com/problems/TEST/"),
+	("Topcoder", "https://archive.topcoder.com/"),
+)
+
+
+def _probe(url: str) -> Tuple[str, str]:
+	"""Return (status text, style) for one endpoint; never raises."""
+	import requests
+	from .cli.core.http import USER_AGENT
+
+	try:
+		# stream=True: only the status line and headers are needed, not the body.
+		with requests.get(url, timeout=15, stream=True, headers={"User-Agent": USER_AGENT}) as r:
+			if r.headers.get("cf-mitigated", "").lower() == "challenge":
+				return f"{r.status_code} (anti-bot challenge)", "warn"
+			return str(r.status_code), "ok" if r.ok else "warn" if r.status_code < 500 else "err"
+	except Exception as e:
+		return f"Error: {type(e).__name__}: {e}", "err"
+
+
+def check_network() -> List[Tuple[str, str, str]]:
+	"""Probe every source concurrently. Returns [(label, status text, style)]."""
+	from concurrent.futures import ThreadPoolExecutor
+
+	with ThreadPoolExecutor(max_workers=len(NETWORK_ENDPOINTS)) as pool:
+		results = pool.map(_probe, [url for _, url in NETWORK_ENDPOINTS])
+		return [(label, text, style) for (label, _), (text, style) in zip(NETWORK_ENDPOINTS, results)]
 
 
 def run(args) -> int:
@@ -194,32 +234,15 @@ def run(args) -> int:
 
 		# Optional network checks
 		if getattr(args, "check_network", False):
-			try:
-				import requests  # local import
-				from .cli.providers.leetcode import MAP_ALL_URL
-				from .cli.providers.codegolf import CODEGOLF_API_BASE
-				net_tab = Table(title="Network", title_justify="left", show_lines=False, box=None)
-				net_tab.add_column("Endpoint", style="label")
-				net_tab.add_column("Status")
-				ok = True
-				try:
-					r = requests.get(MAP_ALL_URL, timeout=15)
-					net_tab.add_row("LeetCode API", Text(str(r.status_code), style="ok" if r.ok else "warn"))
-					ok = ok and (r.status_code < 500)
-				except Exception as e:
-					net_tab.add_row("LeetCode API", Text(f"Error: {e}", style="err"))
-					ok = False
-				try:
-					r = requests.get(MAP_ALL_URL, timeout=15)
-					net_tab.add_row("CodeGolf API", Text(str(r.status_code), style="ok" if r.ok else "warn"))
-					ok = ok and (r.status_code < 500)
-				except Exception as e:
-					net_tab.add_row("CodeGolf API", Text(f"Error: {e}", style="err"))
-					ok = False
-				c.print(net_tab)
-				c.print(Text("Network: OK" if ok else "Network: issues detected", style="ok" if ok else "warn"))
-			except Exception as e:
-				c.print(Text(f"Network check unavailable: {e}", style="warn"))
+			net_tab = Table(title="Network", title_justify="left", show_lines=False, box=None)
+			net_tab.add_column("Source", style="label")
+			net_tab.add_column("Status")
+			results = check_network()
+			for label, text, style in results:
+				net_tab.add_row(label, Text(text, style=style))
+			c.print(net_tab)
+			ok = all(style == "ok" for _, _, style in results)
+			c.print(Text("Network: OK" if ok else "Network: issues detected", style="ok" if ok else "warn"))
 		return 0
 
 	# Plain output fallback (no rich)
@@ -246,24 +269,10 @@ def run(args) -> int:
 
 	# Optional network checks (plain)
 	if getattr(args, "check_network", False):
-		try:
-			import requests
-			from .cli.providers.leetcode import MAP_ALL_URL
-			from .cli.providers.codegolf import CODEGOLF_API_BASE
-			lines.append("")
-			lines.append("Network:")
-			try:
-				r = requests.get(MAP_ALL_URL, timeout=15)
-				lines.append(f"  - LeetCode API: {r.status_code}")
-			except Exception as e:
-				lines.append(f"  - LeetCode API: Error: {e}")
-			try:
-				r = requests.get(CODEGOLF_API_BASE, timeout=15)
-				lines.append(f"  - CodeGolf API: {r.status_code}")
-			except Exception as e:
-				lines.append(f"  - CodeGolf API: Error: {e}")
-		except Exception as e:
-			lines.append(f"Network check unavailable: {e}")
+		lines.append("")
+		lines.append("Network:")
+		for label, text, _ in check_network():
+			lines.append(f"  - {label}: {text}")
 
 	_print_plain(lines)
 	return 0
@@ -277,6 +286,6 @@ def register_subparser(subparsers, parents: Optional[List[argparse.ArgumentParse
 		parents=parents or [],
 	)
 	p.add_argument("--show-env", action="store_true", help="Show relevant environment variables.")
-	p.add_argument("--check-network", action="store_true", help="Attempt basic network checks (LeetCode endpoints).")
+	p.add_argument("--check-network", action="store_true", help="Check that each problem source is reachable.")
 	p.set_defaults(func=run)
 	return p
