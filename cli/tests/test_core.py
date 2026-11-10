@@ -15,9 +15,10 @@ from conftest import FakeResponse
 def test_clean_html_strips_noise_and_absolutizes_urls():
 	html = (
 		'<div class="x" style="color:red"><script>alert(1)</script><!-- c -->'
-		'<a href="/a?b=1" onclick="x()">link</a><img src="img/p.png" alt="p"></div>'
+		'<a href="/a?b=1" onclick="x()"><span class="t">link</span></a><img src="img/p.png" alt="p"></div>'
 	)
 	out = clean_html(html, "https://example.org/problems/1/")
+	assert "<div>" in out and "span" not in out
 	assert "script" not in out and "<!--" not in out and "class" not in out and "onclick" not in out
 	assert 'href="https://example.org/a?b=1"' in out
 	assert 'src="https://example.org/problems/1/img/p.png"' in out

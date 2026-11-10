@@ -18,8 +18,8 @@ HTML clean-up for problem statements embedded in generated Markdown.
 
 Statements are kept as HTML (GitHub-flavoured Markdown renders inline HTML),
 but scraped markup is normalised first: scripts/styles removed, relative
-links made absolute, presentation attributes dropped and math rewritten to
-the `$...$` notation GitHub renders.
+links made absolute, presentation attributes and wrappers dropped and math
+rewritten to the `$...$` notation GitHub renders.
 """
 
 from __future__ import annotations
@@ -34,6 +34,8 @@ from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 # site-specific presentation noise.
 _KEEP_ATTRS = frozenset(("href", "src", "alt", "title", "colspan", "rowspan", "width", "height", "align"))
 _DROP_TAGS = ("script", "style", "noscript", "iframe", "form", "button", "input", "svg")
+# Wrappers that carry no meaning once their attributes are gone.
+_UNWRAP_TAGS = ("span", "section", "article", "font")
 _URL_ATTRS = (("a", "href"), ("img", "src"))
 _BLANK_LINES_RE = re.compile(r"\n[ \t]*\n(?:[ \t]*\n)+")
 
@@ -92,5 +94,7 @@ def clean_html(
 	for tag in root.find_all(True):
 		if tag.attrs:
 			tag.attrs = {k: v for k, v in tag.attrs.items() if k in _KEEP_ATTRS}
+	for tag in root.find_all(_UNWRAP_TAGS):
+		tag.unwrap()
 
 	return _BLANK_LINES_RE.sub("\n\n", root.decode(formatter="minimal")).strip()
