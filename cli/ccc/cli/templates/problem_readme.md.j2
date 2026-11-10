@@ -1,0 +1,56 @@
+[comment]: # ( ----- THIS FILE IS AUTO-GENERATED ----- )
+
+# {{ heading }}
+
+{% if difficulty %}
+<h3>{{ difficulty }}</h3>
+
+{% endif %}
+[{{ source_name }} {{ id }}]({{ url }})
+
+{% if meta %}
+| | |
+|---|---|
+{% for label, value in meta %}
+| **{{ label }}** | {{ value | replace("|", "\\|") }} |
+{% endfor %}
+
+{% endif %}
+## Description
+
+{% if notice %}
+> [!NOTE]
+> {{ notice }}
+
+{% endif %}
+{{ body }}
+
+{% if footer %}
+<sub>{{ footer }}</sub>
+
+{% endif %}
+<br>
+
+---
+
+<br>
+
+#### Tags
+
+{% if tags %}
+{% for tag in tags %}
+`{{ tag | lower }}`
+{% endfor %}
+{% else %}
+<!-- No tags found -->
+{% endif %}
+
+---
+
+**Notes**
+
+<!-- Your notes -->
+
+[comment]: # (notes...)
+
+[comment]: # ( ----- THIS FILE IS AUTO-GENERATED ----- )

@@ -17,6 +17,9 @@ dependencies = [
     "rich>=13.7.1",
 ]
 
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
 [project.scripts]
 # The shell command is "3c"
 3c = "ccc.cli.app:main"
@@ -30,3 +33,7 @@ include = ["ccc*"]
 
 [tool.setuptools.package-data]
 ccc = ["cli/templates/*.j2"]
+
+[tool.pytest.ini_options]
+testpaths = ["cli/tests"]
+pythonpath = ["cli", "cli/tests"]
